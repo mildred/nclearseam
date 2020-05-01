@@ -18,7 +18,7 @@ Key features:
 - Full control over what you do to the DOM nodes (HTML attributes, Javascript
   properties, event handlers or anything you can think of)
 
-Rationale is explained in [`doc/svelte_with_nim.md`](doc/svelte_with_nim.md).
+Rationale is explained in [`docs/svelte_with_nim.md`](docs/svelte_with_nim.html).
 
 Warning: this is a very young project, use at your own risks
 
@@ -27,6 +27,8 @@ Example
 
 Templating is always the combinaison of three factors: the HTML markup, the data
 (generally JSON, but it's generic) and the mapping.
+
+You can also [view live examples](samples/).
 
 ### Hello World
 
