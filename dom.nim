@@ -171,6 +171,7 @@ type
     nodeType*: NodeType
     nodeValue*: cstring
     parentNode*: Node
+    content*: Node
     previousSibling*: Node
     ownerDocument*: Document
     innerHTML*: cstring
