@@ -43,7 +43,7 @@ Templating is always the combinaison of three factors: the HTML markup, the data
 ```
 
 ```nim
-proc mapping(t: TmplFactory):
+var t = create(JsonNode) do(t: auto):
   t.match("h1 .name", get("name")) do(node: dom.Node, data: JsonNode):
     node.textContent = data.getStr()
 ```
@@ -65,7 +65,7 @@ proc mapping(t: TmplFactory):
 ```
 
 ```nim
-proc mapping(t: TmplFactory):
+var t = create(JsonNode) do(t: auto):
   t.iter("ul li", get("items")) do(item: auto):
     item.match(".name", get()) do(node: dom.Node, data: JsonNode):
       node.textContent = $data
