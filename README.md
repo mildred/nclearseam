@@ -4,8 +4,8 @@ nim-svelte
 This is a templating library targetting javascript in browsers. The aim is to
 keep it just a library, not make it into a full framework, and to get out of
 your way. It also aims to be fast and avoids complexities of Virtual DOMs. It
-gets inspiration from [Svelte.js][sveltejs] for thats well as [Weld][weld] and
-[PureJS][purejs] for the syntax.
+gets inspiration from [Svelte.js][sveltejs] for that well as [Weld][weld],
+[PureJS][purejs] and my own [Clearseam][clearseam] for the syntax.
 
 Key features:
 
@@ -77,3 +77,4 @@ var t = create(JsonNode) do(t: auto):
 [sveltejs]: http://svelte.dev
 [weld]: https://github.com/tmpvar/weld
 [purejs]: https://pure-js.com/
+[clearseam]: https://github.com/mildred/clearseam
