@@ -4,7 +4,7 @@ import ../dom
 import json
 import jsconsole
 
-var testTemplate = create(JsonNode) do(t: auto):
+var config1* = create(JsonNode) do(t: auto):
   t.match("h1 .name", get "name") do(node: dom.Node, data: JsonNode):
     node.textContent = data.getStr()
   t.iter("ul li", get "names") do(name: auto):
@@ -12,10 +12,12 @@ var testTemplate = create(JsonNode) do(t: auto):
       node.textContent = $data
 
 var node = document.querySelector("template#sample-1")
-console.log(node)
-var tmpl = testTemplate.compile(node.content)
-console.log(tmpl)
-tmpl.attach(node.parentNode, node, %*{"name": "Name!!!", "names": ["a", "b"]})
-discard setTimeout(proc() =
-  tmpl.update(%*{"name": "timeout", "names": ["a", "b", "c", "d"]})
-, 1000)
+var tmpl1* = config1.compile(node.content)
+
+if isMainModule:
+  console.log(node)
+  console.log(tmpl1)
+  tmpl1.attach(node.parentNode, node, %*{"name": "Name!!!", "names": ["a", "b"]})
+  discard setTimeout(proc() =
+    tmpl1.update(%*{"name": "timeout", "names": ["a", "b", "c", "d"]})
+  , 1000)

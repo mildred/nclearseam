@@ -10,6 +10,7 @@ if (typeof Uint16Array === 'undefined') Uint16Array = Array;
 if (typeof Uint32Array === 'undefined') Uint32Array = Array;
 if (typeof Float32Array === 'undefined') Float32Array = Array;
 if (typeof Float64Array === 'undefined') Float64Array = Array;
+var NTI11115002 = {size: 0, kind: 18, base: null, node: null, finalizer: null};
 var NTI11110002 = {size: 0, kind: 18, base: null, node: null, finalizer: null};
 var NTI11080002 = {size: 0, kind: 18, base: null, node: null, finalizer: null};
 var NTI11096313 = {size: 0,kind: 24,base: null,node: null,finalizer: null};
@@ -543,6 +544,9 @@ NTI11080002.node = NNI11080002;
 var NNI11110002 = {kind: 2, len: 2, offset: 0, typ: null, name: null, sons: [{kind: 1, offset: "Field0", len: 0, typ: NTI112, name: "Field0", sons: null}, 
 {kind: 1, offset: "Field1", len: 0, typ: NTI10471043, name: "Field1", sons: null}]};
 NTI11110002.node = NNI11110002;
+var NNI11115002 = {kind: 2, len: 2, offset: 0, typ: null, name: null, sons: [{kind: 1, offset: "Field0", len: 0, typ: NTI112, name: "Field0", sons: null}, 
+{kind: 1, offset: "Field1", len: 0, typ: NTI10471043, name: "Field1", sons: null}]};
+NTI11115002.node = NNI11115002;
 function setConstr() {
         var result = {};
     for (var i = 0; i < arguments.length; ++i) {
@@ -3897,10 +3901,44 @@ function HEX3Aanonymous_11106527() {
 var config1_11056649 = [create_11056565(HEX3Aanonymous_11053015)];
 var node_11056650 = [document.querySelector("template#sample-1")];
 var tmpl1_11076223 = [compile_11056844(config1_11056649[0], node_11056650[0].content)];
-if (true) {
+if (false) {
 console.log(node_11056650[0]);
 console.log(tmpl1_11076223[0]);
 attach_11085064(tmpl1_11076223[0], node_11056650[0].parentNode, node_11056650[0], HEX25_10630802([nimCopy(null, {Field0: makeNimstrLit("name"), Field1: HEX25_10630683(makeNimstrLit("Name!!!"))}, NTI11080002), nimCopy(null, {Field0: makeNimstrLit("names"), Field1: HEX25_11080058([HEX25_10630683(makeNimstrLit("a")), HEX25_10630683(makeNimstrLit("b"))])}, NTI11080002)]));
 setTimeout(HEX3Aanonymous_11106527, 1000);
+}
+
+function mount_11111827(t_11111831, comp_11111833) {
+  var F={procname:"mount.mount",prev:framePtr,filename:"svelte.nim",line:0};
+  framePtr = F;
+    F.line = 77;
+    t_11111831.mount = clone_11075248(comp_11111833);
+  framePtr = F.prev;
+
+  
+}
+function HEX3Aanonymous_11111015(t_11111022) {
+    function HEX3Aanonymous_11111220(t_11111422) {
+      var F={procname:":anonymous.:anonymous",prev:framePtr,filename:"sample2.nim",line:0};
+      framePtr = F;
+        F.line = 11;
+        mount_11111827(t_11111422, tmpl1_11076223[0]);
+      framePtr = F.prev;
+
+      
+    }
+
+  var F={procname:"sample2.:anonymous",prev:framePtr,filename:"sample2.nim",line:0};
+  framePtr = F;
+    match_11053934(t_11111022, makeNimstrLit("div.insert"), get_11051014(), HEX3Aanonymous_11111220);
+  framePtr = F.prev;
+
+  
+}
+var config2_11112113 = [create_11056565(HEX3Aanonymous_11111015)];
+var node_11112114 = [document.querySelector("template#sample-2")];
+var tmpl2_11112315 = [compile_11056844(config2_11112113[0], node_11112114[0].content)];
+if (true) {
+attach_11085064(tmpl2_11112315[0], node_11112114[0].parentNode, node_11112114[0], HEX25_10630802([nimCopy(null, {Field0: makeNimstrLit("name"), Field1: HEX25_10630683(makeNimstrLit("Sample-2"))}, NTI11115002), nimCopy(null, {Field0: makeNimstrLit("names"), Field1: new_jarray_10490657()}, NTI11115002)]));
 }
 
