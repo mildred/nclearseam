@@ -28,7 +28,10 @@ Example
 Templating is always the combinaison of three factors: the HTML markup, the data
 (generally JSON, but it's generic) and the mapping.
 
-You can also [view live examples](samples/).
+You can also [view live examples](samples/):
+
+- [Sample 1](samples/sample1.html): basics and iteration
+- [Sample 2](samples/sample2.html): mounting other components
 
 ### Hello World
 
@@ -71,6 +74,26 @@ var t = create(JsonNode) do(t: auto):
   t.iter("ul li", get("items")) do(item: auto):
     item.match(".name", get()) do(node: dom.Node, data: JsonNode):
       node.textContent = $data
+```
+
+### Mounting components
+
+```html
+<template>
+  <div class="placeholder"></div>
+</template>
+```
+
+```json
+{
+  "placeholder-data": {}
+}
+```
+
+```nim
+var t = create(JsonNode) do(t: auto):
+  t.match("div.placeholder", get("placeholder-data")) do(placeholder: auto):
+    placeholder.mount(other_component)
 ```
 
 
