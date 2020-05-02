@@ -223,14 +223,10 @@ proc attach*[D](t: Component[D], target, anchor: dom.Node, data: D) =
 proc detach*(t: Component) =
   t.node.parentNode.removeChild(t.node)
 
-#func get*[D,K](keys: varargs[K]): ProcGetValue[D] =
-#  mixin `[]`
-#  return proc(node: D): D =
-#    result = node
-#    for key in items(keys):
-#      result = result[key]
-#func get*[D,K](key: K): ProcGetValue[D] =
-#  mixin `[]`
-#  return proc(node: D): D =
-#    return node[key]
+func get*[K,D](typ: typedesc[D], keys: varargs[K]): ProcGetValue[D] =
+  mixin `[]`
+  let keys = @keys
+  return proc(node: D): D =
+    result = node
+    for key in items(keys): result = result[key]
 
