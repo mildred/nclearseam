@@ -1,5 +1,6 @@
 import sequtils
 import strformat
+import system
 import ./dom
 
 type
@@ -8,6 +9,15 @@ type
   ProcRefresh*[D]           = proc(node: dom.Node, data: D)
   ProcGetValue*[D]          = proc(data: D): D
   ProcTypeConverter*[D1,D2] = proc(data: D1): D2
+  ProcIter*[D2]          = proc(): tuple[ok: bool, data: D2]
+  ProcIterator*[D1,D2]      = proc(d: D1): ProcIter[D2]
+
+  IterItem[D] = ref object
+    updateComp:  proc(comp: ComponentInterface[D], refresh: bool)
+    updateMatch: proc(m: CompMatch[D], refresh: bool)
+    refresh:     proc(refreshProc: ProcRefresh[D], node: dom.Node)
+    next:        proc(): IterItem[D]
+  ProcIterInternal*[D] = proc(data: D): IterItem[D]
 
   ComponentInterface*[D] = ref object
     node*:   proc(): dom.Node
@@ -21,6 +31,7 @@ type
     matches: proc(): seq[MatchConfigInterface[D]]
     mount: proc(): ComponentInterface[D]
     iter: proc(): bool
+    iterate: proc(): ProcIterInternal[D]
   MatchConfigInterface[D] = ref object
     direct: MatchConfig[D]
     implem: MatchConfigImplementation[D]
@@ -32,6 +43,7 @@ type
     matches: seq[MatchConfigInterface[D]]
     mount: ComponentInterface[D]
     iter: bool
+    iterate: ProcIterInternal[D]
 
   Config*[D] = ref object
     matches: seq[MatchConfigInterface[D]]
@@ -51,17 +63,20 @@ type
       mount: ComponentInterface[D]
       matches: seq[CompMatch[D]]
     of true:
+      iterate: ProcIterInternal[D]
       mount_template: ComponentInterface[D]
       match_templates: seq[MatchConfigInterface[D]]
       items: seq[CompMatchItem[D]]
       anchor: dom.Node
-      iterate: iterator(val: D): D
 
   Component*[D] = ref object
     config: Config[D]
     matches: seq[CompMatch[D]]
     node: dom.Node
     original_node: dom.Node
+
+proc createIterator[D1,D2](iterate: ProcIterator[D1,D2]): ProcIterInternal[D1]
+proc dataIterator[D](data: D): ProcIter[D]
 
 proc asInterface[D](m: MatchConfig[D]): MatchConfigInterface[D] =
   result = MatchConfigInterface[D](direct: m, implem: nil)
@@ -84,6 +99,9 @@ proc mount[D](m: MatchConfigInterface[D]): ComponentInterface[D] =
 proc iter[D](m: MatchConfigInterface[D]): bool =
   if m.direct != nil: m.direct.iter else: m.implem.iter()
 
+proc iterate[D](m: MatchConfigInterface[D]): ProcIterInternal[D] =
+  if m.direct != nil: m.direct.iterate else: m.implem.iterate()
+
 proc create*[D](): Config[D] =
   return new(Config[D])
 
@@ -91,6 +109,7 @@ proc create*[D](d: typedesc[D], configurator: proc(c: Config[D])): Config[D] =
   result = new(Config[D])
   configurator(result)
 
+proc compile*[D](node: dom.Node, tf: Config[D]): Component[D]
 proc compile*[D](d: typedesc[D], node: dom.Node, configurator: proc(c: Config[D])): Component[D] =
   let config = new(Config[D])
   configurator(config)
@@ -127,13 +146,13 @@ func asInterface*[D](comp: Component[D]): ComponentInterface[D] =
     clone: (proc(): ComponentInterface[D] =
       asInterface(clone(comp))))
 
-func asInterface*[D1,D2](comp: Component[D2], convert: ProcTypeConverter[D1,D2]): ComponentInterface[D1] =
-  result = ComponentInterface[D2](
+func asInterface*[D,D2](comp: Component[D2], convert: ProcTypeConverter[D,D2]): ComponentInterface[D] =
+  result = ComponentInterface[D](
     node: proc(): dom.Node =
       comp.node,
-    update: proc(data: D1, refresh: bool) =
+    update: proc(data: D, refresh: bool) =
       comp.update(convert(data), refresh),
-    clone: (proc(): ComponentInterface[D1] =
+    clone: (proc(): ComponentInterface[D] =
       asInterface(clone(comp), convert)))
 
 proc mount*[D](t: MatchConfig[D], conf: Config[D], node: dom.Node) =
@@ -145,8 +164,8 @@ proc mount*[D](t: MatchConfig[D], comp: Component[D]) =
 proc mount*[D](t: MatchConfig[D], comp: ComponentInterface[D]) =
   t.mount = comp.clone()
 
-proc mount*[D1,D2](t: MatchConfig[D1], comp: Component[D2], convert: ProcTypeConverter[D1,D2]) =
-  t.mount = asInterface(clone(comp), convert)
+proc mount*[D,D2](t: MatchConfig[D], comp: Component[D2], convert: ProcTypeConverter[D,D2]) =
+  t.mount = asInterface[D](clone[D2](comp), convert)
 
 proc match*[D](t: Config[D] | MatchConfig[D], selector: string, fetchData: ProcGetValue[D], refreshProc: ProcRefresh[D]) =
   refresh(t.match(selector, fetchData), refreshProc)
@@ -154,20 +173,25 @@ proc match*[D](t: Config[D] | MatchConfig[D], selector: string, fetchData: ProcG
 proc match*[D](t: Config[D] | MatchConfig[D], selector: string, refreshProc: ProcRefresh[D]) =
   refresh(t.match(selector), refreshProc)
 
-proc iter*[D](t: Config[D] | MatchConfig[D], selector: string, fetchData: ProcGetValue[D], actions: proc(x: MatchConfig[D]) = nil): MatchConfig[D] {.discardable.} =
-  result = MatchConfig[t.D](
+proc iter*[D,D2](t: Config[D] | MatchConfig[D], selector: string, fetchData: ProcGetValue[D], iter: ProcIterInternal[D], actions: proc(x: MatchConfig[D2]) = nil): MatchConfig[D2] {.discardable.} =
+  result = MatchConfig[D2](
     selector: selector,
     fetchData: fetchData,
     refresh: @[],
     mount: nil,
     iter: true,
+    iterate: createIterator[D,D2](iter),
     matches: @[])
   t.matches.add(result.asInterface())
   if actions != nil:
     actions(result)
 
-proc iter*[D](t: Config[D] | MatchConfig[D], selector: string, actions: proc(x: MatchConfig[D]) = nil): MatchConfig[D] {.discardable.} =
-  iter(t, selector, nil, actions)
+proc iter*[D](t: Config[D] | MatchConfig[D], selector: string, fetchData: ProcGetValue[D], actions: proc(x: MatchConfig[D]) = nil): MatchConfig[D] {.discardable.} =
+  let iterate: ProcIterator[D,D] = dataIterator
+  iter[D,D](t, selector, fetchData, iterate, actions)
+
+proc iter*[D,D2](t: Config[D] | MatchConfig[D], selector: string, iter: ProcIterator[D,D2], actions: proc(x: MatchConfig[D2]) = nil): MatchConfig[D2] {.discardable.} =
+  iter(t, selector, nil, iter, actions)
 
 proc compile[D](cfg: MatchConfigInterface[D], node: dom.Node): CompMatch[D] =
   let matched_node = node.querySelector(cfg.selector())
@@ -182,6 +206,7 @@ proc compile[D](cfg: MatchConfigInterface[D], node: dom.Node): CompMatch[D] =
     node: matched_node)
   match.node = matched_node
   if match.iter:
+    match.iterate = cfg.iterate()
     match.anchor = matched_node.ownerDocument.createComment(matched_node.outerHTML)
     match.mount_template = cfg.mount()
     match.match_templates = cfg.matches()
@@ -236,15 +261,6 @@ proc createIterItem[D](match: CompMatch[D], parentNode: dom.Node): CompMatchItem
 proc detach[D](iter_item: CompMatchItem[D], parentNode: dom.Node) =
   parentNode.removeChild(iter_item.node)
 
-#iterator iter[D](match: CompMatch[D], val: D): D {.inline.} =
-#  mixin items
-#  if match.iterate == nil:
-#    for item in items(val):
-#      yield item
-#  else:
-#    for item in match.iterate(val):
-#      yield item
-
 proc update*[D](match: CompMatch[D], data: D, refresh: bool = false) =
   mixin get, `==`, items
   let val = if match.fetchData != nil: match.fetchData(data) else: data
@@ -255,7 +271,9 @@ proc update*[D](match: CompMatch[D], data: D, refresh: bool = false) =
   if match.iter:
     var i = 0
     let parentNode = match.anchor.parentNode
-    for item in match.iterate(val):
+    #for item in items(val):
+    var it = match.iterate(val)
+    while it != nil:
       var iter_item: CompMatchItem[D]
 
       # Create item if needed
@@ -267,15 +285,18 @@ proc update*[D](match: CompMatch[D], data: D, refresh: bool = false) =
 
       # Refresh mounts
       if iter_item.mount != nil:
-        iter_item.mount.update(item, refresh)
+        #iter_item.mount.update(item, refresh)
+        it.updateComp(iter_item.mount, refresh)
 
       # Refresh the submatches
       for submatch in iter_item.matches:
-        submatch.update(item, refresh)
+        #submatch.update(item, refresh)
+        it.updateMatch(submatch, refresh)
 
       # Refresh the node
       for refreshProc in match.refresh:
-        refreshProc(iter_item.node, item)
+        #refreshProc(iter_item.node, item)
+        it.refresh(refreshProc, iter_item.node)
 
       i = i + 1
 
@@ -316,3 +337,68 @@ func get*[K,D](typ: typedesc[D], keys: varargs[K]): ProcGetValue[D] =
   return proc(node: D): D =
     result = node
     for key in items(keys): result = result[key]
+
+#proc dataIterator[D](data: D): IterItem[D] =
+#  mixin items
+#  #var it: proc = items # instanciate the iterator
+#  let arr: seq[D] = @[]
+#  for item in items(data):
+#    arr.add(item)
+#  var it = 0
+#
+#  proc next(): IterItem[D] =
+#    #let item = it(data)
+#    #if finished(it): return nil
+#    if it >= len(arr): return nil
+#    let item = arr[it]
+#    return IterItem[D](
+#      updateComp:  (proc(comp: ComponentInterface[D], refresh: bool) = update(comp, item, refresh)),
+#      updateMatch: (proc(m: CompMatch[D], refresh: bool) = update(m, item, refresh)),
+#      refresh:     (proc(refreshProc: ProcRefresh[D], node: dom.Node) = refreshProc(node, item)),
+#      next:        next
+#    )
+#
+#  return next()
+
+proc seqIterator*[D](arr: seq[D]): ProcIter[D] =
+  #mixin items
+  #var it = items # Instanciate iterator
+  var it = 0
+  var empty: D
+
+  proc next(): tuple[ok: bool, data: D] =
+    #let item: D = it(data)
+    #if finished(it): return (false, item)
+    #else: return (true, data)
+    if it >= len(arr): return (false, empty)
+    else: return (true, arr[it])
+
+  return next
+
+proc dataIterator[D](data: D): ProcIter[D] =
+  mixin items
+  var arr: seq[D] = @[]
+  for item in items(data):
+    arr.add(item)
+  return seqIterator[D](arr)
+
+proc createIterator[D,D2](iterate: ProcIterator[D,D2]): ProcIterInternal[D] =
+  var nextItem: ProcIter[D2] = nil
+  let iterate1 = iterate
+
+  proc next[D,D2](): IterItem[D] =
+    let item = nextItem()
+    if item[0] == false: return nil
+    return IterItem[D](
+      updateComp:  (proc(comp: ComponentInterface[D], refresh: bool) = comp.update(item[1], refresh)),
+      updateMatch: (proc(m: CompMatch[D], refresh: bool) = update(m, item[1], refresh)),
+      refresh:     (proc(refreshProc: ProcRefresh[D], node: dom.Node) = refreshProc(node, item[1])),
+      next:        next
+    )
+
+  proc iter[D,D2](d1: D): IterItem[D] =
+    nextItem = iterate1(d1)
+    return next[D,D2]()
+
+  return iter
+

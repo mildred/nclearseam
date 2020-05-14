@@ -8,8 +8,8 @@ type Comp2Data = ref object
   names: seq[string]
 var Comp2: Component[Comp2Data]
 
-#proc iterNames(c2: Comp2Data): auto =
-#  items(c2.names)
+proc iterNames(c2: Comp2Data): ProcIter[string] =
+  seqIterator(c2.names)
 
 type Comp1Data = ref object
   name: string
@@ -26,9 +26,9 @@ Comp1 = compile(Comp1Data, document.querySelector("template#comp1")) do (t: auto
     t.mount(Comp2, toComp2)
 
 Comp2 = compile(Comp2Data, document.querySelector("template#comp2")) do (t: auto):
-  t.iter("ul li") do(name: auto):
-    name.match(".name") do(node: dom.Node, data: Comp2Data):
-      node.textContent = data.names[0]
+  t.iter("ul li", iterNames) do(name: auto):
+    name.match(".name") do(node: dom.Node, data: string):
+      node.textContent = data
 
 if isMainModule:
   Comp1.clone().attach(node.parentNode, node, %*{"name": "Sample-2", "names": []})
