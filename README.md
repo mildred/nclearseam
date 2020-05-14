@@ -96,6 +96,23 @@ var t = create(JsonNode) do(t: auto):
     placeholder.mount(other_component)
 ```
 
+Use it
+------
+
+- see examples, you can rebuild samples with:
+
+    ```shell
+    nim js samples/sample1
+    ```
+
+- copy a sample elsewhere and build it the same way
+
+- try it in a browser by spawining a simple HTTP server:
+
+    ```shell
+    python -m http.server 8000
+    xdg-open http://localhost:8000/samples/sample1.html
+    ```
 
 [sveltejs]: http://svelte.dev
 [weld]: https://github.com/tmpvar/weld
