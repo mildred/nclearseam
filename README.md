@@ -32,6 +32,7 @@ You can also [view live examples](samples/):
 
 - [Sample 1](samples/sample1.html): basics and iteration
 - [Sample 2](samples/sample2.html): mounting other components
+- [Sample 3](samples/sample3.html): using something else than JSON for data sets
 
 ### Hello World
 
@@ -98,6 +99,8 @@ var t = create(JsonNode) do(t: auto):
 
 Use it
 ------
+
+This is very experimental still, use at your own risks.
 
 - see examples, you can rebuild samples with:
 

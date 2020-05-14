@@ -1,3 +1,4 @@
+import ./svelteutil
 import ./svelte
 import json
 
