@@ -19,55 +19,51 @@ type
     next:        proc(): IterItem[D]
   ProcIterInternal*[D] = proc(data: D): IterItem[D]
 
-  ComponentInterface*[D] = ref object
-    node*:   proc(): dom.Node
-    update*: proc(data: D, refresh: bool)
-    clone*:  proc(): ComponentInterface[D]
-
-  MatchConfigImplementation[D] = ref object
-    selector: proc(): string
-    refresh: proc(): seq[ProcRefresh[D]]
-    fetchData: proc(): ProcGetValue[D]
-    matches: proc(): seq[MatchConfigInterface[D]]
-    mount: proc(): ComponentInterface[D]
-    iter: proc(): bool
-    iterate: proc(): ProcIterInternal[D]
-  MatchConfigInterface[D] = ref object
-    direct: MatchConfig[D]
-    implem: MatchConfigImplementation[D]
-
-  MatchConfig*[D] = ref object
+  MatchConfig*[D,D2] = ref object
     selector: string
-    refresh: seq[ProcRefresh[D]]
-    fetchData: ProcGetValue[D]
-    matches: seq[MatchConfigInterface[D]]
-    mount: ComponentInterface[D]
-    iter: bool
-    iterate: ProcIterInternal[D]
+    refresh: seq[ProcRefresh[D2]]
+    matches: seq[MatchConfigInterface[D2]]
+    mount: ComponentInterface[D2]
+    case iter: bool
+    of false:
+      convert: ProcTypeConverter[D,D2]
+    of true:
+      iterate: ProcIterator[D,D2]
+
+  MatchConfigInterface[D] = ref object
+    #selector: proc(): string
+    #refresh: proc(): seq[ProcRefresh[D]]
+    #fetchData: proc(): ProcGetValue[D]
+    #matches: proc(): seq[MatchConfigInterface[D]]
+    #mount: proc(): ComponentInterface[D]
+    #iter: proc(): bool
+    #iterate: proc(): ProcIterInternal[D]
 
   Config*[D] = ref object
     matches: seq[MatchConfigInterface[D]]
 
-  CompMatchItem[D] = ref object
+  CompMatchItem[D,D2] = ref object
     node: dom.Node
-    matches: seq[CompMatch[D]]
+    matches: seq[CompMatch[D,D2]]
     mount: ComponentInterface[D]
 
-  CompMatch[D] = ref object
+  CompMatch[D,D2] = ref object
     refresh: seq[ProcRefresh[D]]
-    fetchData: ProcGetValue[D]
     node: dom.Node
     oldValue: D
     case iter:bool
     of false:
-      mount: ComponentInterface[D]
-      matches: seq[CompMatch[D]]
+      convert: ProcTypeConverter[D,D2]
+      mount: ComponentInterface[D2]
+      matches: seq[CompMatch[D2]]
     of true:
-      iterate: ProcIterInternal[D]
-      mount_template: ComponentInterface[D]
-      match_templates: seq[MatchConfigInterface[D]]
-      items: seq[CompMatchItem[D]]
+      iterate: ProcIterator[D,D2]
+      mount_template: ComponentInterface[D2]
+      match_templates: seq[MatchConfigInterface[D2]]
+      items: seq[CompMatchItem[D,D2]]
       anchor: dom.Node
+
+  CompMatchInterface[D] = ref object
 
   Component*[D] = ref object
     config: Config[D]
@@ -75,32 +71,16 @@ type
     node: dom.Node
     original_node: dom.Node
 
+  ComponentInterface*[D] = ref object
+    node*:   proc(): dom.Node
+    update*: proc(data: D, refresh: bool)
+    clone*:  proc(): ComponentInterface[D]
+
 proc createIterator[D1,D2](iterate: ProcIterator[D1,D2]): ProcIterInternal[D1]
 proc dataIterator[D](data: D): ProcIter[D]
 
 proc asInterface[D](m: MatchConfig[D]): MatchConfigInterface[D] =
-  result = MatchConfigInterface[D](direct: m, implem: nil)
-
-proc selector[D](m: MatchConfigInterface[D]): string =
-  if m.direct != nil: m.direct.selector else: m.implem.selector()
-
-proc refresh[D](m: MatchConfigInterface[D]): seq[ProcRefresh[D]] =
-  if m.direct != nil: m.direct.refresh else: m.implem.refresh()
-
-proc fetchData[D](m: MatchConfigInterface[D]): ProcGetValue[D] =
-  if m.direct != nil: m.direct.fetchData else: m.implem.fetchData()
-
-proc matches[D](m: MatchConfigInterface[D]): seq[MatchConfigInterface[D]] =
-  if m.direct != nil: m.direct.matches else: m.implem.matches()
-
-proc mount[D](m: MatchConfigInterface[D]): ComponentInterface[D] =
-  if m.direct != nil: m.direct.mount else: m.implem.mount()
-
-proc iter[D](m: MatchConfigInterface[D]): bool =
-  if m.direct != nil: m.direct.iter else: m.implem.iter()
-
-proc iterate[D](m: MatchConfigInterface[D]): ProcIterInternal[D] =
-  if m.direct != nil: m.direct.iterate else: m.implem.iterate()
+  result = MatchConfigInterface[D]()
 
 proc create*[D](): Config[D] =
   return new(Config[D])
