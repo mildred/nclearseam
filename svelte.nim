@@ -66,6 +66,7 @@ type
     case iter:bool
     of false:
       convert: ProcTypeConverter[D,D2]
+      mount_source: ComponentInterface[D2]
       mount: ComponentInterface[D2]
       matches: seq[CompMatchInterface[D2]]
     of true:
@@ -162,15 +163,20 @@ proc match*[X,D](c: MatchConfig[X,D], selector: string, refreshProc: ProcRefresh
   refresh(match[X,D](c, selector), refreshProc)
 
 proc mount*[X,D](c: MatchConfig[X,D], conf: Config[D], node: dom.Node) =
+  assert(conf != nil, "mounted configuration cannot be nil")
+  assert(node != nil, "mounted node cannot be nil")
   c.mount = asInterface(compile(conf, node))
 
 proc mount*[X,D](c: MatchConfig[X,D], comp: Component[D]) =
+  assert(comp != nil, "mounted component cannot be nil")
   c.mount = asInterface(clone(comp))
 
 proc mount*[X,D](c: MatchConfig[X,D], comp: ComponentInterface[D]) =
+  assert(comp != nil, "mounted component cannot be nil")
   c.mount = comp.clone()
 
 proc mount*[X,D,D2](c: MatchConfig[X,D], comp: Component[D2], convert: ProcTypeConverter[D,D2]) =
+  assert(comp != nil, "mounted component cannot be nil")
   c.mount = asInterface[D](clone[D2](comp), convert)
 
 proc iter*[D,D2](c: Config[D], selector: string, iter: ProcIterator[D,D2], actions: proc(x: MatchConfig[D,D2]) = nil): MatchConfig[D,D2] {.discardable.} =
@@ -222,9 +228,9 @@ proc compile[D,D2](cfg: MatchConfig[D,D2], node: dom.Node): CompMatch[D,D2] =
   else:
     match.convert = cfg.convert
     match.matches = @[]
+    match.mount = nil
     if cfg.mount != nil:
-      match.mount = cfg.mount.clone()
-      matched_node.parentNode.replaceChild(match.mount.node(), matched_node)
+      match.mount_source = cfg.mount
     else:
       for submatch in cfg.matches:
         match.matches.add(submatch.compile(matched_node))
@@ -313,6 +319,11 @@ proc update*[D,D2](match: CompMatch[D,D2], val: D, refresh: bool) =
     var node = match.node
     var convertedVal = match.convert(val)
 
+    # Mount the child
+    if match.mount == nil and match.mount_source != nil:
+      match.mount = match.mount_source.clone()
+      node.parentNode.replaceChild(match.mount.node(), node)
+
     # Refresh mounts
     if match.mount != nil:
       node = match.mount.node()
@@ -391,6 +402,26 @@ func asInterface*[D,D2](comp: Component[D2], convert: ProcTypeConverter[D,D2]): 
       comp.update(convert(data), refresh),
     clone: (proc(): ComponentInterface[D] =
       asInterface(clone(comp), convert)))
+
+# late binding of a componnent that is not there yet
+proc late*[D](lateComp: proc(): Component[D]): ComponentInterface[D] =
+  var comp: Component[D] = nil
+
+  proc resolveComp() :Component[D] =
+    if comp == nil:
+      var late = lateComp()
+      assert(late != nil, "late component not resolved in time")
+      comp = late
+    return comp
+
+  result = ComponentInterface[D](
+    node: proc(): dom.Node =
+      resolveComp().node,
+    update: proc(data: D, refresh: bool) =
+      resolveComp().update(data, refresh),
+    clone: proc(): ComponentInterface[D] =
+      late(proc(): Component[D] = clone(resolveComp()))
+  )
 
 #
 # Helper procedures to create iterator functions
