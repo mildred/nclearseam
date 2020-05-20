@@ -34,6 +34,13 @@ You can also [view live examples](samples/):
 - [Sample 2](samples/sample2.html): mounting other components
 - [Sample 3](samples/sample3.html): using something else than JSON for data sets
 
+**Important Node:** This is still a work in progress, and while working on it,
+there is a few areas that do not work as documented yet:
+
+- sample 1 and 2 might not work
+- using only JsonNode as dataset is deprecated, instead use your own structured
+  data as shown in sample 3
+
 ### Hello World
 
 ```html
