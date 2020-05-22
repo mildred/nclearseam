@@ -46,6 +46,14 @@ type
   ## called, return the next item of the iteration, and a boolean indicating \
   ## the end of the iteration.
 
+  IteratorKind = enum
+    SimpleIterator
+
+  Iterator[D1,D2] = object
+    case kind: IteratorKind
+    of SimpleIterator:
+      simple: ProcIterator[D1,D2]
+
   IterItem[D] = ref object
     updateComp:  proc(comp: ComponentInterface[D], refresh: bool)
     updateMatch: proc(m: CompMatch[D], refresh: bool)
@@ -76,7 +84,7 @@ type
     of false:
       convert: TypeSelector[D,D2]
     of true:
-      iterate: ProcIterator[D,D2]
+      iterate: Iterator[D,D2]
 
   MatchConfigInterface[D] = ref object
     compile: proc(node: dom.Node): CompMatchInterface[D]
@@ -114,7 +122,7 @@ type
       matches: seq[CompMatchInterface[D2]]
       inited: bool
     of true:
-      iterate: ProcIterator[D,D2]
+      iterate: Iterator[D,D2]
       mount_template: ComponentInterface[D2]
       match_templates: seq[MatchConfigInterface[D2]]
       items: seq[CompMatchItem[D2]]
@@ -274,7 +282,7 @@ proc iter*[X,D,D2](c: MatchConfig[X,D], selector: string, iter: ProcIterator[D,D
     init: @[],
     mount: nil,
     iter: true,
-    iterate: iter,
+    iterate: Iterator(kind: SimpleIterator, simple: iter),
     cmatches: @[])
   c.cmatches.add(result.asInterface())
   if actions != nil:
@@ -288,7 +296,7 @@ proc iter*[D,D2](c: Config[D], selector: string, iter: ProcIterator[D,D2], actio
     init: @[],
     mount: nil,
     iter: true,
-    iterate: iter,
+    iterate: Iterator(kind: SimpleIterator, simple: iter),
     cmatches: @[])
   c.cmatches.add(result.asInterface())
   if actions != nil:
@@ -377,7 +385,10 @@ proc update[D,D2](match: CompMatch[D,D2], val: D, refresh: bool) =
   if match.iter:
     var i = 0
     let parentNode = match.anchor.parentNode
-    var itf = match.iterate(val)
+    var itf: ProcIter[D2]
+    case match.iterate.kind
+    of SimpleIterator:
+      itf = match.iterate.simple(val)
     while true:
       var it = itf()
       if it[0] == false: break
