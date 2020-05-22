@@ -30,16 +30,10 @@ Templating is always the combinaison of three factors: the HTML markup, the data
 
 You can also [view live examples](samples/):
 
-- [Sample 1](samples/sample1.html): basics and iteration
-- [Sample 2](samples/sample2.html): mounting other components
-- [Sample 3](samples/sample3.html): using something else than JSON for data sets
-
-**Important Node:** This is still a work in progress, and while working on it,
-there is a few areas that do not work as documented yet:
-
-- sample 1 and 2 might not work
-- using only JsonNode as dataset is deprecated, instead use your own structured
-  data as shown in sample 3
+- [Sample 1](samples/sample1.html): basics and iteration (JSON dataset)
+- [Sample 2](samples/sample2.html): mounting other components (JSON dataset)
+- [Sample 3](samples/sample3.html): using something else than JSON for data
+  sets and self recursion
 
 ### Hello World
 
@@ -57,7 +51,7 @@ there is a few areas that do not work as documented yet:
 
 ```nim
 var t = create(JsonNode) do(t: auto):
-  t.match("h1 .name", get("name")) do(node: dom.Node, data: JsonNode):
+  t.match("h1 .name", get("name")).refresh do(node: dom.Node, data: JsonNode):
     node.textContent = data.getStr()
 ```
 
@@ -79,8 +73,8 @@ var t = create(JsonNode) do(t: auto):
 
 ```nim
 var t = create(JsonNode) do(t: auto):
-  t.iter("ul li", get("items")) do(item: auto):
-    item.match(".name", get()) do(node: dom.Node, data: JsonNode):
+  t.iter("ul li", jsonIter("items")) do(item: auto):
+    item.match(".name").refresh do(node: dom.Node, data: JsonNode):
       node.textContent = $data
 ```
 

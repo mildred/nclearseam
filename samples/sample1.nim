@@ -5,10 +5,10 @@ import json
 import jsconsole
 
 var config1* = create(JsonNode) do(t: auto):
-  t.match("h1 .name", get "name") do(node: dom.Node, data: JsonNode):
+  t.match("h1 .name", get "name").refresh do(node: dom.Node, data: JsonNode):
     node.textContent = data.getStr()
-  t.iter("ul li", get "names") do(name: auto):
-    name.match(".name", get()) do(node: dom.Node, data: JsonNode):
+  t.iter("ul li", jsonIter "names") do(name: auto):
+    name.match(".name").refresh do(node: dom.Node, data: JsonNode):
       node.textContent = $data
 
 var node = document.querySelector("template#sample-1")

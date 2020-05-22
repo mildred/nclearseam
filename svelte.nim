@@ -7,7 +7,6 @@ type
   CompileError* = object of CatchableError
 
   ProcRefresh*[D]           = proc(node: dom.Node, data: D)
-  ProcGetValue*[D]          = proc(data: D): D
   ProcTypeConverter*[D1,D2] = proc(data: D1): D2
   ProcIter*[D2]             = proc(): tuple[ok: bool, data: D2]
   ProcIterator*[D1,D2]      = proc(d: D1): ProcIter[D2]
@@ -424,31 +423,8 @@ proc late*[D](lateComp: proc(): Component[D]): ComponentInterface[D] =
   )
 
 #
-# Helper procedures to create iterator functions
+# Helper procs
 #
-
-proc seqIterator*[D](arr: seq[D]): ProcIter[D] =
-  #mixin items
-  #var it = items # Instanciate iterator
-  var it = 0
-  var empty: D
-
-  proc next(): tuple[ok: bool, data: D] =
-    #let item: D = it(data)
-    #if finished(it): return (false, item)
-    #else: return (true, data)
-    if it >= len(arr): return (false, empty)
-    result = (true, arr[it])
-    it = it + 1
-
-  return next
-
-proc dataIterator[D](data: D): ProcIter[D] =
-  mixin items
-  var arr: seq[D] = @[]
-  for item in items(data):
-    arr.add(item)
-  return seqIterator[D](arr)
 
 proc createIterator[D,D2](iterate: ProcIterator[D,D2]): ProcIterInternal[D] =
   var nextItem: ProcIter[D2] = nil

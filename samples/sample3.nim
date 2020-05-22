@@ -1,4 +1,5 @@
 import ../svelte
+import ../svelteutil
 import ../dom
 import json
 import sequtils
