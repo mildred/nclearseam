@@ -31,6 +31,14 @@ type
   ## Procedure that fetches a part of a larger data object and return a \
   ## smaller data set for sub-parts of the template.
 
+  TypeSelectorKind = enum
+    Simple
+
+  TypeSelector[D1,D2] = object
+    case kind: TypeSelectorKind
+    of Simple:
+      simple: ProcTypeConverter[D1,D2]
+
   ProcIter*[D2]        = proc(): tuple[ok: bool, data: D2] ## part of `ProcIterator`
   ProcIterator*[D1,D2] = proc(d: D1): ProcIter[D2] ## \
   ## Procedure performing an iteration (as iterators are not supported by Nim \
@@ -66,7 +74,7 @@ type
     mount: ComponentInterface[D2]
     case iter: bool
     of false:
-      convert: ProcTypeConverter[D,D2]
+      convert: TypeSelector[D,D2]
     of true:
       iterate: ProcIterator[D,D2]
 
@@ -100,7 +108,7 @@ type
     oldValue: D
     case iter: bool
     of false:
-      convert: ProcTypeConverter[D,D2]
+      convert: TypeSelector[D,D2]
       mount_source: ComponentInterface[D2]
       mount: ComponentInterface[D2]
       matches: seq[CompMatchInterface[D2]]
@@ -185,7 +193,9 @@ proc match*[X,D,D2](c: MatchConfig[X,D], selector: string, convert: ProcTypeConv
     init: @[],
     mount: nil,
     iter: false,
-    convert: convert)
+    convert: TypeSelector[D,D2](
+      kind: Simple,
+      simple: convert))
   c.cmatches.add(result.asInterface())
   if actions != nil:
     actions(result)
@@ -198,7 +208,9 @@ proc match*[D,D2](c: Config[D], selector: string, convert: ProcTypeConverter[D,D
     init: @[],
     mount: nil,
     iter: false,
-    convert: convert)
+    convert: TypeSelector[D,D2](
+      kind: Simple,
+      simple: convert))
   c.cmatches.add(result.asInterface())
   if actions != nil:
     actions(result)
@@ -371,9 +383,6 @@ proc update[D,D2](match: CompMatch[D,D2], val: D, refresh: bool) =
       if it[0] == false: break
       var item = it[1]
 
-      if i > 10:
-        break
-
       var iter_item: CompMatchItem[D2]
       var inited: bool
 
@@ -410,7 +419,11 @@ proc update[D,D2](match: CompMatch[D,D2], val: D, refresh: bool) =
       detach(pop(match.items), parentNode)
   else:
     var node = match.node
-    var convertedVal = match.convert(val)
+    var convertedVal: D2
+
+    case match.convert.kind
+    of Simple:
+      convertedVal = match.convert.simple(val)
 
     # Mount the child
     if match.mount == nil and match.mount_source != nil:
