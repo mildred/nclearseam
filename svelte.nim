@@ -7,13 +7,21 @@ type
   CompileError* = object of CatchableError ##\
   ## Parent type for all errors
 
-  CompileSelectorError* = object of CompileError
+  CompileSelectorError* = object of CompileError ## \
   ## Type for an object that can be raised in case there is a problem \
   ## with the template configuration such as a CSS selector not matching the \
   ## given template DOM Node
 
   CompileLateError* = object of CompileError ## \
   ## Represents an error wen a late binding fails.
+
+  ProcConfig*[D] = proc(c: Component[D]) ## \
+  ## procedure callback that is called upon compilation to configure the
+  ## component
+
+  ProcInit* = proc(node: dom.Node) ## \
+  ## Procedure callback that is called whenever a part of a template needs to \
+  ## be initialized (such as installing event handlers)
 
   ProcRefresh*[D] = proc(node: dom.Node, data: D) ## \
   ## Procedure callback that is called whenever a part of a template needs to \
@@ -41,9 +49,10 @@ type
   # Config: Global component configuration
   #
 
-  Config*[D] = ref object
+  Config*[D] = ref object of RootObj
     ## Represents a template configuration, not yet associated with a DOM Node
-    matches: seq[MatchConfigInterface[D]]
+    cmatches: seq[MatchConfigInterface[D]]
+    config: ProcConfig[D]
 
   # MatchConfig: configuration for a selector match
 
@@ -52,7 +61,8 @@ type
     ## represented by a CSS selector.
     selector: string
     refresh: seq[ProcRefresh[D2]]
-    matches: seq[MatchConfigInterface[D2]]
+    init: seq[ProcInit]
+    cmatches: seq[MatchConfigInterface[D2]]
     mount: ComponentInterface[D2]
     case iter: bool
     of false:
@@ -67,13 +77,13 @@ type
   # Component: Global component object
   #
 
-  Component*[D] = ref object
+  Component*[D] = ref object of Config[D]
     ## Represents an instanciated template, a `Config` that has been compiled \
     ## with a DOM node.
-    config: Config[D]
     matches: seq[CompMatchInterface[D]]
     node: dom.Node
     original_node: dom.Node
+    data*: D
 
   ComponentInterface*[D] = ref object
     ## Wrapper around a `Component`, allowing the generic type to be converted.
@@ -85,14 +95,16 @@ type
 
   CompMatch[D,D2] = ref object
     refresh: seq[ProcRefresh[D2]]
+    init: seq[ProcInit]
     node: dom.Node
     oldValue: D
-    case iter:bool
+    case iter: bool
     of false:
       convert: ProcTypeConverter[D,D2]
       mount_source: ComponentInterface[D2]
       mount: ComponentInterface[D2]
       matches: seq[CompMatchInterface[D2]]
+      inited: bool
     of true:
       iterate: ProcIterator[D,D2]
       mount_template: ComponentInterface[D2]
@@ -146,7 +158,7 @@ proc create*[D](): Config[D] =
   ## Create a new empty configuration. Takes a dataset type as first argument
   return new(Config[D])
 
-proc create*[D](d: typedesc[D], configurator: proc(c: Config[D])): Config[D] =
+proc create*[D](d: typedesc[D], config: ProcConfig[D]): Config[D] =
   ## Create a new empty configuration but allows to pass a procedure to modify
   ## the configuration
 
@@ -160,7 +172,7 @@ proc create*[D](d: typedesc[D], configurator: proc(c: Config[D])): Config[D] =
   #      node.textContents = data.name
 
   result = new(Config[D])
-  configurator(result)
+  result.config = config
 
 proc match*[X,D,D2](c: MatchConfig[X,D], selector: string, convert: ProcTypeConverter[D,D2], actions: proc(x: MatchConfig[D,D2]) = nil): MatchConfig[D,D2] {.discardable.} =
   ## Declares a sub-match. The selector is run to find the DOM node that the
@@ -170,10 +182,11 @@ proc match*[X,D,D2](c: MatchConfig[X,D], selector: string, convert: ProcTypeConv
   result = MatchConfig[D,D2](
     selector: selector,
     refresh: @[],
+    init: @[],
     mount: nil,
     iter: false,
     convert: convert)
-  c.matches.add(result.asInterface())
+  c.cmatches.add(result.asInterface())
   if actions != nil:
     actions(result)
 
@@ -182,10 +195,11 @@ proc match*[D,D2](c: Config[D], selector: string, convert: ProcTypeConverter[D,D
   result = MatchConfig[D,D2](
     selector: selector,
     refresh: @[],
+    init: @[],
     mount: nil,
     iter: false,
     convert: convert)
-  c.matches.add(result.asInterface())
+  c.cmatches.add(result.asInterface())
   if actions != nil:
     actions(result)
 
@@ -202,6 +216,11 @@ proc refresh*[X,D](c: MatchConfig[X,D], refresh: ProcRefresh[D]) =
   ## whenever the data associated with the match changes. It can be used to
   ## update the DOM node text contents, event handlers, ...
   c.refresh.add(refresh)
+
+proc init*[X,D](c: MatchConfig[X,D], init: ProcInit) =
+  ## Add a `ProcInit` callback procedure to a match. The callback is called
+  ## whenever the DOM nodes is initialized.
+  c.init.add(init)
 
 proc mount*[X,D](c: MatchConfig[X,D], conf: Config[D], node: dom.Node) =
   ## mounts a sub-component at the specified match location of a parent
@@ -240,11 +259,12 @@ proc iter*[X,D,D2](c: MatchConfig[X,D], selector: string, iter: ProcIterator[D,D
   result = MatchConfig[D,D2](
     selector: selector,
     refresh: @[],
+    init: @[],
     mount: nil,
     iter: true,
     iterate: iter,
-    matches: @[])
-  c.matches.add(result.asInterface())
+    cmatches: @[])
+  c.cmatches.add(result.asInterface())
   if actions != nil:
     actions(result)
 
@@ -253,11 +273,12 @@ proc iter*[D,D2](c: Config[D], selector: string, iter: ProcIterator[D,D2], actio
   result = MatchConfig[D,D2](
     selector: selector,
     refresh: @[],
+    init: @[],
     mount: nil,
     iter: true,
     iterate: iter,
-    matches: @[])
-  c.matches.add(result.asInterface())
+    cmatches: @[])
+  c.cmatches.add(result.asInterface())
   if actions != nil:
     actions(result)
 
@@ -273,6 +294,7 @@ proc compile[D,D2](cfg: MatchConfig[D,D2], node: dom.Node): CompMatch[D,D2] =
 
   var match = CompMatch[D,D2](
     refresh: cfg.refresh,
+    init: cfg.init,
     iter: cfg.iter,
     node: matched_node)
   match.node = matched_node
@@ -280,17 +302,18 @@ proc compile[D,D2](cfg: MatchConfig[D,D2], node: dom.Node): CompMatch[D,D2] =
     match.iterate = cfg.iterate
     match.anchor = matched_node.ownerDocument.createComment(matched_node.outerHTML)
     match.mount_template = cfg.mount
-    match.match_templates = cfg.matches
+    match.match_templates = cfg.cmatches
     match.items = @[]
     matched_node.parentNode.replaceChild(match.anchor, matched_node)
   else:
     match.convert = cfg.convert
     match.matches = @[]
+    match.inited = false
     match.mount = nil
     if cfg.mount != nil:
       match.mount_source = cfg.mount
     else:
-      for submatch in cfg.matches:
+      for submatch in cfg.cmatches:
         match.matches.add(submatch.compile(matched_node))
   return match
 
@@ -303,10 +326,12 @@ proc compile*[D](cfg: Config[D], node: dom.Node): Component[D] =
   ## Compiles a configuration by associating it with a DOM Node. Can raise
   ## `CompileError` in case the selectors in the configuration do not match.
   result = new(Component[D])
-  result.config        = cfg
+  result.config        = cfg.config
   result.original_node = node
   result.node          = node.cloneNode(true)
-  result.matches       = compile(cfg.matches, result.node)
+
+  result.config(result)
+  result.matches = compile(result.cmatches, result.node)
 
 #
 # Update a component match
@@ -332,8 +357,8 @@ proc detach[D2](iter_item: CompMatchItem[D2], parentNode: dom.Node) =
   parentNode.removeChild(iter_item.node)
 
 proc update[D,D2](match: CompMatch[D,D2], val: D, refresh: bool) =
-  mixin get, `==`
-  if not refresh and val == match.oldValue:
+  mixin changed
+  if not refresh and not changed(match.oldValue, val):
     return
 
   match.oldValue = val
@@ -350,13 +375,21 @@ proc update[D,D2](match: CompMatch[D,D2], val: D, refresh: bool) =
         break
 
       var iter_item: CompMatchItem[D2]
+      var inited: bool
 
       # Create item if needed
       if i < len(match.items):
         iter_item = match.items[i]
+        inited = true
       else:
         iter_item = createIterItem[D,D2](match, parentNode)
         match.items.add(iter_item)
+        inited = false
+
+      # Initialize DOM Node
+      if not inited:
+        for initProc in match.init:
+          initProc(iter_item.node)
 
       # Refresh mounts
       if iter_item.mount != nil:
@@ -383,6 +416,12 @@ proc update[D,D2](match: CompMatch[D,D2], val: D, refresh: bool) =
     if match.mount == nil and match.mount_source != nil:
       match.mount = match.mount_source.clone()
       node.parentNode.replaceChild(match.mount.node(), node)
+
+    # Initialize DOM Node
+    if not match.inited:
+      for initProc in match.init:
+        initProc(node)
+      match.inited = true
 
     # Refresh mounts
     if match.mount != nil:
@@ -411,19 +450,20 @@ proc compile*[D](node: dom.Node, tf: Config[D]): Component[D] =
   ## Alternative compile procedure that can be used as a method on DOM Nodes
   compile(tf, node)
 
-proc compile*[D](d: typedesc[D], node: dom.Node, configurator: proc(c: Config[D])): Component[D] =
+proc compile*[D](d: typedesc[D], node: dom.Node, configurator: proc(c: Component[D])): Component[D] =
   ## Alternative compile procedure that creates the configuration and compiles
   ## it in one shot.
   compile(create[D](d, configurator), node)
 
 proc clone*[D](comp: Component[D]): Component[D] =
   ## Clones a component, allows to operate them separately
-  return comp.config.compile(comp.original_node)
+  return compile(Config[D](config: comp.config), comp.original_node)
 
 proc update*[D](t: Component[D], data: D, refresh: bool = false) =
   ## Feeds data to a compiled component, calling the refresh callbacks when
   ## needed.
-  mixin get, `==`, items
+  mixin changed
+  t.data = data
   for match in t.matches:
     match.update(data, refresh)
 

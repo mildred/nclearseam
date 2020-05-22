@@ -35,7 +35,7 @@ You can also [view live examples](samples/):
 - [Sample 1](samples/sample1.html): basics and iteration (JSON dataset)
 - [Sample 2](samples/sample2.html): mounting other components (JSON dataset)
 - [Sample 3](samples/sample3.html): using something else than JSON for data
-  sets and self recursion
+- [Sample 4](samples/sample4/index.html): Event handlers
 
 ### Hello World
 
