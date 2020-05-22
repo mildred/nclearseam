@@ -28,13 +28,13 @@ proc toComp2(d: Comp1Data): Comp2Data =
 
 Comp2 = compile(Comp2Data, document.querySelector("template#comp2").content) do (t: auto):
   t.iter("ul li", iterNames) do(name: auto):
-    name.match(".name") do(node: dom.Node, data: Comp2Item):
+    name.match(".name").refresh do(node: dom.Node, data: Comp2Item):
       node.textContent = data.name
     name.iter(".child", iterChildren) do(child: auto):
       child.mount(late(proc(): Component[Comp2Data] = Comp2))
 
 Comp1 = compile(Comp1Data, document.querySelector("template#comp1").content) do (t: auto):
-  t.match("h1 .name") do(node: dom.Node, data: Comp1Data):
+  t.match("h1 .name").refresh do(node: dom.Node, data: Comp1Data):
     node.textContent = data.name
   t.match("div.insert") do(t: auto):
     t.mount(Comp2, toComp2)

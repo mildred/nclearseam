@@ -1,6 +1,8 @@
 nim-svelte
 ==========
 
+- [Nim documentation][doc]
+
 This is a templating library targetting javascript in browsers. The aim is to
 keep it just a library, not make it into a full framework, and to get out of
 your way. It also aims to be fast and avoids complexities of Virtual DOMs. It
@@ -118,7 +120,18 @@ This is very experimental still, use at your own risks.
     xdg-open http://localhost:8000/samples/sample1.html
     ```
 
+Develop
+-------
+
+Generate documentation (requires at least version from 2020-05-09 for the
+`--backend` option):
+
+```shell
+nim doc --backend:js svelte
+```
+
 [sveltejs]: http://svelte.dev
 [weld]: https://github.com/tmpvar/weld
 [purejs]: https://pure-js.com/
 [clearseam]: https://github.com/mildred/clearseam
+[doc]: https://mildred.github.io/nim-svelte/svelte.html
