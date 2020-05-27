@@ -31,13 +31,33 @@ type
   ## Procedure that fetches a part of a larger data object and return a \
   ## smaller data set for sub-parts of the template.
 
+  ProcTypeSelectorSerial*[D1,D2] = proc(data: D1, serial: var int): D2 ## \
+  ## Procedure that fetches a part of a larger dataset and returns a smaller
+  ## part. Takes a serial variable corresponding to the older value from last
+  ## run and set it to a serial value representing the current value.
+  ##
+  ## Serial changes means that the value has changed. if the serial has not
+  ## changed since last run, the value is considered identical and update is not
+  ## performed.
+
+  ProcTypeSelectorCompare*[D1,D2] = proc(data: D1, oldData: D2): tuple[data: D2, changed: bool] ## \
+  ## Procedure that fetches a part of a larger dataset and returns a smaller
+  ## part. Takes the previous value returned and return true if the new value
+  ## has changed compared to the old
+
   TypeSelectorKind = enum
-    Simple
+    SimpleTypeSelector,
+    SerialTypeSelector,
+    CompareTypeSelector
 
   TypeSelector[D1,D2] = object
     case kind: TypeSelectorKind
-    of Simple:
+    of SimpleTypeSelector:
       simple: ProcTypeConverter[D1,D2]
+    of SerialTypeSelector:
+      serial: ProcTypeSelectorSerial[D1,D2]
+    of CompareTypeSelector:
+      compare: ProcTypeSelectorCompare[D1,D2]
 
   ProcIter*[D2]        = proc(): tuple[ok: bool, data: D2] ## part of `ProcIterator`
   ProcIterator*[D1,D2] = proc(d: D1): ProcIter[D2] ## \
@@ -46,13 +66,25 @@ type
   ## called, return the next item of the iteration, and a boolean indicating \
   ## the end of the iteration.
 
-  IteratorKind = enum
-    SimpleIterator
+  ProcIterSerial*[D2]        = proc(serial: var int): tuple[ok: bool, data: D2] ## part of `ProcIteratorSerial`
+  ProcIteratorSerial*[D1,D2] = proc(d: D1): ProcIterSerial[D2] ## \
+  ## Procedure performing an iteration (as iterators are not supported by Nim \
+  ## JavaScript backend). Accepts a data set and returns a procedure that when \
+  ## called, return the next item of the iteration, and a boolean indicating \
+  ## the end of the iteration. At each iteration, the procedure takes a serial
+  ## variable and sets it to a serial that indicated if the value has changed
+  ## from previous runs.
 
-  Iterator[D1,D2] = object
+  IteratorKind* = enum
+    SimpleIterator,
+    SerialIterator
+
+  Iterator*[D1,D2] = object
     case kind: IteratorKind
     of SimpleIterator:
       simple: ProcIterator[D1,D2]
+    of SerialIterator:
+      serial: ProcIteratorSerial[D1,D2]
 
   IterItem[D] = ref object
     updateComp:  proc(comp: ComponentInterface[D], refresh: bool)
@@ -113,9 +145,14 @@ type
     refresh: seq[ProcRefresh[D2]]
     init: seq[ProcInit]
     node: dom.Node
-    oldValue: D
     case iter: bool
     of false:
+      case selectorKind: TypeSelectorKind
+      of SerialTypeSelector:
+        serial: int
+      of CompareTypeSelector:
+        value: D2
+      else: discard
       convert: TypeSelector[D,D2]
       mount_source: ComponentInterface[D2]
       mount: ComponentInterface[D2]
@@ -134,6 +171,7 @@ type
   # CompMatchItem: handle iterations
 
   CompMatchItem[D2] = ref object
+    serial: int
     node: dom.Node
     matches: seq[CompMatchInterface[D2]]
     mount: ComponentInterface[D2]
@@ -190,7 +228,7 @@ proc create*[D](d: typedesc[D], config: ProcConfig[D]): Config[D] =
   result = new(Config[D])
   result.config = config
 
-proc match*[X,D,D2](c: MatchConfig[X,D], selector: string, convert: ProcTypeConverter[D,D2], actions: proc(x: MatchConfig[D,D2]) = nil): MatchConfig[D,D2] {.discardable.} =
+proc match[X,D,D2](c: MatchConfig[X,D], selector: string, convert: TypeSelector[D,D2], actions: proc(x: MatchConfig[D,D2]) = nil): MatchConfig[D,D2] {.discardable.} =
   ## Declares a sub-match. The selector is run to find the DOM node that the
   ## sub-match will modify, and the convert procedure allows to refine the
   ## dataset when the sub-match only needs a portion of this dataset. The
@@ -201,14 +239,12 @@ proc match*[X,D,D2](c: MatchConfig[X,D], selector: string, convert: ProcTypeConv
     init: @[],
     mount: nil,
     iter: false,
-    convert: TypeSelector[D,D2](
-      kind: Simple,
-      simple: convert))
+    convert: convert)
   c.cmatches.add(result.asInterface())
   if actions != nil:
     actions(result)
 
-proc match*[D,D2](c: Config[D], selector: string, convert: ProcTypeConverter[D,D2], actions: proc(x: MatchConfig[D,D2]) = nil): MatchConfig[D,D2] {.discardable.} =
+proc match[D,D2](c: Config[D], selector: string, convert: TypeSelector[D,D2], actions: proc(x: MatchConfig[D,D2]) = nil): MatchConfig[D,D2] {.discardable.} =
   ## Match variant for `Config`
   result = MatchConfig[D,D2](
     selector: selector,
@@ -216,12 +252,77 @@ proc match*[D,D2](c: Config[D], selector: string, convert: ProcTypeConverter[D,D
     init: @[],
     mount: nil,
     iter: false,
-    convert: TypeSelector[D,D2](
-      kind: Simple,
-      simple: convert))
+    convert: convert)
   c.cmatches.add(result.asInterface())
   if actions != nil:
     actions(result)
+
+proc match*[X,D,D2](c: MatchConfig[X,D], selector: string, convert: ProcTypeConverter[D,D2], actions: proc(x: MatchConfig[D,D2]) = nil): MatchConfig[D,D2] {.discardable.} =
+  ## Declares a sub-match. The selector is run to find the DOM node that the
+  ## sub-match will modify, and the convert procedure allows to refine the
+  ## dataset when the sub-match only needs a portion of this dataset. The
+  ## optional actions procedure can be used to further configure the sub-match.
+  ##
+  ## Match variant with convert procedure as simple `ProcTypeConverter`.
+  let typeSelector = TypeSelector[D,D2](
+    kind: SimpleTypeSelector,
+    simple: convert)
+  result = match(c, selector, typeSelector, actions)
+
+proc match*[D,D2](c: Config[D], selector: string, convert: ProcTypeConverter[D,D2], actions: proc(x: MatchConfig[D,D2]) = nil): MatchConfig[D,D2] {.discardable.} =
+  ## Match variant with convert procedure as simple `ProcTypeConverter`.
+  let typeSelector = TypeSelector[D,D2](
+    kind: SimpleTypeSelector,
+    simple: convert)
+  result = match(c, selector, typeSelector, actions)
+
+proc match*[X,D,D2](c: MatchConfig[X,D], selector: string, convert: ProcTypeConverter[D,D2], equal: proc(d1, d2: D2): bool, actions: proc(x: MatchConfig[D,D2]) = nil): MatchConfig[D,D2] {.discardable.} =
+  ## Match variant with convert procedure as simple `ProcTypeConverter` with
+  ## equal procedure
+  let typeSelector = TypeSelector[D,D2](
+    kind: CompareTypeSelector,
+    compare: proc(data: D, oldData: D2): tuple[data: D2, changed: bool] =
+      let data2 = convert(data)
+      result = (data2, not equal(data2, oldData)))
+  result = match(c, selector, typeSelector, actions)
+
+proc match*[D,D2](c: Config[D], selector: string, convert: ProcTypeConverter[D,D2], equal: proc(d1, d2: D2): bool, actions: proc(x: MatchConfig[D,D2]) = nil): MatchConfig[D,D2] {.discardable.} =
+  ## Match variant with convert procedure as simple `ProcTypeConverter` with
+  ## equal procedure
+  let typeSelector = TypeSelector[D,D2](
+    kind: CompareTypeSelector,
+    compare: proc(data: D, oldData: D2): tuple[data: D2, changed: bool] =
+      let data2 = convert(data)
+      result = (data2, not equal(data2, oldData)))
+  result = match(c, selector, typeSelector, actions)
+
+proc match*[X,D,D2](c: MatchConfig[X,D], selector: string, convert: ProcTypeSelectorSerial[D,D2], actions: proc(x: MatchConfig[D,D2]) = nil): MatchConfig[D,D2] {.discardable.} =
+  ## Match variant with convert procedure as simple `ProcTypeSelectorSerial`.
+  let typeSelector = TypeSelector[D,D2](
+    kind: SerialTypeSelector,
+    serial: convert)
+  result = match(c, selector, typeSelector, actions)
+
+proc match*[D,D2](c: Config[D], selector: string, convert: ProcTypeSelectorSerial[D,D2], actions: proc(x: MatchConfig[D,D2]) = nil): MatchConfig[D,D2] {.discardable.} =
+  ## Match variant with convert procedure as simple `ProcTypeSelectorSerial`.
+  let typeSelector = TypeSelector[D,D2](
+    kind: SerialTypeSelector,
+    serial: convert)
+  result = match(c, selector, typeSelector, actions)
+
+proc match*[X,D,D2](c: MatchConfig[X,D], selector: string, convert: ProcTypeSelectorCompare[D,D2], actions: proc(x: MatchConfig[D,D2]) = nil): MatchConfig[D,D2] {.discardable.} =
+  ## Match variant with convert procedure as simple `ProcTypeSelectorSerial`.
+  let typeSelector = TypeSelector[D,D2](
+    kind: CompareTypeSelector,
+    serial: convert)
+  result = match(c, selector, typeSelector, actions)
+
+proc match*[D,D2](c: Config[D], selector: string, convert: ProcTypeSelectorCompare[D,D2], actions: proc(x: MatchConfig[D,D2]) = nil): MatchConfig[D,D2] {.discardable.} =
+  ## Match variant with convert procedure as simple `ProcTypeSelectorSerial`.
+  let typeSelector = TypeSelector[D,D2](
+    kind: CompareTypeSelector,
+    serial: convert)
+  result = match(c, selector, typeSelector, actions)
 
 proc match*[X,D](c: MatchConfig[X,D], selector: string, actions: proc(x: MatchConfig[D,D]) = nil): MatchConfig[D,D] {.discardable.} =
   ## Match variant with no data refinement
@@ -272,35 +373,49 @@ proc mount*[X,D,D2](c: MatchConfig[X,D], comp: Component[D2], convert: ProcTypeC
   assert(comp != nil, "mounted component cannot be nil")
   c.mount = asInterface[D](clone[D2](comp), convert)
 
-proc iter*[X,D,D2](c: MatchConfig[X,D], selector: string, iter: ProcIterator[D,D2], actions: proc(x: MatchConfig[D,D2]) = nil): MatchConfig[D,D2] {.discardable.} =
-  ## iterates over a specified DOM node. Works just like `match` but the
-  ## selected DOM node is cloned as many times as necessary to fit the number of
-  ## data items provided by the given iterator.
+proc iter[X,D,D2](c: MatchConfig[X,D], selector: string, iter: Iterator[D,D2], actions: proc(x: MatchConfig[D,D2]) = nil): MatchConfig[D,D2] {.discardable.} =
   result = MatchConfig[D,D2](
     selector: selector,
     refresh: @[],
     init: @[],
     mount: nil,
     iter: true,
-    iterate: Iterator(kind: SimpleIterator, simple: iter),
+    iterate: iter,
     cmatches: @[])
   c.cmatches.add(result.asInterface())
   if actions != nil:
     actions(result)
 
-proc iter*[D,D2](c: Config[D], selector: string, iter: ProcIterator[D,D2], actions: proc(x: MatchConfig[D,D2]) = nil): MatchConfig[D,D2] {.discardable.} =
-  ## iter variant for `Config`
+proc iter[D,D2](c: Config[D], selector: string, iter: Iterator[D,D2], actions: proc(x: MatchConfig[D,D2]) = nil): MatchConfig[D,D2] {.discardable.} =
   result = MatchConfig[D,D2](
     selector: selector,
     refresh: @[],
     init: @[],
     mount: nil,
     iter: true,
-    iterate: Iterator(kind: SimpleIterator, simple: iter),
+    iterate: iter,
     cmatches: @[])
   c.cmatches.add(result.asInterface())
   if actions != nil:
     actions(result)
+
+proc iter*[X,D,D2](c: MatchConfig[X,D], selector: string, iter: ProcIterator[D,D2], actions: proc(x: MatchConfig[D,D2]) = nil): MatchConfig[D,D2] {.discardable.} =
+  ## iterates over a specified DOM node. Works just like `match` but the
+  ## selected DOM node is cloned as many times as necessary to fit the number of
+  ## data items provided by the given iterator.
+  result = iter(c, selector, Iterator(kind: SimpleIterator, simple: iter), actions)
+
+proc iter*[D,D2](c: Config[D], selector: string, iter: ProcIterator[D,D2], actions: proc(x: MatchConfig[D,D2]) = nil): MatchConfig[D,D2] {.discardable.} =
+  ## iter variant for `Config`
+  result = iter(c, selector, Iterator(kind: SimpleIterator, simple: iter), actions)
+
+proc iter*[X,D,D2](c: MatchConfig[X,D], selector: string, iter: ProcIteratorSerial[D,D2], actions: proc(x: MatchConfig[D,D2]) = nil): MatchConfig[D,D2] {.discardable.} =
+  ## iter variant for ProcIteratorSerial
+  result = iter(c, selector, Iterator(kind: SerialIterator, serial: iter), actions)
+
+proc iter*[D,D2](c: Config[D], selector: string, iter: ProcIteratorSerial[D,D2], actions: proc(x: MatchConfig[D,D2]) = nil): MatchConfig[D,D2] {.discardable.} =
+  ## iter variant for ProcIteratorSerial
+  result = iter(c, selector, Iterator(kind: SerialIterator, serial: iter), actions)
 
 #
 # Compile a config to a component
@@ -326,6 +441,12 @@ proc compile[D,D2](cfg: MatchConfig[D,D2], node: dom.Node): CompMatch[D,D2] =
     match.items = @[]
     matched_node.parentNode.replaceChild(match.anchor, matched_node)
   else:
+    match.selectorKind = cfg.convert.kind
+    case match.selectorKind
+    of SerialTypeSelector:
+      match.serial = 0
+    else:
+      discard
     match.convert = cfg.convert
     match.matches = @[]
     match.inited = false
@@ -367,6 +488,7 @@ proc createIterItem[D,D2](match: CompMatch[D,D2], parentNode: dom.Node): CompMat
   else:
     node = match.node.cloneNode(true)
   result = CompMatchItem[D2](
+    serial: 0,
     mount: comp,
     node: node,
     matches: compile(match.match_templates, node))
@@ -377,20 +499,23 @@ proc detach[D2](iter_item: CompMatchItem[D2], parentNode: dom.Node) =
   parentNode.removeChild(iter_item.node)
 
 proc update[D,D2](match: CompMatch[D,D2], val: D, refresh: bool) =
-  mixin changed
-  if not refresh and not changed(match.oldValue, val):
-    return
 
-  match.oldValue = val
   if match.iter:
     var i = 0
     let parentNode = match.anchor.parentNode
-    var itf: ProcIter[D2]
+    var itf: ProcIterSerial[D2]
     case match.iterate.kind
     of SimpleIterator:
-      itf = match.iterate.simple(val)
+      let itfSimple = match.iterate.simple(val)
+      itf = proc(s: var int): tuple[ok: bool, data: D2] =
+        result = itfSimple()
+    of SerialIterator:
+      itf = match.iterate.serial(val)
+
     while true:
-      var it = itf()
+      var serial: int = if i < len(match.items): match.items[i].serial else: 0
+      var changed = refresh
+      var it = itf(serial)
       if it[0] == false: break
       var item = it[1]
 
@@ -401,10 +526,13 @@ proc update[D,D2](match: CompMatch[D,D2], val: D, refresh: bool) =
       if i < len(match.items):
         iter_item = match.items[i]
         inited = true
+        changed = true
       else:
         iter_item = createIterItem[D,D2](match, parentNode)
         match.items.add(iter_item)
         inited = false
+        if serial != iter_item.serial:
+          changed = true
 
       # Initialize DOM Node
       if not inited:
@@ -429,12 +557,25 @@ proc update[D,D2](match: CompMatch[D,D2], val: D, refresh: bool) =
     while i < len(match.items):
       detach(pop(match.items), parentNode)
   else:
+    var changed = refresh
     var node = match.node
     var convertedVal: D2
 
     case match.convert.kind
-    of Simple:
+    of SimpleTypeSelector:
       convertedVal = match.convert.simple(val)
+      changed = true
+    of SerialTypeSelector:
+      var serial = match.serial
+      convertedVal = match.convert.serial(val, serial)
+      if serial != match.serial:
+        changed = true
+    of CompareTypeSelector:
+      let res = match.convert.compare(val, match.value)
+      convertedVal = res.data
+      match.value = res.data
+      if res.changed:
+        changed = true
 
     # Mount the child
     if match.mount == nil and match.mount_source != nil:
@@ -446,19 +587,22 @@ proc update[D,D2](match: CompMatch[D,D2], val: D, refresh: bool) =
       for initProc in match.init:
         initProc(node)
       match.inited = true
+      changed = true
 
-    # Refresh mounts
-    if match.mount != nil:
+    # Update mounts
+    if changed and match.mount != nil:
       node = match.mount.node()
       match.mount.update(convertedVal, refresh)
 
-    # Refresh the submatches
-    for submatch in match.matches:
-      submatch.update(convertedVal, refresh)
+    # Update the submatches
+    if changed:
+      for submatch in match.matches:
+        submatch.update(convertedVal, refresh)
 
     # Refresh the node
-    for refreshProc in match.refresh:
-      refreshProc(node, convertedVal)
+    if changed:
+      for refreshProc in match.refresh:
+        refreshProc(node, convertedVal)
 
 #
 # API
@@ -486,7 +630,6 @@ proc clone*[D](comp: Component[D]): Component[D] =
 proc update*[D](t: Component[D], data: D, refresh: bool = false) =
   ## Feeds data to a compiled component, calling the refresh callbacks when
   ## needed.
-  mixin changed
   t.data = data
   for match in t.matches:
     match.update(data, refresh)
@@ -590,3 +733,6 @@ proc createIterator[D,D2](iterate: ProcIterator[D,D2]): ProcIterInternal[D] =
 
   return iter
 
+proc eql*[T](s1, s2: T): bool =
+  mixin `==`
+  result = (s1 == s2)
