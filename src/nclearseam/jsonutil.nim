@@ -1,11 +1,11 @@
-import ./svelteutil
-import ./svelte
+import ./util
+import ../nclearseam
 import ./dom
 import json
 import sugar
 
 func get*(keys: varargs[string]): ProcTypeConverter[JsonNode,JsonNode] =
-  return svelteutil.get(JsonNode, keys)
+  return util.get(JsonNode, keys)
 
 func jsonIter*(keys: varargs[string]): ProcIterator[JsonNode,JsonNode] =
   let keys = @keys # convert to seq

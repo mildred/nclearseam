@@ -1,4 +1,4 @@
-import ./svelte
+import ../nclearseam
 import ./dom
 #import typeinfo
 
@@ -60,7 +60,7 @@ proc seqIterator*[D](arr: seq[D]): ProcIter[D] =
 
   return next
 
-proc dataIterator[D](data: D): ProcIter[D] =
+proc dataIterator*[D](data: D): ProcIter[D] =
   mixin items
   var arr: seq[D] = @[]
   for item in items(data):

@@ -1,4 +1,4 @@
-nim-svelte
+nclearseam
 ==========
 
 - [Nim documentation][doc]

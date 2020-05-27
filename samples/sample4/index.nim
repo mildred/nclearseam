@@ -1,6 +1,6 @@
 import ./button
-import ../../dom
-import ../../svelte
+import ../../src/nclearseam
+import ../../src/nclearseam/dom
 
 var Button = compileButton(document.querySelector("template#button").content)
 

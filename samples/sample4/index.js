@@ -1267,7 +1267,7 @@ function failed_assert_impl_102680(msg_102682) {
 function compile_9956024(cfgs_9956029, node_9956030) {
   var result_9956033 = null;
 
-  var F={procname:"compile.compile",prev:framePtr,filename:"svelte.nim",line:0};
+  var F={procname:"compile.compile",prev:framePtr,filename:"nclearseam.nim",line:0};
   framePtr = F;
     F.line = 462;
     result_9956033 = nimCopy(null, [], NTI9956048);
@@ -1304,7 +1304,7 @@ function compile_9956024(cfgs_9956029, node_9956030) {
 function compile_9977044(cfg_9977048, node_9977049) {
   var result_9977051 = null;
 
-  var F={procname:"compile.compile",prev:framePtr,filename:"svelte.nim",line:0};
+  var F={procname:"compile.compile",prev:framePtr,filename:"nclearseam.nim",line:0};
   framePtr = F;
     F.line = 469;
     result_9977051 = new_9977058();
@@ -1345,7 +1345,7 @@ function new_9976609() {
 function create_9976594(config_9976600) {
   var result_9976602 = null;
 
-  var F={procname:"create.create",prev:framePtr,filename:"svelte.nim",line:0};
+  var F={procname:"create.create",prev:framePtr,filename:"nclearseam.nim",line:0};
   framePtr = F;
     F.line = 228;
     result_9976602 = new_9976609();
@@ -1359,7 +1359,7 @@ function create_9976594(config_9976600) {
 function compile_9976525(node_9976530, configurator_9976536) {
   var result_9976538 = null;
 
-  var F={procname:"compile.compile",prev:framePtr,filename:"svelte.nim",line:0};
+  var F={procname:"compile.compile",prev:framePtr,filename:"nclearseam.nim",line:0};
   framePtr = F;
     F.line = 622;
     result_9976538 = compile_9977044(create_9976594(configurator_9976536), node_9976530);
@@ -1369,7 +1369,7 @@ function compile_9976525(node_9976530, configurator_9976536) {
 
 }
 function refresh_9935979(c_9935984, refresh_9935986) {
-  var F={procname:"refresh.refresh",prev:framePtr,filename:"svelte.nim",line:0};
+  var F={procname:"refresh.refresh",prev:framePtr,filename:"nclearseam.nim",line:0};
   framePtr = F;
     F.line = 339;
     if (c_9935984.refresh != null) { c_9935984.refresh.push(refresh_9935986); } else { c_9935984.refresh = [refresh_9935986]; };
@@ -1380,7 +1380,7 @@ function refresh_9935979(c_9935984, refresh_9935986) {
 function compile_9906144(cfgs_9906149, node_9906150) {
   var result_9906153 = null;
 
-  var F={procname:"compile.compile",prev:framePtr,filename:"svelte.nim",line:0};
+  var F={procname:"compile.compile",prev:framePtr,filename:"nclearseam.nim",line:0};
   framePtr = F;
     F.line = 462;
     result_9906153 = nimCopy(null, [], NTI9906168);
@@ -1422,7 +1422,7 @@ function create_iter_item_9906090(match_9906095, parent_node_9906096) {
 
   var result_9906098 = null;
 
-  var F={procname:"createIterItem.createIterItem",prev:framePtr,filename:"svelte.nim",line:0};
+  var F={procname:"createIterItem.createIterItem",prev:framePtr,filename:"nclearseam.nim",line:0};
   framePtr = F;
     F.line = 483;
     var comp_9906103 = null;
@@ -1457,7 +1457,7 @@ function create_iter_item_9906090(match_9906095, parent_node_9906096) {
 
 }
 function detach_9935474(iter_item_9935478, parent_node_9935479) {
-  var F={procname:"detach.detach",prev:framePtr,filename:"svelte.nim",line:0};
+  var F={procname:"detach.detach",prev:framePtr,filename:"nclearseam.nim",line:0};
   framePtr = F;
     F.line = 499;
     parent_node_9935479.removeChild(iter_item_9935478.node);
@@ -1496,7 +1496,7 @@ function update_9905988(match_9905993, val_9905994, refresh_9905995) {
       function HEX3Aanonymous_9906012(s_9906015, s_9906015_Idx) {
         var result_9906019 = {Field0: false, Field1: null};
 
-        var F={procname:"update.:anonymous",prev:framePtr,filename:"svelte.nim",line:0};
+        var F={procname:"update.:anonymous",prev:framePtr,filename:"nclearseam.nim",line:0};
         framePtr = F;
           F.line = 511;
           nimCopy(result_9906019, itf_simple_9906011(), NTI9906016);
@@ -1546,7 +1546,7 @@ function update_9905988(match_9905993, val_9905994, refresh_9905995) {
       var Tmp59;
         var Tmp61;
 
-  var F={procname:"update.update",prev:framePtr,filename:"svelte.nim",line:0};
+  var F={procname:"update.update",prev:framePtr,filename:"nclearseam.nim",line:0};
   framePtr = F;
     if (match_9905993.iter) {
     F.line = 504;
@@ -1938,7 +1938,7 @@ function update_9905988(match_9905993, val_9905994, refresh_9905995) {
 }
 function as_interface_9905968(match_9905973) {
     function HEX3Aanonymous_9905980(data_9905982, refresh_9905983) {
-      var F={procname:"asInterface.:anonymous",prev:framePtr,filename:"svelte.nim",line:0};
+      var F={procname:"asInterface.:anonymous",prev:framePtr,filename:"nclearseam.nim",line:0};
       framePtr = F;
         F.line = 657;
         update_9905988(match_9905973, data_9905982, refresh_9905983);
@@ -1949,7 +1949,7 @@ function as_interface_9905968(match_9905973) {
 
   var result_9905975 = null;
 
-  var F={procname:"asInterface.asInterface",prev:framePtr,filename:"svelte.nim",line:0};
+  var F={procname:"asInterface.asInterface",prev:framePtr,filename:"nclearseam.nim",line:0};
   framePtr = F;
     F.line = 656;
     result_9905975 = {update: HEX3Aanonymous_9905980};
@@ -2512,7 +2512,7 @@ function compile_9888286(cfg_9888291, node_9888292) {
 
   var result_9888353 = null;
 
-  var F={procname:"compile.compile",prev:framePtr,filename:"svelte.nim",line:0};
+  var F={procname:"compile.compile",prev:framePtr,filename:"nclearseam.nim",line:0};
   framePtr = F;
   BeforeRet: do {
     F.line = 425;
@@ -2653,7 +2653,7 @@ function as_interface_9888071(config_9888076) {
     function HEX3Aanonymous_9888083(node_9888085) {
       var result_9888090 = null;
 
-      var F={procname:"asInterface.:anonymous",prev:framePtr,filename:"svelte.nim",line:0};
+      var F={procname:"asInterface.:anonymous",prev:framePtr,filename:"nclearseam.nim",line:0};
       framePtr = F;
         F.line = 662;
         result_9888090 = as_interface_9905968(compile_9888286(config_9888076, node_9888085));
@@ -2665,7 +2665,7 @@ function as_interface_9888071(config_9888076) {
 
   var result_9888078 = null;
 
-  var F={procname:"asInterface.asInterface",prev:framePtr,filename:"svelte.nim",line:0};
+  var F={procname:"asInterface.asInterface",prev:framePtr,filename:"nclearseam.nim",line:0};
   framePtr = F;
     F.line = 661;
     result_9888078 = {compile: HEX3Aanonymous_9888083};
@@ -2677,7 +2677,7 @@ function as_interface_9888071(config_9888076) {
 function match_9887532(c_9887537, selector_9887538, convert_9887540, actions_9887546) {
   var result_9887548 = null;
 
-  var F={procname:"match.match",prev:framePtr,filename:"svelte.nim",line:0};
+  var F={procname:"match.match",prev:framePtr,filename:"nclearseam.nim",line:0};
   framePtr = F;
     F.line = 249;
     result_9887548 = {selector: nimCopy(null, selector_9887538, NTI112), refresh: [], init: [], mount: null, iter: false, convert: nimCopy(null, convert_9887540, NTI9885525), cmatches: null, iterate: {kind: 0, simple: null, serial: null}};
@@ -2697,7 +2697,7 @@ function match_9886253(c_9886258, selector_9886259, convert_9886261, equal_98862
     function HEX3Aanonymous_9886281(data_9886283, old_data_9886284) {
       var result_9886288 = {Field0: null, Field1: false};
 
-      var F={procname:"match.:anonymous",prev:framePtr,filename:"svelte.nim",line:0};
+      var F={procname:"match.:anonymous",prev:framePtr,filename:"nclearseam.nim",line:0};
       framePtr = F;
         F.line = 295;
         var data2_9886289 = convert_9886261(data_9886283);
@@ -2715,7 +2715,7 @@ function match_9886253(c_9886258, selector_9886259, convert_9886261, equal_98862
 
   var result_9886273 = null;
 
-  var F={procname:"match.match",prev:framePtr,filename:"svelte.nim",line:0};
+  var F={procname:"match.match",prev:framePtr,filename:"nclearseam.nim",line:0};
   framePtr = F;
     F.line = 292;
     var type_selector_9886304 = {kind: 2, compare: HEX3Aanonymous_9886281, simple: null, serial: null};
@@ -2741,7 +2741,7 @@ function times_9885019(d_9885021) {
 function eql_9885434(s1_9885437, s2_9885438) {
   var result_9885439 = false;
 
-  var F={procname:"eql.eql",prev:framePtr,filename:"svelte.nim",line:0};
+  var F={procname:"eql.eql",prev:framePtr,filename:"nclearseam.nim",line:0};
   framePtr = F;
     F.line = 738;
     result_9885439 = eqStrings(s1_9885437, s2_9885438);
@@ -2751,7 +2751,7 @@ function eql_9885434(s1_9885437, s2_9885438) {
 
 }
 function set_text_9883108(node_9883111, text_9883112) {
-  var F={procname:"svelteutil.setText",prev:framePtr,filename:"svelteutil.nim",line:0};
+  var F={procname:"util.setText",prev:framePtr,filename:"util.nim",line:0};
   framePtr = F;
     F.line = 41;
     node_9883111.textContent = toJSStr(text_9883112);
@@ -2760,7 +2760,7 @@ function set_text_9883108(node_9883111, text_9883112) {
   
 }
 function init_9976361(c_9976366, init_9976367) {
-  var F={procname:"init.init",prev:framePtr,filename:"svelte.nim",line:0};
+  var F={procname:"init.init",prev:framePtr,filename:"nclearseam.nim",line:0};
   framePtr = F;
     F.line = 344;
     if (c_9976366.init != null) { c_9976366.init.push(init_9976367); } else { c_9976366.init = [init_9976367]; };
@@ -2771,7 +2771,7 @@ function init_9976361(c_9976366, init_9976367) {
 function add_event_listener_9976188(c_9976193, event_9976194, cb_9976195, use_capture_9976196) {
     event_9976194 = nimCopy(null, event_9976194, NTI112);
     function HEX3Aanonymous_9976330(node_9976332) {
-      var F={procname:"addEventListener.:anonymous",prev:framePtr,filename:"svelteutil.nim",line:0};
+      var F={procname:"addEventListener.:anonymous",prev:framePtr,filename:"util.nim",line:0};
       framePtr = F;
         F.line = 29;
         node_9976332.addEventListener(toJSStr(event_9976194), cb_9976195, use_capture_9976196);
@@ -2780,7 +2780,7 @@ function add_event_listener_9976188(c_9976193, event_9976194, cb_9976195, use_ca
       
     }
 
-  var F={procname:"addEventListener.addEventListener",prev:framePtr,filename:"svelteutil.nim",line:0};
+  var F={procname:"addEventListener.addEventListener",prev:framePtr,filename:"util.nim",line:0};
   framePtr = F;
     F.line = 28;
     init_9976361(c_9976193, HEX3Aanonymous_9976330);
@@ -2796,7 +2796,7 @@ function create_iter_item_9955970(match_9955975, parent_node_9955976) {
 
   var result_9955978 = null;
 
-  var F={procname:"createIterItem.createIterItem",prev:framePtr,filename:"svelte.nim",line:0};
+  var F={procname:"createIterItem.createIterItem",prev:framePtr,filename:"nclearseam.nim",line:0};
   framePtr = F;
     F.line = 483;
     var comp_9955983 = null;
@@ -2831,7 +2831,7 @@ function create_iter_item_9955970(match_9955975, parent_node_9955976) {
 
 }
 function detach_9975474(iter_item_9975478, parent_node_9975479) {
-  var F={procname:"detach.detach",prev:framePtr,filename:"svelte.nim",line:0};
+  var F={procname:"detach.detach",prev:framePtr,filename:"nclearseam.nim",line:0};
   framePtr = F;
     F.line = 499;
     parent_node_9975479.removeChild(iter_item_9975478.node);
@@ -2865,7 +2865,7 @@ function update_9955868(match_9955873, val_9955874, refresh_9955875) {
       function HEX3Aanonymous_9955892(s_9955895, s_9955895_Idx) {
         var result_9955899 = {Field0: false, Field1: null};
 
-        var F={procname:"update.:anonymous",prev:framePtr,filename:"svelte.nim",line:0};
+        var F={procname:"update.:anonymous",prev:framePtr,filename:"nclearseam.nim",line:0};
         framePtr = F;
           F.line = 511;
           nimCopy(result_9955899, itf_simple_9955891(), NTI9955896);
@@ -2915,7 +2915,7 @@ function update_9955868(match_9955873, val_9955874, refresh_9955875) {
       var Tmp59;
         var Tmp61;
 
-  var F={procname:"update.update",prev:framePtr,filename:"svelte.nim",line:0};
+  var F={procname:"update.update",prev:framePtr,filename:"nclearseam.nim",line:0};
   framePtr = F;
     if (match_9955873.iter) {
     F.line = 504;
@@ -3307,7 +3307,7 @@ function update_9955868(match_9955873, val_9955874, refresh_9955875) {
 }
 function as_interface_9955848(match_9955853) {
     function HEX3Aanonymous_9955860(data_9955862, refresh_9955863) {
-      var F={procname:"asInterface.:anonymous",prev:framePtr,filename:"svelte.nim",line:0};
+      var F={procname:"asInterface.:anonymous",prev:framePtr,filename:"nclearseam.nim",line:0};
       framePtr = F;
         F.line = 657;
         update_9955868(match_9955853, data_9955862, refresh_9955863);
@@ -3318,7 +3318,7 @@ function as_interface_9955848(match_9955853) {
 
   var result_9955855 = null;
 
-  var F={procname:"asInterface.asInterface",prev:framePtr,filename:"svelte.nim",line:0};
+  var F={procname:"asInterface.asInterface",prev:framePtr,filename:"nclearseam.nim",line:0};
   framePtr = F;
     F.line = 656;
     result_9955855 = {update: HEX3Aanonymous_9955860};
@@ -3350,7 +3350,7 @@ function compile_9939176(cfg_9939181, node_9939182) {
 
   var result_9939243 = null;
 
-  var F={procname:"compile.compile",prev:framePtr,filename:"svelte.nim",line:0};
+  var F={procname:"compile.compile",prev:framePtr,filename:"nclearseam.nim",line:0};
   framePtr = F;
   BeforeRet: do {
     F.line = 425;
@@ -3491,7 +3491,7 @@ function as_interface_9938961(config_9938966) {
     function HEX3Aanonymous_9938973(node_9938975) {
       var result_9938980 = null;
 
-      var F={procname:"asInterface.:anonymous",prev:framePtr,filename:"svelte.nim",line:0};
+      var F={procname:"asInterface.:anonymous",prev:framePtr,filename:"nclearseam.nim",line:0};
       framePtr = F;
         F.line = 662;
         result_9938980 = as_interface_9955848(compile_9939176(config_9938966, node_9938975));
@@ -3503,7 +3503,7 @@ function as_interface_9938961(config_9938966) {
 
   var result_9938968 = null;
 
-  var F={procname:"asInterface.asInterface",prev:framePtr,filename:"svelte.nim",line:0};
+  var F={procname:"asInterface.asInterface",prev:framePtr,filename:"nclearseam.nim",line:0};
   framePtr = F;
     F.line = 661;
     result_9938968 = {compile: HEX3Aanonymous_9938973};
@@ -3515,7 +3515,7 @@ function as_interface_9938961(config_9938966) {
 function match_9938422(c_9938427, selector_9938428, convert_9938430, actions_9938436) {
   var result_9938438 = null;
 
-  var F={procname:"match.match",prev:framePtr,filename:"svelte.nim",line:0};
+  var F={procname:"match.match",prev:framePtr,filename:"nclearseam.nim",line:0};
   framePtr = F;
     F.line = 249;
     result_9938438 = {selector: nimCopy(null, selector_9938428, NTI112), refresh: [], init: [], mount: null, iter: false, convert: nimCopy(null, convert_9938430, NTI9936633), cmatches: null, iterate: {kind: 0, simple: null, serial: null}};
@@ -3534,7 +3534,7 @@ function match_9938422(c_9938427, selector_9938428, convert_9938430, actions_993
 function match_9937170(c_9937175, selector_9937176, convert_9937178, actions_9937184) {
   var result_9937186 = null;
 
-  var F={procname:"match.match",prev:framePtr,filename:"svelte.nim",line:0};
+  var F={procname:"match.match",prev:framePtr,filename:"nclearseam.nim",line:0};
   framePtr = F;
     F.line = 274;
     var type_selector_9937194 = {kind: 0, simple: convert_9937178, serial: null, compare: null};
@@ -3548,7 +3548,7 @@ function match_9937170(c_9937175, selector_9937176, convert_9937178, actions_993
 function id_9937124(data_9937127) {
   var result_9937128 = null;
 
-  var F={procname:"id.id",prev:framePtr,filename:"svelte.nim",line:0};
+  var F={procname:"id.id",prev:framePtr,filename:"nclearseam.nim",line:0};
   framePtr = F;
     F.line = 199;
     result_9937128 = data_9937127;
@@ -3560,7 +3560,7 @@ function id_9937124(data_9937127) {
 function match_9937104(c_9937108, selector_9937109, actions_9937115) {
   var result_9937117 = null;
 
-  var F={procname:"match.match",prev:framePtr,filename:"svelte.nim",line:0};
+  var F={procname:"match.match",prev:framePtr,filename:"nclearseam.nim",line:0};
   framePtr = F;
     F.line = 332;
     result_9937117 = match_9937170(c_9937108, selector_9937109, id_9937124, actions_9937115);
@@ -3570,7 +3570,7 @@ function match_9937104(c_9937108, selector_9937109, actions_9937115) {
 
 }
 function update_9976014(t_9976018, data_9976019, refresh_9976020) {
-  var F={procname:"update.update",prev:framePtr,filename:"svelte.nim",line:0};
+  var F={procname:"update.update",prev:framePtr,filename:"nclearseam.nim",line:0};
   framePtr = F;
     F.line = 633;
     t_9976018.data = data_9976019;
@@ -3642,7 +3642,7 @@ function compile_button_9885036(node_9885039) {
 
 }
 function attach_9978395(t_9978399, target_9978400, anchor_9978401, data_9978402) {
-  var F={procname:"attach.attach",prev:framePtr,filename:"svelte.nim",line:0};
+  var F={procname:"attach.attach",prev:framePtr,filename:"nclearseam.nim",line:0};
   framePtr = F;
     F.line = 641;
     update_9976014(t_9978399, data_9978402, true);
@@ -3655,7 +3655,7 @@ function attach_9978395(t_9978399, target_9978400, anchor_9978401, data_9978402)
 function clone_9978105(comp_9978109) {
   var result_9978111 = null;
 
-  var F={procname:"clone.clone",prev:framePtr,filename:"svelte.nim",line:0};
+  var F={procname:"clone.clone",prev:framePtr,filename:"nclearseam.nim",line:0};
   framePtr = F;
   BeforeRet: do {
     F.line = 628;

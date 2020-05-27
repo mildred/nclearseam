@@ -1,6 +1,6 @@
-import ../svelte
-import ../sveltejson
-import ../dom
+import ../src/nclearseam
+import ../src/nclearseam/jsonutil
+import ../src/nclearseam/dom
 import json
 import jsconsole
 

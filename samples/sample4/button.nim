@@ -1,6 +1,6 @@
-import ../../svelte
-import ../../svelteutil
-import ../../dom
+import ../../src/nclearseam
+import ../../src/nclearseam/util
+import ../../src/nclearseam/dom
 import jsconsole
 
 type ButtonData* = ref object

@@ -1,7 +1,7 @@
 import sequtils
 import strformat
 import system
-import ./dom
+import ./nclearseam/dom
 
 type
   CompileError* = object of CatchableError ##\
@@ -399,23 +399,23 @@ proc iter[D,D2](c: Config[D], selector: string, iter: Iterator[D,D2], actions: p
   if actions != nil:
     actions(result)
 
-proc iter*[X,D,D2](c: MatchConfig[X,D], selector: string, iter: ProcIterator[D,D2], actions: proc(x: MatchConfig[D,D2]) = nil): MatchConfig[D,D2] {.discardable.} =
+proc iter*[X,D,D2](c: MatchConfig[X,D], selector: string, it: ProcIterator[D,D2], actions: proc(x: MatchConfig[D,D2]) = nil): MatchConfig[D,D2] {.discardable.} =
   ## iterates over a specified DOM node. Works just like `match` but the
   ## selected DOM node is cloned as many times as necessary to fit the number of
   ## data items provided by the given iterator.
-  result = iter(c, selector, Iterator(kind: SimpleIterator, simple: iter), actions)
+  result = iter(c, selector, Iterator[D,D2](kind: SimpleIterator, simple: it), actions)
 
-proc iter*[D,D2](c: Config[D], selector: string, iter: ProcIterator[D,D2], actions: proc(x: MatchConfig[D,D2]) = nil): MatchConfig[D,D2] {.discardable.} =
+proc iter*[D,D2](c: Config[D], selector: string, it: ProcIterator[D,D2], actions: proc(x: MatchConfig[D,D2]) = nil): MatchConfig[D,D2] {.discardable.} =
   ## iter variant for `Config`
-  result = iter(c, selector, Iterator(kind: SimpleIterator, simple: iter), actions)
+  result = iter(c, selector, Iterator[D,D2](kind: SimpleIterator, simple: it), actions)
 
-proc iter*[X,D,D2](c: MatchConfig[X,D], selector: string, iter: ProcIteratorSerial[D,D2], actions: proc(x: MatchConfig[D,D2]) = nil): MatchConfig[D,D2] {.discardable.} =
+proc iter*[X,D,D2](c: MatchConfig[X,D], selector: string, it: ProcIteratorSerial[D,D2], actions: proc(x: MatchConfig[D,D2]) = nil): MatchConfig[D,D2] {.discardable.} =
   ## iter variant for ProcIteratorSerial
-  result = iter(c, selector, Iterator(kind: SerialIterator, serial: iter), actions)
+  result = iter(c, selector, Iterator[D,D2](kind: SerialIterator, serial: it), actions)
 
-proc iter*[D,D2](c: Config[D], selector: string, iter: ProcIteratorSerial[D,D2], actions: proc(x: MatchConfig[D,D2]) = nil): MatchConfig[D,D2] {.discardable.} =
+proc iter*[D,D2](c: Config[D], selector: string, it: ProcIteratorSerial[D,D2], actions: proc(x: MatchConfig[D,D2]) = nil): MatchConfig[D,D2] {.discardable.} =
   ## iter variant for ProcIteratorSerial
-  result = iter(c, selector, Iterator(kind: SerialIterator, serial: iter), actions)
+  result = iter(c, selector, Iterator[D,D2](kind: SerialIterator, serial: it), actions)
 
 #
 # Compile a config to a component
@@ -713,7 +713,7 @@ proc late*[D](lateComp: proc(): Component[D]): ComponentInterface[D] =
 # Helper procs
 #
 
-proc createIterator[D,D2](iterate: ProcIterator[D,D2]): ProcIterInternal[D] =
+proc createIterator*[D,D2](iterate: ProcIterator[D,D2]): ProcIterInternal[D] =
   var nextItem: ProcIter[D2] = nil
   let iterate1 = iterate
 
