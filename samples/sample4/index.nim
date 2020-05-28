@@ -1,8 +1,14 @@
-import ./button
+import asyncjs
+
 import ../../src/nclearseam
 import ../../src/nclearseam/dom
+import ../../src/nclearseam/registry
 
-var Button = compileButton(document.querySelector("template#button").content)
+import ./button
 
-if isMainModule:
+proc main() {.async discardable.} =
+  await components.init()
   Button.clone().attach(document.body, nil, ButtonData())
+
+when isMainModule:
+  main()
