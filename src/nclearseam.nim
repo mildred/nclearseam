@@ -466,6 +466,7 @@ proc compile[D](cfgs: seq[MatchConfigInterface[D]], node: dom.Node): seq[CompMat
 proc compile*[D](cfg: Config[D], node: dom.Node): Component[D] =
   ## Compiles a configuration by associating it with a DOM Node. Can raise
   ## `CompileError` in case the selectors in the configuration do not match.
+  assert node != nil
   result = new(Component[D])
   result.config        = cfg.config
   result.original_node = node
@@ -616,11 +617,13 @@ proc update[D,D2](match: CompMatch[D,D2], val: D, refresh: bool) =
 
 proc compile*[D](node: dom.Node, tf: Config[D]): Component[D] =
   ## Alternative compile procedure that can be used as a method on DOM Nodes
+  assert node != nil
   compile(tf, node)
 
 proc compile*[D](d: typedesc[D], node: dom.Node, configurator: proc(c: Component[D])): Component[D] =
   ## Alternative compile procedure that creates the configuration and compiles
   ## it in one shot.
+  assert node != nil
   compile(create[D](d, configurator), node)
 
 proc clone*[D](comp: Component[D]): Component[D] =

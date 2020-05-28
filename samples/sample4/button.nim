@@ -13,7 +13,7 @@ proc times(d: ButtonData): string = $d.times
 
 var Button*: Component[ButtonData]
 
-components.declare(Button, fetchTemplate("button.html", "template")) do(node: dom.Node) -> Component[ButtonData]:
+components.declare(Button, fetchTemplate("button.html", "template", css = true)) do(node: dom.Node) -> Component[ButtonData]:
   return compile(ButtonData, node) do(b: auto):
     b.match(".times", times, eql).refresh(setText)
     b.match("button").addEventListener("click") do(event: Event):

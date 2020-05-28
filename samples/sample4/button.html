@@ -1,5 +1,18 @@
 <template id="button">
-  <button>
-    Clicked <span class="times"></span> times
-  </button>
+  <p>
+    Hello there, I'm out of CSS scope. A &lt;style scope/&gt; element must
+    always be child of some other element, else there is nowhere for nclearseam
+    to put the scope class attribute to.
+  </p>
+  <div>
+    <style scope>
+      :scope {
+        background-color: lightblue
+      }
+    </style>
+    <p>Here, I'm in scope</p>
+    <button>
+      Clicked <span class="times"></span> times
+    </button>
+  </div>
 </template>
