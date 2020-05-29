@@ -1,7 +1,6 @@
 import sequtils
 import strformat
 import system
-import macros
 import ./nclearseam/dom
 
 type
@@ -721,38 +720,6 @@ proc late*[D](lateComp: proc(): Component[D]): ComponentInterface[D] =
 #
 # Helper procs
 #
-
-macro get_fields*(t: typedesc, args: varargs[untyped]): untyped =
-
-  # Return type goes first, then all the arguments
-  var dotExpr: NimNode = ident("arg0")
-  var statements: NimNode = newStmtList()
-
-  for i in 0 .. args.len-1:
-    dotExpr = newDotExpr(dotExpr, args[i])
-    let dot = newDotExpr(ident("arg" & $i), args[i])
-    let ifexpr = newNimNode(nnkIfExpr)
-      .add(newNimNode(nnkElifExpr)
-        .add(newCall(bindSym"isNil", dot))
-        .add(newCall(bindSym"new", newNimNode(nnkTypeOfExpr).add(dot))))
-      .add(newNimNode(nnkElseExpr)
-        .add(dot))
-    statements.add(newLetStmt(ident("arg" & $(i+1)), dot))
-
-  statements.add(newNimNode(nnkReturnStmt).add(ident("arg" & $(args.len))))
-
-  var params: seq[NimNode] = @[
-    newIdentNode("auto"),           # return type
-    newIdentDefs(ident("arg0"), t), # argument
-  ]
-
-  result = newProc(procType = nnkLambda, params = params, body = dotExpr)
-
-template get*[X,D](c: MatchConfig[X,D], args: varargs[untyped]): auto =
-  get_fields(c.D, args)
-
-template get*[D](c: Config[D], args: varargs[untyped]): auto =
-  get_fields(c.D, args)
 
 proc createIterator*[D,D2](iterate: ProcIterator[D,D2]): ProcIterInternal[D] =
   var nextItem: ProcIter[D2] = nil

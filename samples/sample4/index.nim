@@ -8,7 +8,7 @@ import ./button
 
 proc main() {.async discardable.} =
   await components.init()
-  Button.clone().attach(document.body, nil, ButtonData())
+  Button.clone().attach(document.body, nil, ButtonData(times: ButtonTimes()))
 
 when isMainModule:
   main()
