@@ -1,6 +1,7 @@
 import sequtils
 import strformat
 import system
+import macros
 import ./nclearseam/dom
 
 type
@@ -119,7 +120,7 @@ type
       iterate: Iterator[D,D2]
 
   MatchConfigInterface[D] = ref object
-    compile: proc(node: dom.Node): CompMatchInterface[D]
+    compile: proc(node: dom.Node): seq[CompMatchInterface[D]]
 
   #
   # Component: Global component object
@@ -421,42 +422,44 @@ proc iter*[D,D2](c: Config[D], selector: string, it: ProcIteratorSerial[D,D2], a
 # Compile a config to a component
 #
 
-proc compile[D,D2](cfg: MatchConfig[D,D2], node: dom.Node): CompMatch[D,D2] =
-  let matched_node = node.querySelector(cfg.selector)
-  if matched_node == nil:
+proc compile[D,D2](cfg: MatchConfig[D,D2], node: dom.Node): seq[CompMatch[D,D2]] =
+  result = @[]
+  let matched_nodes = node.querySelectorAll(cfg.selector)
+  if matched_nodes.len == 0:
     let selector = cfg.selector
     raise newException(CompileSelectorError, &"Cannot match selector '{selector}'")
 
-  var match = CompMatch[D,D2](
-    refresh: cfg.refresh,
-    init: cfg.init,
-    iter: cfg.iter,
-    node: matched_node)
-  match.node = matched_node
-  if match.iter:
-    match.iterate = cfg.iterate
-    match.anchor = matched_node.ownerDocument.createComment(matched_node.outerHTML)
-    match.mount_template = cfg.mount
-    match.match_templates = cfg.cmatches
-    match.items = @[]
-    matched_node.parentNode.replaceChild(match.anchor, matched_node)
-  else:
-    match.selectorKind = cfg.convert.kind
-    case match.selectorKind
-    of SerialTypeSelector:
-      match.serial = 0
+  for matched_node in matched_nodes:
+    var match = CompMatch[D,D2](
+      refresh: cfg.refresh,
+      init: cfg.init,
+      iter: cfg.iter,
+      node: matched_node)
+    match.node = matched_node
+    if match.iter:
+      match.iterate = cfg.iterate
+      match.anchor = matched_node.ownerDocument.createComment(matched_node.outerHTML)
+      match.mount_template = cfg.mount
+      match.match_templates = cfg.cmatches
+      match.items = @[]
+      matched_node.parentNode.replaceChild(match.anchor, matched_node)
     else:
-      discard
-    match.convert = cfg.convert
-    match.matches = @[]
-    match.inited = false
-    match.mount = nil
-    if cfg.mount != nil:
-      match.mount_source = cfg.mount
-    else:
-      for submatch in cfg.cmatches:
-        match.matches.add(submatch.compile(matched_node))
-  return match
+      match.selectorKind = cfg.convert.kind
+      case match.selectorKind
+      of SerialTypeSelector:
+        match.serial = 0
+      else:
+        discard
+      match.convert = cfg.convert
+      match.matches = @[]
+      match.inited = false
+      match.mount = nil
+      if cfg.mount != nil:
+        match.mount_source = cfg.mount
+      else:
+        for submatch in cfg.cmatches:
+          match.matches.add(submatch.compile(matched_node))
+    result.add(match)
 
 proc compile[D](cfgs: seq[MatchConfigInterface[D]], node: dom.Node): seq[CompMatchInterface[D]] =
   result = @[]
@@ -662,7 +665,10 @@ func asInterface[D,D2](match: CompMatch[D,D2]): CompMatchInterface[D] =
 
 func asInterface[D,D2](config: MatchConfig[D,D2]): MatchConfigInterface[D] =
   result = MatchConfigInterface[D](
-    compile: proc(node: dom.Node): CompMatchInterface[D] = compile(config, node).asInterface()
+    compile: (proc(node: dom.Node): seq[CompMatchInterface[D]] =
+      result = @[]
+      for comp_match in compile(config, node):
+        result.add(comp_match.asInterface()))
   )
 
 func asInterface*[D](comp: Component[D]): ComponentInterface[D] =
@@ -715,6 +721,86 @@ proc late*[D](lateComp: proc(): Component[D]): ComponentInterface[D] =
 #
 # Helper procs
 #
+
+proc getObjectType(ty, ty0: NimNode = nil): NimNode =
+  case ty.kind
+  of nnkObjectTy:
+    return ty
+  of nnkSym:
+    return getObjectType(getTypeImpl(ty), if ty0 == nil: ty else: ty0)
+  of nnkBracketExpr:
+    case typeKind(ty[0])
+    of ntyTypeDesc, ntyRef:
+      return getObjectType(ty[1], if ty0 == nil: ty else: ty0)
+    else:
+      assert(false, "Expected object type " & $typeKind(ty[0]) & "[...] to be an object type")
+  else:
+    assert(false, "Expected object type " & $ty.kind & " to be an object type")
+
+# TODO: use typeof() operator as an improvement (in case the type is not in
+# scope)
+proc getTypeRecord(recList, identifier: NimNode): NimNode =
+  assert(recList.kind == nnkRecList or recList.kind == nnkRecCase,
+         "expect recList of be a record list or case, but got " & $recList.kind)
+  assert(identifier.kind == nnkIdent,
+         "did not expect identifier to be " & $identifier.kind)
+  for i in 0 .. recList.len-1:
+    let child = recList[i]
+    case child.kind
+    of nnkIdentDefs:
+      if child[0] == identifier:
+        return child[1]
+    of nnkRecCase:
+      let res = getTypeRecord(getObjectType(child), identifier)
+      if res != nil: return res
+    of nnkOfBranch:
+      let res = getTypeRecord(getObjectType(child[1]), identifier)
+      if res != nil: return res
+    else:
+      assert(false, "did not expect " & $recList.kind & " to contain " & $child.kind)
+  return nil
+
+macro get_fields*(t: typedesc, args: varargs[untyped]): untyped =
+  #var types: seq[NimNode] = @[ getObjectType(getType(t)) ]
+
+  #for i in 0 .. args.len-1:
+  #  let t1 = types[i]
+  #  assert(t1.kind == nnkObjectTy,
+  #         "Expected lookup `" & $args[i] & "` type to be object got " & $t1.kind)
+  #  let t2 = getTypeRecord(t1[2], args[i])
+  #  assert(t2 != nil,
+  #         "Did not find record " & $args[i] & " in type " & $t1.kind)
+  #  types.add(t2)
+
+  # Return type goes first, then all the arguments
+  var dotExpr: NimNode = ident("arg0")
+  var statements: NimNode = newStmtList()
+
+  for i in 0 .. args.len-1:
+    dotExpr = newDotExpr(dotExpr, args[i])
+    let dot = newDotExpr(ident("arg" & $i), args[i])
+    let ifexpr = newNimNode(nnkIfExpr)
+      .add(newNimNode(nnkElifExpr)
+        .add(newCall(bindSym"isNil", dot))
+        .add(newCall(bindSym"new", newNimNode(nnkTypeOfExpr).add(dot))))
+      .add(newNimNode(nnkElseExpr)
+        .add(dot))
+    statements.add(newLetStmt(ident("arg" & $(i+1)), dot))
+
+  statements.add(newNimNode(nnkReturnStmt).add(ident("arg" & $(args.len))))
+
+  var params: seq[NimNode] = @[
+    newIdentNode("auto"), #types[args.len],   # return type
+    newIdentDefs(ident("arg0"), t),  # argument
+  ]
+
+  result = newProc(procType = nnkLambda, params = params, body = dotExpr)
+
+template get*[X,D](c: MatchConfig[X,D], args: varargs[untyped]): auto =
+  get_fields(c.D, args)
+
+template get*[D](c: Config[D], args: varargs[untyped]): auto =
+  get_fields(c.D, args)
 
 proc createIterator*[D,D2](iterate: ProcIterator[D,D2]): ProcIterInternal[D] =
   var nextItem: ProcIter[D2] = nil

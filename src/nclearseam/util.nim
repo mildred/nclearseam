@@ -2,12 +2,16 @@ import ../nclearseam
 import ./dom
 #import typeinfo
 
-func get*[K,D](typ: typedesc[D], keys: varargs[K]): ProcTypeConverter[D,D] =
-  mixin `[]`
-  let keys = @keys
-  return proc(node: D): D =
-    result = node
-    for key in items(keys): result = result[key]
+proc `|`*[T1,T2,T3] (p1: proc(x: T1): T2, p2: proc(x: T2): T3): proc(x: T1): T3 =
+  ## Return a proc that is the equivalent of piping the two input proc together
+  result = proc(x: T1): T3 = x.p1().p2()
+
+#func get*[K,D](typ: typedesc[D], keys: varargs[K]): ProcTypeConverter[D,D] =
+#  mixin `[]`
+#  let keys = @keys
+#  return proc(node: D): D =
+#    result = node
+#    for key in items(keys): result = result[key]
 
 #proc isRef[D](val: D): bool =
 #  case kind(val)
@@ -37,8 +41,12 @@ proc addEventListener*[X,D](c: MatchConfig[X,D], event: string, cb: proc(ev: Eve
 # DOM Utils
 #
 
+
 proc setText*(node: dom.Node, text: string) =
   node.textContent = text
+
+proc setText*[T](typ: typedesc[T]): proc(node: dom.Node, text: T) =
+  result = (proc(node: dom.Node, text: T) = node.textContent = $text)
 
 #
 # Helper procedures to create iterator functions
