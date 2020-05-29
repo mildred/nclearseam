@@ -10,89 +10,89 @@ if (typeof Uint16Array === 'undefined') Uint16Array = Array;
 if (typeof Uint32Array === 'undefined') Uint32Array = Array;
 if (typeof Float32Array === 'undefined') Float32Array = Array;
 if (typeof Float64Array === 'undefined') Float64Array = Array;
-var NTI11385765 = {size: 0, kind: 18, base: null, node: null, finalizer: null};
-var NTI11365069 = {size: 0,kind: 24,base: null,node: null,finalizer: null};
-var NTI11365042 = {size: 0,kind: 24,base: null,node: null,finalizer: null};
-var NTI11356715 = {size: 0,kind: 24,base: null,node: null,finalizer: null};
-var NTI11356709 = {size: 0,kind: 24,base: null,node: null,finalizer: null};
-var NTI11359443 = {size: 0,kind: 24,base: null,node: null,finalizer: null};
-var NTI11359437 = {size: 0, kind: 18, base: null, node: null, finalizer: null};
-var NTI11359436 = {size: 0,kind: 22,base: null,node: null,finalizer: null};
-var NTI11359449 = {size: 0,kind: 24,base: null,node: null,finalizer: null};
-var NTI11359431 = {size: 0,kind: 24,base: null,node: null,finalizer: null};
-var NTI11356793 = {size: 0,kind: 25,base: null,node: null,finalizer: null};
-var NTI11356777 = {size: 0,kind: 25,base: null,node: null,finalizer: null};
-var NTI11356773 = {size: 0, kind: 18, base: null, node: null, finalizer: null};
-var NTI11359419 = {size: 0,kind: 24,base: null,node: null,finalizer: null};
-var NTI11356733 = {size: 0,kind: 25,base: null,node: null,finalizer: null};
-var NTI11356726 = {size: 0,kind: 25,base: null,node: null,finalizer: null};
-var NTI11356720 = {size: 0, kind: 18, base: null, node: null, finalizer: null};
-var NTI11356719 = {size: 0,kind: 22,base: null,node: null,finalizer: null};
-var NTI11356705 = {size: 0,kind: 25,base: null,node: null,finalizer: null};
-var NTI11359399 = {size: 0,kind: 24,base: null,node: null,finalizer: null};
-var NTI11359395 = {size: 0, kind: 18, base: null, node: null, finalizer: null};
-var NTI11359394 = {size: 0,kind: 22,base: null,node: null,finalizer: null};
-var NTI11359467 = {size: 0,kind: 24,base: null,node: null,finalizer: null};
-var NTI11359180 = {size: 0,kind: 24,base: null,node: null,finalizer: null};
-var NTI11356758 = {size: 0,kind: 25,base: null,node: null,finalizer: null};
-var NTI11356751 = {size: 0,kind: 25,base: null,node: null,finalizer: null};
-var NTI11356745 = {size: 0,kind: 25,base: null,node: null,finalizer: null};
-var NTI11356741 = {size: 0, kind: 18, base: null, node: null, finalizer: null};
-var NTI11325921 = {size: 0,kind: 24,base: null,node: null,finalizer: null};
 var NTI11325765 = {size: 0, kind: 18, base: null, node: null, finalizer: null};
 var NTI11305069 = {size: 0,kind: 24,base: null,node: null,finalizer: null};
 var NTI11305042 = {size: 0,kind: 24,base: null,node: null,finalizer: null};
-var NTI11295361 = {size: 0,kind: 24,base: null,node: null,finalizer: null};
+var NTI11296715 = {size: 0,kind: 24,base: null,node: null,finalizer: null};
+var NTI11296709 = {size: 0,kind: 24,base: null,node: null,finalizer: null};
+var NTI11299443 = {size: 0,kind: 24,base: null,node: null,finalizer: null};
+var NTI11299437 = {size: 0, kind: 18, base: null, node: null, finalizer: null};
+var NTI11299436 = {size: 0,kind: 22,base: null,node: null,finalizer: null};
+var NTI11299449 = {size: 0,kind: 24,base: null,node: null,finalizer: null};
+var NTI11299431 = {size: 0,kind: 24,base: null,node: null,finalizer: null};
+var NTI11296793 = {size: 0,kind: 25,base: null,node: null,finalizer: null};
+var NTI11296777 = {size: 0,kind: 25,base: null,node: null,finalizer: null};
+var NTI11296773 = {size: 0, kind: 18, base: null, node: null, finalizer: null};
+var NTI11299419 = {size: 0,kind: 24,base: null,node: null,finalizer: null};
+var NTI11296733 = {size: 0,kind: 25,base: null,node: null,finalizer: null};
+var NTI11296726 = {size: 0,kind: 25,base: null,node: null,finalizer: null};
+var NTI11296720 = {size: 0, kind: 18, base: null, node: null, finalizer: null};
+var NTI11296719 = {size: 0,kind: 22,base: null,node: null,finalizer: null};
+var NTI11296705 = {size: 0,kind: 25,base: null,node: null,finalizer: null};
+var NTI11299399 = {size: 0,kind: 24,base: null,node: null,finalizer: null};
+var NTI11299395 = {size: 0, kind: 18, base: null, node: null, finalizer: null};
+var NTI11299394 = {size: 0,kind: 22,base: null,node: null,finalizer: null};
+var NTI11299467 = {size: 0,kind: 24,base: null,node: null,finalizer: null};
+var NTI11299180 = {size: 0,kind: 24,base: null,node: null,finalizer: null};
+var NTI11296758 = {size: 0,kind: 25,base: null,node: null,finalizer: null};
+var NTI11296751 = {size: 0,kind: 25,base: null,node: null,finalizer: null};
+var NTI11296745 = {size: 0,kind: 25,base: null,node: null,finalizer: null};
+var NTI11296741 = {size: 0, kind: 18, base: null, node: null, finalizer: null};
+var NTI11265921 = {size: 0,kind: 24,base: null,node: null,finalizer: null};
+var NTI11265765 = {size: 0, kind: 18, base: null, node: null, finalizer: null};
+var NTI11245069 = {size: 0,kind: 24,base: null,node: null,finalizer: null};
+var NTI11245042 = {size: 0,kind: 24,base: null,node: null,finalizer: null};
+var NTI11235361 = {size: 0,kind: 24,base: null,node: null,finalizer: null};
 var NTI6251 = {size: 0, kind: 17, base: null, node: null, finalizer: null};
 var NTI10216259 = {size: 0,kind: 24,base: null,node: null,finalizer: null};
-var NTI11295329 = {size: 0,kind: 24,base: null,node: null,finalizer: null};
+var NTI11235329 = {size: 0,kind: 24,base: null,node: null,finalizer: null};
 var NTI10216015 = {size: 0, kind: 17, base: null, node: null, finalizer: null};
 var NTI10216017 = {size: 0, kind: 17, base: null, node: null, finalizer: null};
-var NTI11298334 = {size: 0,kind: 24,base: null,node: null,finalizer: null};
-var NTI11298328 = {size: 0, kind: 18, base: null, node: null, finalizer: null};
-var NTI11298327 = {size: 0,kind: 22,base: null,node: null,finalizer: null};
-var NTI11298340 = {size: 0,kind: 24,base: null,node: null,finalizer: null};
-var NTI11295354 = {size: 0,kind: 25,base: null,node: null,finalizer: null};
-var NTI11295336 = {size: 0, kind: 18, base: null, node: null, finalizer: null};
-var NTI11295335 = {size: 0,kind: 22,base: null,node: null,finalizer: null};
-var NTI11298322 = {size: 0,kind: 24,base: null,node: null,finalizer: null};
-var NTI11295436 = {size: 0,kind: 25,base: null,node: null,finalizer: null};
-var NTI11295420 = {size: 0,kind: 25,base: null,node: null,finalizer: null};
+var NTI11238334 = {size: 0,kind: 24,base: null,node: null,finalizer: null};
+var NTI11238328 = {size: 0, kind: 18, base: null, node: null, finalizer: null};
+var NTI11238327 = {size: 0,kind: 22,base: null,node: null,finalizer: null};
+var NTI11238340 = {size: 0,kind: 24,base: null,node: null,finalizer: null};
+var NTI11235354 = {size: 0,kind: 25,base: null,node: null,finalizer: null};
+var NTI11235336 = {size: 0, kind: 18, base: null, node: null, finalizer: null};
+var NTI11235335 = {size: 0,kind: 22,base: null,node: null,finalizer: null};
+var NTI11238322 = {size: 0,kind: 24,base: null,node: null,finalizer: null};
+var NTI11235436 = {size: 0,kind: 25,base: null,node: null,finalizer: null};
+var NTI11235420 = {size: 0,kind: 25,base: null,node: null,finalizer: null};
 var NTI10216045 = {size: 0, kind: 14, base: null, node: null, finalizer: null};
-var NTI11295416 = {size: 0, kind: 18, base: null, node: null, finalizer: null};
-var NTI11295347 = {size: 0,kind: 25,base: null,node: null,finalizer: null};
-var NTI11295342 = {size: 0, kind: 18, base: null, node: null, finalizer: null};
-var NTI11295341 = {size: 0,kind: 22,base: null,node: null,finalizer: null};
-var NTI11298310 = {size: 0,kind: 24,base: null,node: null,finalizer: null};
-var NTI11295379 = {size: 0,kind: 25,base: null,node: null,finalizer: null};
-var NTI11295372 = {size: 0,kind: 25,base: null,node: null,finalizer: null};
+var NTI11235416 = {size: 0, kind: 18, base: null, node: null, finalizer: null};
+var NTI11235347 = {size: 0,kind: 25,base: null,node: null,finalizer: null};
+var NTI11235342 = {size: 0, kind: 18, base: null, node: null, finalizer: null};
+var NTI11235341 = {size: 0,kind: 22,base: null,node: null,finalizer: null};
+var NTI11238310 = {size: 0,kind: 24,base: null,node: null,finalizer: null};
+var NTI11235379 = {size: 0,kind: 25,base: null,node: null,finalizer: null};
+var NTI11235372 = {size: 0,kind: 25,base: null,node: null,finalizer: null};
 var NTI10216314 = {size: 0,kind: 25,base: null,node: null,finalizer: null};
-var NTI11295366 = {size: 0, kind: 18, base: null, node: null, finalizer: null};
-var NTI11295365 = {size: 0,kind: 22,base: null,node: null,finalizer: null};
+var NTI11235366 = {size: 0, kind: 18, base: null, node: null, finalizer: null};
+var NTI11235365 = {size: 0,kind: 22,base: null,node: null,finalizer: null};
 var NTI10216409 = {size: 0,kind: 25,base: null,node: null,finalizer: null};
 var NTI10216340 = {size: 0,kind: 24,base: null,node: null,finalizer: null};
-var NTI11295325 = {size: 0,kind: 25,base: null,node: null,finalizer: null};
-var NTI11298290 = {size: 0,kind: 24,base: null,node: null,finalizer: null};
-var NTI11298286 = {size: 0, kind: 18, base: null, node: null, finalizer: null};
-var NTI11298285 = {size: 0,kind: 22,base: null,node: null,finalizer: null};
-var NTI11298358 = {size: 0,kind: 24,base: null,node: null,finalizer: null};
-var NTI11298071 = {size: 0,kind: 24,base: null,node: null,finalizer: null};
-var NTI11295401 = {size: 0,kind: 25,base: null,node: null,finalizer: null};
-var NTI11295394 = {size: 0,kind: 25,base: null,node: null,finalizer: null};
-var NTI11295292 = {size: 0,kind: 25,base: null,node: null,finalizer: null};
+var NTI11235325 = {size: 0,kind: 25,base: null,node: null,finalizer: null};
+var NTI11238290 = {size: 0,kind: 24,base: null,node: null,finalizer: null};
+var NTI11238286 = {size: 0, kind: 18, base: null, node: null, finalizer: null};
+var NTI11238285 = {size: 0,kind: 22,base: null,node: null,finalizer: null};
+var NTI11238358 = {size: 0,kind: 24,base: null,node: null,finalizer: null};
+var NTI11238071 = {size: 0,kind: 24,base: null,node: null,finalizer: null};
+var NTI11235401 = {size: 0,kind: 25,base: null,node: null,finalizer: null};
+var NTI11235394 = {size: 0,kind: 25,base: null,node: null,finalizer: null};
+var NTI11235292 = {size: 0,kind: 25,base: null,node: null,finalizer: null};
 var NTI10216033 = {size: 0, kind: 14, base: null, node: null, finalizer: null};
-var NTI11295387 = {size: 0, kind: 18, base: null, node: null, finalizer: null};
-var NTI11296171 = {size: 0, kind: 18, base: null, node: null, finalizer: null};
-var NTI11385904 = {size: 0,kind: 24,base: null,node: null,finalizer: null};
-var NTI11385921 = {size: 0,kind: 24,base: null,node: null,finalizer: null};
-var NTI11291090 = {size: 0,kind: 25,base: null,node: null,finalizer: null};
-var NTI11291079 = {size: 0,kind: 25,base: null,node: null,finalizer: null};
-var NTI11291061 = {size: 0, kind: 18, base: null, node: null, finalizer: null};
-var NTI11291060 = {size: 0,kind: 22,base: null,node: null,finalizer: null};
-var NTI11291086 = {size: 0,kind: 24,base: null,node: null,finalizer: null};
-var NTI11291056 = {size: 0, kind: 17, base: null, node: null, finalizer: null};
-var NTI11291042 = {size: 0, kind: 18, base: null, node: null, finalizer: null};
-var NTI11291041 = {size: 0,kind: 22,base: null,node: null,finalizer: null};
+var NTI11235387 = {size: 0, kind: 18, base: null, node: null, finalizer: null};
+var NTI11236171 = {size: 0, kind: 18, base: null, node: null, finalizer: null};
+var NTI11325904 = {size: 0,kind: 24,base: null,node: null,finalizer: null};
+var NTI11325921 = {size: 0,kind: 24,base: null,node: null,finalizer: null};
+var NTI11231090 = {size: 0,kind: 25,base: null,node: null,finalizer: null};
+var NTI11231079 = {size: 0,kind: 25,base: null,node: null,finalizer: null};
+var NTI11231061 = {size: 0, kind: 18, base: null, node: null, finalizer: null};
+var NTI11231060 = {size: 0,kind: 22,base: null,node: null,finalizer: null};
+var NTI11231086 = {size: 0,kind: 24,base: null,node: null,finalizer: null};
+var NTI11231056 = {size: 0, kind: 17, base: null, node: null, finalizer: null};
+var NTI11231042 = {size: 0, kind: 18, base: null, node: null, finalizer: null};
+var NTI11231041 = {size: 0,kind: 22,base: null,node: null,finalizer: null};
 var NTI10187268 = {size: 0,kind: 25,base: null,node: null,finalizer: null};
 var NTI10187264 = {size: 0,kind: 25,base: null,node: null,finalizer: null};
 var NTI10187260 = {size: 0,kind: 25,base: null,node: null,finalizer: null};
@@ -153,11 +153,11 @@ var NTI10187388 = {size: 0,kind: 24,base: null,node: null,finalizer: null};
 var NTI10187386 = {size: 0,kind: 24,base: null,node: null,finalizer: null};
 var NTI10187035 = {size: 0, kind: 17, base: null, node: null, finalizer: null};
 var NTI10187033 = {size: 0,kind: 22,base: null,node: null,finalizer: null};
-var NTI11291072 = {size: 0,kind: 25,base: null,node: null,finalizer: null};
-var NTI11291067 = {size: 0, kind: 18, base: null, node: null, finalizer: null};
-var NTI11291066 = {size: 0,kind: 22,base: null,node: null,finalizer: null};
-var NTI11291100 = {size: 0,kind: 24,base: null,node: null,finalizer: null};
-var NTI11291052 = {size: 0, kind: 17, base: null, node: null, finalizer: null};
+var NTI11231072 = {size: 0,kind: 25,base: null,node: null,finalizer: null};
+var NTI11231067 = {size: 0, kind: 18, base: null, node: null, finalizer: null};
+var NTI11231066 = {size: 0,kind: 22,base: null,node: null,finalizer: null};
+var NTI11231100 = {size: 0,kind: 24,base: null,node: null,finalizer: null};
+var NTI11231052 = {size: 0, kind: 17, base: null, node: null, finalizer: null};
 var NTI6221 = {size: 0, kind: 17, base: null, node: null, finalizer: null};
 var NTI6243 = {size: 0, kind: 17, base: null, node: null, finalizer: null};
 var NTI4600232 = {size: 0,kind: 31,base: null,node: null,finalizer: null};
@@ -221,10 +221,10 @@ var NNI6221 = {kind: 2, len: 0, offset: 0, typ: null, name: null, sons: []};
 NTI6221.node = NNI6221;
 NTI6221.base = NTI6217;
 NTI6243.base = NTI6221;
-var NNI11291067 = {kind: 1, offset: "update", len: 0, typ: NTI11291072, name: "update", sons: null};
-NTI11291067.node = NNI11291067;
-NTI11291066.base = NTI11291067;
-NTI11291100.base = NTI11291066;
+var NNI11231067 = {kind: 1, offset: "update", len: 0, typ: NTI11231072, name: "update", sons: null};
+NTI11231067.node = NNI11231067;
+NTI11231066.base = NTI11231067;
+NTI11231100.base = NTI11231066;
 NTI10187386.base = NTI10187033;
 NTI10187388.base = NTI10187033;
 NTI10187390.base = NTI10187033;
@@ -504,153 +504,153 @@ NTI10187005.node = NNI10187005;
 NTI10187005.base = NTI6008;
 NTI10187035.base = NTI10187005;
 NTI10187033.base = NTI10187035;
-var NNI11291042 = {kind: 1, offset: "times", len: 0, typ: NTI143, name: "times", sons: null};
-NTI11291042.node = NNI11291042;
-NTI11291041.base = NTI11291042;
-var NNI11291052 = {kind: 2, len: 4, offset: 0, typ: null, name: null, sons: [{kind: 1, offset: "matches", len: 0, typ: NTI11291100, name: "matches", sons: null}, 
+var NNI11231042 = {kind: 1, offset: "times", len: 0, typ: NTI143, name: "times", sons: null};
+NTI11231042.node = NNI11231042;
+NTI11231041.base = NTI11231042;
+var NNI11231052 = {kind: 2, len: 4, offset: 0, typ: null, name: null, sons: [{kind: 1, offset: "matches", len: 0, typ: NTI11231100, name: "matches", sons: null}, 
 {kind: 1, offset: "node", len: 0, typ: NTI10187033, name: "node", sons: null}, 
 {kind: 1, offset: "original_node", len: 0, typ: NTI10187033, name: "original_node", sons: null}, 
-{kind: 1, offset: "data", len: 0, typ: NTI11291041, name: "data", sons: null}]};
-NTI11291052.node = NNI11291052;
-var NNI11291061 = {kind: 1, offset: "compile", len: 0, typ: NTI11291079, name: "compile", sons: null};
-NTI11291061.node = NNI11291061;
-NTI11291060.base = NTI11291061;
-NTI11291086.base = NTI11291060;
-var NNI11291056 = {kind: 2, len: 2, offset: 0, typ: null, name: null, sons: [{kind: 1, offset: "cmatches", len: 0, typ: NTI11291086, name: "cmatches", sons: null}, 
-{kind: 1, offset: "config", len: 0, typ: NTI11291090, name: "config", sons: null}]};
-NTI11291056.node = NNI11291056;
-NTI11291056.base = NTI6008;
-NTI11291052.base = NTI11291056;
-NTI11385921.base = NTI11291066;
-NTI11385904.base = NTI11291066;
-var NNI11296171 = {kind: 2, len: 2, offset: 0, typ: null, name: null, sons: [{kind: 1, offset: "Field0", len: 0, typ: NTI143, name: "Field0", sons: null}, 
+{kind: 1, offset: "data", len: 0, typ: NTI11231041, name: "data", sons: null}]};
+NTI11231052.node = NNI11231052;
+var NNI11231061 = {kind: 1, offset: "compile", len: 0, typ: NTI11231079, name: "compile", sons: null};
+NTI11231061.node = NNI11231061;
+NTI11231060.base = NTI11231061;
+NTI11231086.base = NTI11231060;
+var NNI11231056 = {kind: 2, len: 2, offset: 0, typ: null, name: null, sons: [{kind: 1, offset: "cmatches", len: 0, typ: NTI11231086, name: "cmatches", sons: null}, 
+{kind: 1, offset: "config", len: 0, typ: NTI11231090, name: "config", sons: null}]};
+NTI11231056.node = NNI11231056;
+NTI11231056.base = NTI6008;
+NTI11231052.base = NTI11231056;
+NTI11325921.base = NTI11231066;
+NTI11325904.base = NTI11231066;
+var NNI11236171 = {kind: 2, len: 2, offset: 0, typ: null, name: null, sons: [{kind: 1, offset: "Field0", len: 0, typ: NTI143, name: "Field0", sons: null}, 
 {kind: 1, offset: "Field1", len: 0, typ: NTI163, name: "Field1", sons: null}]};
-NTI11296171.node = NNI11296171;
+NTI11236171.node = NNI11236171;
 var NNI10216033 = {kind: 2, offset: 0, typ: null, name: null, len: 3, sons: {"0": {kind: 1, offset: 0, typ: NTI10216033, name: "SimpleTypeSelector", len: 0, sons: null}, 
 "1": {kind: 1, offset: 1, typ: NTI10216033, name: "SerialTypeSelector", len: 0, sons: null}, 
 "2": {kind: 1, offset: 2, typ: NTI10216033, name: "CompareTypeSelector", len: 0, sons: null}}};
 NTI10216033.node = NNI10216033;
-var NNI11295387 = {kind: 3, offset: "kind", len: 3, typ: NTI10216033, name: "kind", sons: [[setConstr(0), {kind: 1, offset: "simple", len: 0, typ: NTI11295292, name: "simple", sons: null}], 
-[setConstr(1), {kind: 1, offset: "serial", len: 0, typ: NTI11295394, name: "serial", sons: null}], 
-[setConstr(2), {kind: 1, offset: "compare", len: 0, typ: NTI11295401, name: "compare", sons: null}]]};
-NTI11295387.node = NNI11295387;
-NTI11298071.base = NTI11291066;
-NTI11298290.base = NTI11295325;
+var NNI11235387 = {kind: 3, offset: "kind", len: 3, typ: NTI10216033, name: "kind", sons: [[setConstr(0), {kind: 1, offset: "simple", len: 0, typ: NTI11235292, name: "simple", sons: null}], 
+[setConstr(1), {kind: 1, offset: "serial", len: 0, typ: NTI11235394, name: "serial", sons: null}], 
+[setConstr(2), {kind: 1, offset: "compare", len: 0, typ: NTI11235401, name: "compare", sons: null}]]};
+NTI11235387.node = NNI11235387;
+NTI11238071.base = NTI11231066;
+NTI11238290.base = NTI11235325;
 NTI10216340.base = NTI10216409;
-var NNI11295366 = {kind: 2, len: 3, offset: 0, typ: null, name: null, sons: [{kind: 1, offset: "node", len: 0, typ: NTI10216314, name: "node", sons: null}, 
-{kind: 1, offset: "update", len: 0, typ: NTI11295372, name: "update", sons: null}, 
-{kind: 1, offset: "clone", len: 0, typ: NTI11295379, name: "clone", sons: null}]};
-NTI11295366.node = NNI11295366;
-NTI11295365.base = NTI11295366;
-var NNI11295342 = {kind: 1, offset: "update", len: 0, typ: NTI11295347, name: "update", sons: null};
-NTI11295342.node = NNI11295342;
-NTI11295341.base = NTI11295342;
-NTI11298310.base = NTI11295341;
+var NNI11235366 = {kind: 2, len: 3, offset: 0, typ: null, name: null, sons: [{kind: 1, offset: "node", len: 0, typ: NTI10216314, name: "node", sons: null}, 
+{kind: 1, offset: "update", len: 0, typ: NTI11235372, name: "update", sons: null}, 
+{kind: 1, offset: "clone", len: 0, typ: NTI11235379, name: "clone", sons: null}]};
+NTI11235366.node = NNI11235366;
+NTI11235365.base = NTI11235366;
+var NNI11235342 = {kind: 1, offset: "update", len: 0, typ: NTI11235347, name: "update", sons: null};
+NTI11235342.node = NNI11235342;
+NTI11235341.base = NTI11235342;
+NTI11238310.base = NTI11235341;
 var NNI10216045 = {kind: 2, offset: 0, typ: null, name: null, len: 2, sons: {"0": {kind: 1, offset: 0, typ: NTI10216045, name: "SimpleIterator", len: 0, sons: null}, 
 "1": {kind: 1, offset: 1, typ: NTI10216045, name: "SerialIterator", len: 0, sons: null}}};
 NTI10216045.node = NNI10216045;
-var NNI11295416 = {kind: 3, offset: "kind", len: 2, typ: NTI10216045, name: "kind", sons: [[setConstr(0), {kind: 1, offset: "simple", len: 0, typ: NTI11295420, name: "simple", sons: null}], 
-[setConstr(1), {kind: 1, offset: "serial", len: 0, typ: NTI11295436, name: "serial", sons: null}]]};
-NTI11295416.node = NNI11295416;
-var NNI11295336 = {kind: 1, offset: "compile", len: 0, typ: NTI11295354, name: "compile", sons: null};
-NTI11295336.node = NNI11295336;
-NTI11295335.base = NTI11295336;
-NTI11298322.base = NTI11295335;
-NTI11298334.base = NTI11295341;
-var NNI11298328 = {kind: 2, len: 4, offset: 0, typ: null, name: null, sons: [{kind: 1, offset: "serial", len: 0, typ: NTI143, name: "serial", sons: null}, 
+var NNI11235416 = {kind: 3, offset: "kind", len: 2, typ: NTI10216045, name: "kind", sons: [[setConstr(0), {kind: 1, offset: "simple", len: 0, typ: NTI11235420, name: "simple", sons: null}], 
+[setConstr(1), {kind: 1, offset: "serial", len: 0, typ: NTI11235436, name: "serial", sons: null}]]};
+NTI11235416.node = NNI11235416;
+var NNI11235336 = {kind: 1, offset: "compile", len: 0, typ: NTI11235354, name: "compile", sons: null};
+NTI11235336.node = NNI11235336;
+NTI11235335.base = NTI11235336;
+NTI11238322.base = NTI11235335;
+NTI11238334.base = NTI11235341;
+var NNI11238328 = {kind: 2, len: 4, offset: 0, typ: null, name: null, sons: [{kind: 1, offset: "serial", len: 0, typ: NTI143, name: "serial", sons: null}, 
 {kind: 1, offset: "node", len: 0, typ: NTI10187033, name: "node", sons: null}, 
-{kind: 1, offset: "matches", len: 0, typ: NTI11298334, name: "matches", sons: null}, 
-{kind: 1, offset: "mount", len: 0, typ: NTI11295365, name: "mount", sons: null}]};
-NTI11298328.node = NNI11298328;
-NTI11298327.base = NTI11298328;
-NTI11298340.base = NTI11298327;
-var NNI11298286 = {kind: 2, len: 4, offset: 0, typ: null, name: null, sons: [{kind: 1, offset: "refresh", len: 0, typ: NTI11298290, name: "refresh", sons: null}, 
+{kind: 1, offset: "matches", len: 0, typ: NTI11238334, name: "matches", sons: null}, 
+{kind: 1, offset: "mount", len: 0, typ: NTI11235365, name: "mount", sons: null}]};
+NTI11238328.node = NNI11238328;
+NTI11238327.base = NTI11238328;
+NTI11238340.base = NTI11238327;
+var NNI11238286 = {kind: 2, len: 4, offset: 0, typ: null, name: null, sons: [{kind: 1, offset: "refresh", len: 0, typ: NTI11238290, name: "refresh", sons: null}, 
 {kind: 1, offset: "init", len: 0, typ: NTI10216340, name: "init", sons: null}, 
 {kind: 1, offset: "node", len: 0, typ: NTI10187033, name: "node", sons: null}, 
 {kind: 3, offset: "iter", len: 2, typ: NTI163, name: "iter", sons: [[setConstr(0), {kind: 2, len: 6, offset: 0, typ: null, name: null, sons: [{kind: 3, offset: "selectorKind", len: 3, typ: NTI10216033, name: "selectorKind", sons: [[setConstr(1), {kind: 1, offset: "serial", len: 0, typ: NTI143, name: "serial", sons: null}], 
 [setConstr(2), {kind: 1, offset: "value", len: 0, typ: NTI143, name: "value", sons: null}], 
 [setConstr(3), {kind: 2, len: 0, offset: 0, typ: null, name: null, sons: []}]]}, 
-{kind: 1, offset: "convert", len: 0, typ: NTI11295387, name: "convert", sons: null}, 
-{kind: 1, offset: "mount_source", len: 0, typ: NTI11295365, name: "mount_source", sons: null}, 
-{kind: 1, offset: "mount", len: 0, typ: NTI11295365, name: "mount", sons: null}, 
-{kind: 1, offset: "matches", len: 0, typ: NTI11298310, name: "matches", sons: null}, 
+{kind: 1, offset: "convert", len: 0, typ: NTI11235387, name: "convert", sons: null}, 
+{kind: 1, offset: "mount_source", len: 0, typ: NTI11235365, name: "mount_source", sons: null}, 
+{kind: 1, offset: "mount", len: 0, typ: NTI11235365, name: "mount", sons: null}, 
+{kind: 1, offset: "matches", len: 0, typ: NTI11238310, name: "matches", sons: null}, 
 {kind: 1, offset: "inited", len: 0, typ: NTI163, name: "inited", sons: null}]}], 
-[setConstr(1), {kind: 2, len: 5, offset: 0, typ: null, name: null, sons: [{kind: 1, offset: "iterate", len: 0, typ: NTI11295416, name: "iterate", sons: null}, 
-{kind: 1, offset: "mount_template", len: 0, typ: NTI11295365, name: "mount_template", sons: null}, 
-{kind: 1, offset: "match_templates", len: 0, typ: NTI11298322, name: "match_templates", sons: null}, 
-{kind: 1, offset: "items", len: 0, typ: NTI11298340, name: "items", sons: null}, 
+[setConstr(1), {kind: 2, len: 5, offset: 0, typ: null, name: null, sons: [{kind: 1, offset: "iterate", len: 0, typ: NTI11235416, name: "iterate", sons: null}, 
+{kind: 1, offset: "mount_template", len: 0, typ: NTI11235365, name: "mount_template", sons: null}, 
+{kind: 1, offset: "match_templates", len: 0, typ: NTI11238322, name: "match_templates", sons: null}, 
+{kind: 1, offset: "items", len: 0, typ: NTI11238340, name: "items", sons: null}, 
 {kind: 1, offset: "anchor", len: 0, typ: NTI10187033, name: "anchor", sons: null}]}]]}]};
-NTI11298286.node = NNI11298286;
-NTI11298285.base = NTI11298286;
-NTI11298358.base = NTI11298285;
+NTI11238286.node = NNI11238286;
+NTI11238285.base = NTI11238286;
+NTI11238358.base = NTI11238285;
 var NNI10216017 = {kind: 2, len: 0, offset: 0, typ: null, name: null, sons: []};
 NTI10216017.node = NNI10216017;
 var NNI10216015 = {kind: 2, len: 0, offset: 0, typ: null, name: null, sons: []};
 NTI10216015.node = NNI10216015;
 NTI10216015.base = NTI6221;
 NTI10216017.base = NTI10216015;
-NTI11295329.base = NTI11295325;
+NTI11235329.base = NTI11235325;
 NTI10216259.base = NTI10216409;
 var NNI6251 = {kind: 2, len: 0, offset: 0, typ: null, name: null, sons: []};
 NTI6251.node = NNI6251;
 NTI6251.base = NTI6219;
-NTI11295361.base = NTI11295335;
-NTI11305042.base = NTI11298327;
-NTI11305069.base = NTI11295341;
-var NNI11325765 = {kind: 2, len: 2, offset: 0, typ: null, name: null, sons: [{kind: 1, offset: "Field0", len: 0, typ: NTI163, name: "Field0", sons: null}, 
+NTI11235361.base = NTI11235335;
+NTI11245042.base = NTI11238327;
+NTI11245069.base = NTI11235341;
+var NNI11265765 = {kind: 2, len: 2, offset: 0, typ: null, name: null, sons: [{kind: 1, offset: "Field0", len: 0, typ: NTI163, name: "Field0", sons: null}, 
 {kind: 1, offset: "Field1", len: 0, typ: NTI143, name: "Field1", sons: null}]};
-NTI11325765.node = NNI11325765;
-NTI11325921.base = NTI11295341;
-var NNI11356741 = {kind: 3, offset: "kind", len: 3, typ: NTI10216033, name: "kind", sons: [[setConstr(0), {kind: 1, offset: "simple", len: 0, typ: NTI11356745, name: "simple", sons: null}], 
-[setConstr(1), {kind: 1, offset: "serial", len: 0, typ: NTI11356751, name: "serial", sons: null}], 
-[setConstr(2), {kind: 1, offset: "compare", len: 0, typ: NTI11356758, name: "compare", sons: null}]]};
-NTI11356741.node = NNI11356741;
-NTI11359180.base = NTI11291066;
-NTI11359399.base = NTI11356705;
-var NNI11356720 = {kind: 2, len: 3, offset: 0, typ: null, name: null, sons: [{kind: 1, offset: "node", len: 0, typ: NTI10216314, name: "node", sons: null}, 
-{kind: 1, offset: "update", len: 0, typ: NTI11356726, name: "update", sons: null}, 
-{kind: 1, offset: "clone", len: 0, typ: NTI11356733, name: "clone", sons: null}]};
-NTI11356720.node = NNI11356720;
-NTI11356719.base = NTI11356720;
-NTI11359419.base = NTI11291066;
-var NNI11356773 = {kind: 3, offset: "kind", len: 2, typ: NTI10216045, name: "kind", sons: [[setConstr(0), {kind: 1, offset: "simple", len: 0, typ: NTI11356777, name: "simple", sons: null}], 
-[setConstr(1), {kind: 1, offset: "serial", len: 0, typ: NTI11356793, name: "serial", sons: null}]]};
-NTI11356773.node = NNI11356773;
-NTI11359431.base = NTI11291060;
-NTI11359443.base = NTI11291066;
-var NNI11359437 = {kind: 2, len: 4, offset: 0, typ: null, name: null, sons: [{kind: 1, offset: "serial", len: 0, typ: NTI143, name: "serial", sons: null}, 
+NTI11265765.node = NNI11265765;
+NTI11265921.base = NTI11235341;
+var NNI11296741 = {kind: 3, offset: "kind", len: 3, typ: NTI10216033, name: "kind", sons: [[setConstr(0), {kind: 1, offset: "simple", len: 0, typ: NTI11296745, name: "simple", sons: null}], 
+[setConstr(1), {kind: 1, offset: "serial", len: 0, typ: NTI11296751, name: "serial", sons: null}], 
+[setConstr(2), {kind: 1, offset: "compare", len: 0, typ: NTI11296758, name: "compare", sons: null}]]};
+NTI11296741.node = NNI11296741;
+NTI11299180.base = NTI11231066;
+NTI11299399.base = NTI11296705;
+var NNI11296720 = {kind: 2, len: 3, offset: 0, typ: null, name: null, sons: [{kind: 1, offset: "node", len: 0, typ: NTI10216314, name: "node", sons: null}, 
+{kind: 1, offset: "update", len: 0, typ: NTI11296726, name: "update", sons: null}, 
+{kind: 1, offset: "clone", len: 0, typ: NTI11296733, name: "clone", sons: null}]};
+NTI11296720.node = NNI11296720;
+NTI11296719.base = NTI11296720;
+NTI11299419.base = NTI11231066;
+var NNI11296773 = {kind: 3, offset: "kind", len: 2, typ: NTI10216045, name: "kind", sons: [[setConstr(0), {kind: 1, offset: "simple", len: 0, typ: NTI11296777, name: "simple", sons: null}], 
+[setConstr(1), {kind: 1, offset: "serial", len: 0, typ: NTI11296793, name: "serial", sons: null}]]};
+NTI11296773.node = NNI11296773;
+NTI11299431.base = NTI11231060;
+NTI11299443.base = NTI11231066;
+var NNI11299437 = {kind: 2, len: 4, offset: 0, typ: null, name: null, sons: [{kind: 1, offset: "serial", len: 0, typ: NTI143, name: "serial", sons: null}, 
 {kind: 1, offset: "node", len: 0, typ: NTI10187033, name: "node", sons: null}, 
-{kind: 1, offset: "matches", len: 0, typ: NTI11359443, name: "matches", sons: null}, 
-{kind: 1, offset: "mount", len: 0, typ: NTI11356719, name: "mount", sons: null}]};
-NTI11359437.node = NNI11359437;
-NTI11359436.base = NTI11359437;
-NTI11359449.base = NTI11359436;
-var NNI11359395 = {kind: 2, len: 4, offset: 0, typ: null, name: null, sons: [{kind: 1, offset: "refresh", len: 0, typ: NTI11359399, name: "refresh", sons: null}, 
+{kind: 1, offset: "matches", len: 0, typ: NTI11299443, name: "matches", sons: null}, 
+{kind: 1, offset: "mount", len: 0, typ: NTI11296719, name: "mount", sons: null}]};
+NTI11299437.node = NNI11299437;
+NTI11299436.base = NTI11299437;
+NTI11299449.base = NTI11299436;
+var NNI11299395 = {kind: 2, len: 4, offset: 0, typ: null, name: null, sons: [{kind: 1, offset: "refresh", len: 0, typ: NTI11299399, name: "refresh", sons: null}, 
 {kind: 1, offset: "init", len: 0, typ: NTI10216340, name: "init", sons: null}, 
 {kind: 1, offset: "node", len: 0, typ: NTI10187033, name: "node", sons: null}, 
 {kind: 3, offset: "iter", len: 2, typ: NTI163, name: "iter", sons: [[setConstr(0), {kind: 2, len: 6, offset: 0, typ: null, name: null, sons: [{kind: 3, offset: "selectorKind", len: 3, typ: NTI10216033, name: "selectorKind", sons: [[setConstr(1), {kind: 1, offset: "serial", len: 0, typ: NTI143, name: "serial", sons: null}], 
-[setConstr(2), {kind: 1, offset: "value", len: 0, typ: NTI11291041, name: "value", sons: null}], 
+[setConstr(2), {kind: 1, offset: "value", len: 0, typ: NTI11231041, name: "value", sons: null}], 
 [setConstr(3), {kind: 2, len: 0, offset: 0, typ: null, name: null, sons: []}]]}, 
-{kind: 1, offset: "convert", len: 0, typ: NTI11356741, name: "convert", sons: null}, 
-{kind: 1, offset: "mount_source", len: 0, typ: NTI11356719, name: "mount_source", sons: null}, 
-{kind: 1, offset: "mount", len: 0, typ: NTI11356719, name: "mount", sons: null}, 
-{kind: 1, offset: "matches", len: 0, typ: NTI11359419, name: "matches", sons: null}, 
+{kind: 1, offset: "convert", len: 0, typ: NTI11296741, name: "convert", sons: null}, 
+{kind: 1, offset: "mount_source", len: 0, typ: NTI11296719, name: "mount_source", sons: null}, 
+{kind: 1, offset: "mount", len: 0, typ: NTI11296719, name: "mount", sons: null}, 
+{kind: 1, offset: "matches", len: 0, typ: NTI11299419, name: "matches", sons: null}, 
 {kind: 1, offset: "inited", len: 0, typ: NTI163, name: "inited", sons: null}]}], 
-[setConstr(1), {kind: 2, len: 5, offset: 0, typ: null, name: null, sons: [{kind: 1, offset: "iterate", len: 0, typ: NTI11356773, name: "iterate", sons: null}, 
-{kind: 1, offset: "mount_template", len: 0, typ: NTI11356719, name: "mount_template", sons: null}, 
-{kind: 1, offset: "match_templates", len: 0, typ: NTI11359431, name: "match_templates", sons: null}, 
-{kind: 1, offset: "items", len: 0, typ: NTI11359449, name: "items", sons: null}, 
+[setConstr(1), {kind: 2, len: 5, offset: 0, typ: null, name: null, sons: [{kind: 1, offset: "iterate", len: 0, typ: NTI11296773, name: "iterate", sons: null}, 
+{kind: 1, offset: "mount_template", len: 0, typ: NTI11296719, name: "mount_template", sons: null}, 
+{kind: 1, offset: "match_templates", len: 0, typ: NTI11299431, name: "match_templates", sons: null}, 
+{kind: 1, offset: "items", len: 0, typ: NTI11299449, name: "items", sons: null}, 
 {kind: 1, offset: "anchor", len: 0, typ: NTI10187033, name: "anchor", sons: null}]}]]}]};
-NTI11359395.node = NNI11359395;
-NTI11359394.base = NTI11359395;
-NTI11359467.base = NTI11359394;
-NTI11356709.base = NTI11356705;
-NTI11356715.base = NTI11291060;
-NTI11365042.base = NTI11359436;
-NTI11365069.base = NTI11291066;
-var NNI11385765 = {kind: 2, len: 2, offset: 0, typ: null, name: null, sons: [{kind: 1, offset: "Field0", len: 0, typ: NTI163, name: "Field0", sons: null}, 
-{kind: 1, offset: "Field1", len: 0, typ: NTI11291041, name: "Field1", sons: null}]};
-NTI11385765.node = NNI11385765;
+NTI11299395.node = NNI11299395;
+NTI11299394.base = NTI11299395;
+NTI11299467.base = NTI11299394;
+NTI11296709.base = NTI11296705;
+NTI11296715.base = NTI11231060;
+NTI11305042.base = NTI11299436;
+NTI11305069.base = NTI11231066;
+var NNI11325765 = {kind: 2, len: 2, offset: 0, typ: null, name: null, sons: [{kind: 1, offset: "Field0", len: 0, typ: NTI163, name: "Field0", sons: null}, 
+{kind: 1, offset: "Field1", len: 0, typ: NTI11231041, name: "Field1", sons: null}]};
+NTI11325765.node = NNI11325765;
 function setConstr() {
         var result = {};
     for (var i = 0; i < arguments.length; ++i) {
@@ -1137,10 +1137,10 @@ if (!Math.trunc) {
 }
 
 var object_id_850031 = [0];
-var components_10276124 = [{Field0: null}];
-var state_10304005 = [{a0: 1773455756, a1: 4275166512}];
-var utc_instance_10635231 = [null];
-var local_instance_10635232 = [null];
+var components_10218124 = [{Field0: null}];
+var state_10244005 = [{a0: 1773455756, a1: 4275166512}];
+var utc_instance_10575231 = [null];
+var local_instance_10575232 = [null];
 function is_fat_pointer_235401(ti_235403) {
   var result_235404 = false;
 
@@ -1223,13 +1223,13 @@ function aux_write_stack_trace_160038(f_160040) {
     
     L6: do {
       var j_175236 = 0;
-      var colontmp__11163098 = 0;
-      colontmp__11163098 = (i_160051 - 1);
-      var res_11163103 = colontmp__11163098;
+      var colontmp__11103098 = 0;
+      colontmp__11103098 = (i_160051 - 1);
+      var res_11103103 = colontmp__11103098;
       L7: do {
           L8: while (true) {
-          if (!(0 <= res_11163103)) break L8;
-            j_175236 = res_11163103;
+          if (!(0 <= res_11103103)) break L8;
+            j_175236 = res_11103103;
             add_142042(result_160041, 0, temp_frames_160060[j_175236].Field0);
             if ((0 < temp_frames_160060[j_175236].Field1)) {
             if (result_160041[0] != null) { result_160041[0] = (result_160041[0]).concat(makeNimstrLit(", line: ")); } else { result_160041[0] = makeNimstrLit(", line: "); };
@@ -1237,7 +1237,7 @@ function aux_write_stack_trace_160038(f_160040) {
             }
             
             if (result_160041[0] != null) { result_160041[0] = (result_160041[0]).concat(makeNimstrLit("\x0A")); } else { result_160041[0] = makeNimstrLit("\x0A"); };
-            res_11163103 -= 1;
+            res_11103103 -= 1;
           }
       } while(false);
     } while(false);
@@ -1323,120 +1323,120 @@ function failed_assert_impl_102680(msg_102682) {
 
   
 }
-function rotl_10304230(x_10304232, k_10304233) {
-  var result_10304234 = 0;
+function rotl_10244230(x_10244232, k_10244233) {
+  var result_10244234 = 0;
 
   var F={procname:"random.rotl",prev:framePtr,filename:"random.nim",line:0};
   framePtr = F;
     F.line = 122;
-    result_10304234 = ((x_10304232 << k_10304233) | ((x_10304232 >>> 0) >>> ((64 - k_10304233) >>> 0)));
+    result_10244234 = ((x_10244232 << k_10244233) | ((x_10244232 >>> 0) >>> ((64 - k_10244233) >>> 0)));
   framePtr = F.prev;
 
-  return result_10304234;
+  return result_10244234;
 
 }
-function next_10304258(r_10304261) {
-  var result_10304262 = 0;
+function next_10244258(r_10244261) {
+  var result_10244262 = 0;
 
   var F={procname:"random.next",prev:framePtr,filename:"random.nim",line:0};
   framePtr = F;
     F.line = 139;
-    var s0_10304263 = r_10304261.a0;
+    var s0_10244263 = r_10244261.a0;
     F.line = 140;
-    var s1_10304264 = r_10304261.a1;
+    var s1_10244264 = r_10244261.a1;
     F.line = 141;
-    result_10304262 = ((s0_10304263 + s1_10304264) >>> 0);
+    result_10244262 = ((s0_10244263 + s1_10244264) >>> 0);
     F.line = 142;
-    s1_10304264 = (s1_10304264 ^ s0_10304263);
+    s1_10244264 = (s1_10244264 ^ s0_10244263);
     F.line = 143;
-    r_10304261.a0 = ((rotl_10304230(s0_10304263, 55) ^ s1_10304264) ^ (s1_10304264 << 14));
+    r_10244261.a0 = ((rotl_10244230(s0_10244263, 55) ^ s1_10244264) ^ (s1_10244264 << 14));
     F.line = 144;
-    r_10304261.a1 = rotl_10304230(s1_10304264, 36);
+    r_10244261.a1 = rotl_10244230(s1_10244264, 36);
   framePtr = F.prev;
 
-  return result_10304262;
+  return result_10244262;
 
 }
-function init_rand_10305612(seed_10305614) {
-  var result_10305615 = [{a0: 0, a1: 0}];
+function init_rand_10245612(seed_10245614) {
+  var result_10245615 = [{a0: 0, a1: 0}];
 
   var F={procname:"random.initRand",prev:framePtr,filename:"random.nim",line:0};
   framePtr = F;
-    if (!(!((seed_10305614 == 0)))) {
+    if (!(!((seed_10245614 == 0)))) {
     F.line = 572;
     failed_assert_impl_102680(makeNimstrLit("/var/home/mildred/.choosenim/toolchains/nim-1.2.0/lib/pure/random.nim(572, 12) `seed != 0` "));
     }
     
     F.line = 573;
-    result_10305615[0].a0 = (seed_10305614 >> 16);
+    result_10245615[0].a0 = (seed_10245614 >> 16);
     F.line = 574;
-    result_10305615[0].a1 = (seed_10305614 & 65535);
+    result_10245615[0].a1 = (seed_10245614 & 65535);
     F.line = 575;
-    next_10304258(result_10305615[0]);
+    next_10244258(result_10245615[0]);
   framePtr = F.prev;
 
-  return result_10305615[0];
+  return result_10245615[0];
 
 }
-var rand_11163079 = [init_rand_10305612(1)];
-async function init_comp_11425601(component_11425606, component_11425606_Idx, node_11425608, creator_11425610) {
-  var result_11425612 = null;
+var rand_11103079 = [init_rand_10245612(1)];
+async function init_comp_11365601(component_11365606, component_11365606_Idx, node_11365608, creator_11365610) {
+  var result_11365612 = null;
 
   var F={procname:"initComp.initComp",prev:framePtr,filename:"registry.nim",line:0};
   framePtr = F;
   BeforeRet: do {
     F.line = 19;
-    var n_11425634 = (await node_11425608);
+    var n_11365634 = (await node_11365608);
     F.line = 20;
-    component_11425606[component_11425606_Idx] = creator_11425610(n_11425634);
+    component_11365606[component_11365606_Idx] = creator_11365610(n_11365634);
     F.line = 131;
-    result_11425612 = undefined;
+    result_11365612 = undefined;
     break BeforeRet;
   } while (false);
   framePtr = F.prev;
 
-  return result_11425612;
+  return result_11365612;
 
 }
-function declare_11425583(registry_11425586, component_11425589, component_11425589_Idx, node_11425591, creator_11425593) {
-    function HEX3Aanonymous_11425594() {
-      var result_11425599 = null;
+function declare_11365583(registry_11365586, component_11365589, component_11365589_Idx, node_11365591, creator_11365593) {
+    function HEX3Aanonymous_11365594() {
+      var result_11365599 = null;
 
       var F={procname:"declare.:anonymous",prev:framePtr,filename:"registry.nim",line:0};
       framePtr = F;
         F.line = 23;
-        result_11425599 = init_comp_11425601(component_11425589, component_11425589_Idx, node_11425591, creator_11425593);
+        result_11365599 = init_comp_11365601(component_11365589, component_11365589_Idx, node_11365591, creator_11365593);
       framePtr = F.prev;
 
-      return result_11425599;
+      return result_11365599;
 
     }
 
   var F={procname:"declare.declare",prev:framePtr,filename:"registry.nim",line:0};
   framePtr = F;
     F.line = 23;
-    if (registry_11425586.Field0 != null) { registry_11425586.Field0.push(HEX3Aanonymous_11425594); } else { registry_11425586.Field0 = [HEX3Aanonymous_11425594]; };
+    if (registry_11365586.Field0 != null) { registry_11365586.Field0.push(HEX3Aanonymous_11365594); } else { registry_11365586.Field0 = [HEX3Aanonymous_11365594]; };
   framePtr = F.prev;
 
   
 }
-async function fetch_template_11230001(rel_path_11230003) {
-  var result_11230008 = null;
+async function fetch_template_11170001(rel_path_11170003) {
+  var result_11170008 = null;
 
   var F={procname:"fetchutil.fetchTemplate",prev:framePtr,filename:"fetchutil.nim",line:0};
   framePtr = F;
   BeforeRet: do {
     F.line = 9;
-    var response_11255032 = (await (window.fetch((toJSStr(rel_path_11230003)))));
+    var response_11195032 = (await (window.fetch((toJSStr(rel_path_11170003)))));
     F.line = 10;
-    var text_11260026 = (await (response_11255032.text()));
+    var text_11200026 = (await (response_11195032.text()));
     F.line = 11;
-    result_11230008 = (window.document.createRange().createContextualFragment((text_11260026)));
+    result_11170008 = (window.document.createRange().createContextualFragment((text_11200026)));
     break BeforeRet;
   } while (false);
   framePtr = F.prev;
 
-  return result_11230008;
+  return result_11170008;
 
 }
 function raiseOverflow() {
@@ -1471,17 +1471,17 @@ function nsuToHex(x_9450243, len_9450244) {
       F.line = 938;
       var j_9450254 = 0;
       F.line = 6;
-      var colontmp__11425741 = 0;
+      var colontmp__11365741 = 0;
       F.line = 938;
-      colontmp__11425741 = subInt(len_9450244, 1);
+      colontmp__11365741 = subInt(len_9450244, 1);
       F.line = 28;
-      var res_11425742 = colontmp__11425741;
+      var res_11365742 = colontmp__11365741;
       L2: do {
         F.line = 29;
           L3: while (true) {
-          if (!(0 <= res_11425742)) break L3;
+          if (!(0 <= res_11365742)) break L3;
             F.line = 938;
-            j_9450254 = res_11425742;
+            j_9450254 = res_11365742;
             F.line = 939;
             result_9450245[chckIndx(j_9450254, 0, (result_9450245 != null ? result_9450245.length : 0)+0-1)-0] = makeNimstrLit("0123456789ABCDEF")[chckIndx((n_9450247 & 15), 0, (makeNimstrLit("0123456789ABCDEF") != null ? makeNimstrLit("0123456789ABCDEF").length : 0)+0-1)-0];
             F.line = 940;
@@ -1492,7 +1492,7 @@ function nsuToHex(x_9450243, len_9450244) {
             }
             
             F.line = 31;
-            res_11425742 = subInt(res_11425742, 1);
+            res_11365742 = subInt(res_11365742, 1);
           }
       } while(false);
     } while(false);
@@ -1506,16 +1506,16 @@ function raiseRangeError() {
 
   
 }
-function to_hex_11163115(x_11163118) {
-  var result_11163119 = null;
+function to_hex_11103115(x_11103118) {
+  var result_11103119 = null;
 
   var F={procname:"toHex.toHex",prev:framePtr,filename:"strutils.nim",line:0};
   framePtr = F;
     F.line = 945;
-    result_11163119 = nimCopy(null, nsuToHex(chckRange(x_11163118, -9223372036854775808, 9223372036854775807), 16), NTI112);
+    result_11103119 = nimCopy(null, nsuToHex(chckRange(x_11103118, -9223372036854775808, 9223372036854775807), 16), NTI112);
   framePtr = F.prev;
 
-  return result_11163119;
+  return result_11103119;
 
 }
 function raiseDivByZero() {
@@ -1592,17 +1592,17 @@ function HEX5BHEX5D_4855068(s_4855072, x_4855074) {
       F.line = 2439;
       var i_4855409 = 0;
       F.line = 106;
-      var i_11425772 = 0;
+      var i_11365772 = 0;
       L2: do {
         F.line = 107;
           L3: while (true) {
-          if (!(i_11425772 < l_4855401)) break L3;
+          if (!(i_11365772 < l_4855401)) break L3;
             F.line = 2439;
-            i_4855409 = i_11425772;
+            i_4855409 = i_11365772;
             F.line = 2439;
             result_4855075[chckIndx(i_4855409, 0, (result_4855075 != null ? result_4855075.length : 0)+0-1)-0] = s_4855072[chckIndx(addInt(i_4855409, a_4855201), 0, (s_4855072 != null ? s_4855072.length : 0)+0-1)-0];
             F.line = 109;
-            i_11425772 = addInt(i_11425772, 1);
+            i_11365772 = addInt(i_11365772, 1);
           }
       } while(false);
     } while(false);
@@ -1944,21 +1944,21 @@ function nsuRepeatChar(c_9625048, count_9625049) {
       F.line = 1283;
       var i_9625059 = 0;
       F.line = 66;
-      var colontmp__11425803 = 0;
+      var colontmp__11365803 = 0;
       F.line = 1283;
-      colontmp__11425803 = subInt(count_9625049, 1);
+      colontmp__11365803 = subInt(count_9625049, 1);
       F.line = 77;
-      var res_11425804 = 0;
+      var res_11365804 = 0;
       L2: do {
         F.line = 78;
           L3: while (true) {
-          if (!(res_11425804 <= colontmp__11425803)) break L3;
+          if (!(res_11365804 <= colontmp__11365803)) break L3;
             F.line = 1283;
-            i_9625059 = res_11425804;
+            i_9625059 = res_11365804;
             F.line = 1283;
             result_9625050[chckIndx(i_9625059, 0, (result_9625050 != null ? result_9625050.length : 0)+0-1)-0] = c_9625048;
             F.line = 80;
-            res_11425804 = addInt(res_11425804, 1);
+            res_11365804 = addInt(res_11365804, 1);
           }
       } while(false);
     } while(false);
@@ -2070,17 +2070,17 @@ function nsuFindChar(s_9770216, sub_9770217, start_9770218, last_9770219) {
       F.line = 1867;
       var i_9770606 = 0;
       F.line = 66;
-      var colontmp__11425821 = 0;
+      var colontmp__11365821 = 0;
       F.line = 1867;
-      colontmp__11425821 = start_9770218;
+      colontmp__11365821 = start_9770218;
       F.line = 77;
-      var res_11425822 = colontmp__11425821;
+      var res_11365822 = colontmp__11365821;
       L3: do {
         F.line = 78;
           L4: while (true) {
-          if (!(res_11425822 <= last_9770223)) break L4;
+          if (!(res_11365822 <= last_9770223)) break L4;
             F.line = 1867;
-            i_9770606 = res_11425822;
+            i_9770606 = res_11365822;
             if ((sub_9770217 == s_9770216[chckIndx(i_9770606, 0, (s_9770216 != null ? s_9770216.length : 0)+0-1)-0])) {
             F.line = 1868;
             result_9770221 = i_9770606;
@@ -2088,7 +2088,7 @@ function nsuFindChar(s_9770216, sub_9770217, start_9770218, last_9770219) {
             }
             
             F.line = 80;
-            res_11425822 = addInt(res_11425822, 1);
+            res_11365822 = addInt(res_11365822, 1);
           }
       } while(false);
     } while(false);
@@ -2116,21 +2116,21 @@ function substr_341022(s_341024, first_341025, last_341026) {
       F.line = 2946;
       var i_341039 = 0;
       F.line = 66;
-      var colontmp__11425828 = 0;
+      var colontmp__11365828 = 0;
       F.line = 2946;
-      colontmp__11425828 = subInt(l_341030, 1);
+      colontmp__11365828 = subInt(l_341030, 1);
       F.line = 77;
-      var res_11425829 = 0;
+      var res_11365829 = 0;
       L2: do {
         F.line = 78;
           L3: while (true) {
-          if (!(res_11425829 <= colontmp__11425828)) break L3;
+          if (!(res_11365829 <= colontmp__11365828)) break L3;
             F.line = 2946;
-            i_341039 = res_11425829;
+            i_341039 = res_11365829;
             F.line = 2947;
             result_341027[chckIndx(i_341039, 0, (result_341027 != null ? result_341027.length : 0)+0-1)-0] = s_341024[chckIndx(addInt(i_341039, first_341028), 0, (s_341024 != null ? s_341024.length : 0)+0-1)-0];
             F.line = 80;
-            res_11425829 = addInt(res_11425829, 1);
+            res_11365829 = addInt(res_11365829, 1);
           }
       } while(false);
     } while(false);
@@ -2186,21 +2186,21 @@ function nsuInitSkipTable(a_9765081, sub_9765082) {
       F.line = 1804;
       var i_9765101 = 0;
       F.line = 104;
-      var colontmp__11425836 = 0;
+      var colontmp__11365836 = 0;
       F.line = 1804;
-      colontmp__11425836 = subInt(m_9765083, 1);
+      colontmp__11365836 = subInt(m_9765083, 1);
       F.line = 106;
-      var i_11425837 = 0;
+      var i_11365837 = 0;
       L4: do {
         F.line = 107;
           L5: while (true) {
-          if (!(i_11425837 < colontmp__11425836)) break L5;
+          if (!(i_11365837 < colontmp__11365836)) break L5;
             F.line = 1804;
-            i_9765101 = i_11425837;
+            i_9765101 = i_11365837;
             F.line = 1805;
             a_9765081[chckIndx(sub_9765082[chckIndx(i_9765101, 0, (sub_9765082 != null ? sub_9765082.length : 0)+0-1)-0], 0, (a_9765081 != null ? a_9765081.length : 0)+0-1)-0] = subInt(subInt(m_9765083, 1), i_9765101);
             F.line = 109;
-            i_11425837 = addInt(i_11425837, 1);
+            i_11365837 = addInt(i_11365837, 1);
           }
       } while(false);
     } while(false);
@@ -2348,39 +2348,39 @@ function nsuReplaceStr(s_9840016, sub_9840017, by_9840018) {
   return result_9840019;
 
 }
-function scope_11163110(node_11163113) {
+function scope_11103110(node_11103113) {
   var F={procname:"css.scope",prev:framePtr,filename:"css.nim",line:0};
   framePtr = F;
     F.line = 11;
-    var comp_11163138 = to_hex_11163115(next_10304258(rand_11163079[0]));
+    var comp_11103138 = to_hex_11103115(next_10244258(rand_11103079[0]));
     L1: do {
       F.line = 12;
-      var element_11170214 = null;
+      var element_11110214 = null;
       F.line = 182;
-      var colontmp__11425730 = null;
+      var colontmp__11365730 = null;
       F.line = 12;
-      colontmp__11425730 = node_11163113.querySelectorAll("*");
+      colontmp__11365730 = node_11103113.querySelectorAll("*");
       F.line = 184;
-      var i_11425732 = 0;
+      var i_11365732 = 0;
       F.line = 185;
-      var l_11425733 = (colontmp__11425730 != null ? colontmp__11425730.length : 0);
+      var l_11365733 = (colontmp__11365730 != null ? colontmp__11365730.length : 0);
       L2: do {
         F.line = 186;
           L3: while (true) {
-          if (!(i_11425732 < l_11425733)) break L3;
+          if (!(i_11365732 < l_11365733)) break L3;
             F.line = 12;
-            element_11170214 = colontmp__11425730[chckIndx(i_11425732, 0, (colontmp__11425730 != null ? colontmp__11425730.length : 0)+0-1)-0];
+            element_11110214 = colontmp__11365730[chckIndx(i_11365732, 0, (colontmp__11365730 != null ? colontmp__11365730.length : 0)+0-1)-0];
             F.line = 13;
             F.line = 13;
-            var fmt_res_11170218 = [mnewString(0)];
+            var fmt_res_11110218 = [mnewString(0)];
             F.line = 13;
-            if (fmt_res_11170218[0] != null) { fmt_res_11170218[0] = (fmt_res_11170218[0]).concat(makeNimstrLit("component-")); } else { fmt_res_11170218[0] = makeNimstrLit("component-"); };
+            if (fmt_res_11110218[0] != null) { fmt_res_11110218[0] = (fmt_res_11110218[0]).concat(makeNimstrLit("component-")); } else { fmt_res_11110218[0] = makeNimstrLit("component-"); };
             F.line = 13;
-            format_value_10125080(fmt_res_11170218, 0, comp_11163138, []);
-            element_11170214.classList.add(toJSStr(fmt_res_11170218[0]));
+            format_value_10125080(fmt_res_11110218, 0, comp_11103138, []);
+            element_11110214.classList.add(toJSStr(fmt_res_11110218[0]));
             F.line = 188;
-            i_11425732 = addInt(i_11425732, 1);
-            if (!(((colontmp__11425730 != null ? colontmp__11425730.length : 0) == l_11425733))) {
+            i_11365732 = addInt(i_11365732, 1);
+            if (!(((colontmp__11365730 != null ? colontmp__11365730.length : 0) == l_11365733))) {
             F.line = 189;
             failed_assert_impl_102680(makeNimstrLit("/var/home/mildred/.choosenim/toolchains/nim-1.2.0/lib/system/iterators.nim(189, 11) `len(a) == L` the length of the seq changed while iterating over it"));
             }
@@ -2390,47 +2390,47 @@ function scope_11163110(node_11163113) {
     } while(false);
     L4: do {
       F.line = 14;
-      var style_11175008 = null;
+      var style_11115008 = null;
       F.line = 182;
-      var colontmp__11425736 = null;
+      var colontmp__11365736 = null;
       F.line = 14;
-      colontmp__11425736 = node_11163113.querySelectorAll("style[scope]");
+      colontmp__11365736 = node_11103113.querySelectorAll("style[scope]");
       F.line = 184;
-      var i_11425737 = 0;
+      var i_11365737 = 0;
       F.line = 185;
-      var l_11425738 = (colontmp__11425736 != null ? colontmp__11425736.length : 0);
+      var l_11365738 = (colontmp__11365736 != null ? colontmp__11365736.length : 0);
       L5: do {
         F.line = 186;
           L6: while (true) {
-          if (!(i_11425737 < l_11425738)) break L6;
+          if (!(i_11365737 < l_11365738)) break L6;
             F.line = 14;
-            style_11175008 = colontmp__11425736[chckIndx(i_11425737, 0, (colontmp__11425736 != null ? colontmp__11425736.length : 0)+0-1)-0];
+            style_11115008 = colontmp__11365736[chckIndx(i_11365737, 0, (colontmp__11365736 != null ? colontmp__11365736.length : 0)+0-1)-0];
             F.line = 15;
-            var scope_11175014 = to_hex_11163115(next_10304258(rand_11163079[0]));
+            var scope_11115014 = to_hex_11103115(next_10244258(rand_11103079[0]));
             F.line = 16;
-            var fmt_res_11180004 = [mnewString(0)];
+            var fmt_res_11120004 = [mnewString(0)];
             F.line = 16;
-            if (fmt_res_11180004[0] != null) { fmt_res_11180004[0] = (fmt_res_11180004[0]).concat(makeNimstrLit("scope-")); } else { fmt_res_11180004[0] = makeNimstrLit("scope-"); };
+            if (fmt_res_11120004[0] != null) { fmt_res_11120004[0] = (fmt_res_11120004[0]).concat(makeNimstrLit("scope-")); } else { fmt_res_11120004[0] = makeNimstrLit("scope-"); };
             F.line = 16;
-            format_value_10125080(fmt_res_11180004, 0, scope_11175014, []);
-            (style_11175008.parentNode).classList.add((toJSStr(fmt_res_11180004[0])));
+            format_value_10125080(fmt_res_11120004, 0, scope_11115014, []);
+            (style_11115008.parentNode).classList.add((toJSStr(fmt_res_11120004[0])));
             F.line = 21;
             F.line = 20;
-            var fmt_res_11210005 = [mnewString(0)];
+            var fmt_res_11150005 = [mnewString(0)];
             F.line = 20;
-            if (fmt_res_11210005[0] != null) { fmt_res_11210005[0] = (fmt_res_11210005[0]).concat(makeNimstrLit(".scope-")); } else { fmt_res_11210005[0] = makeNimstrLit(".scope-"); };
+            if (fmt_res_11150005[0] != null) { fmt_res_11150005[0] = (fmt_res_11150005[0]).concat(makeNimstrLit(".scope-")); } else { fmt_res_11150005[0] = makeNimstrLit(".scope-"); };
             F.line = 20;
-            format_value_10125080(fmt_res_11210005, 0, scope_11175014, []);
+            format_value_10125080(fmt_res_11150005, 0, scope_11115014, []);
             F.line = 21;
-            var fmt_res_11215002 = [mnewString(0)];
+            var fmt_res_11155002 = [mnewString(0)];
             F.line = 21;
-            if (fmt_res_11215002[0] != null) { fmt_res_11215002[0] = (fmt_res_11215002[0]).concat(makeNimstrLit(".component-")); } else { fmt_res_11215002[0] = makeNimstrLit(".component-"); };
+            if (fmt_res_11155002[0] != null) { fmt_res_11155002[0] = (fmt_res_11155002[0]).concat(makeNimstrLit(".component-")); } else { fmt_res_11155002[0] = makeNimstrLit(".component-"); };
             F.line = 21;
-            format_value_10125080(fmt_res_11215002, 0, comp_11163138, []);
-            style_11175008.textContent = toJSStr(nsuReplaceStr(nsuReplaceStr(cstrToNimstr(style_11175008.textContent), makeNimstrLit(":scope"), fmt_res_11210005[0]), makeNimstrLit(":component"), fmt_res_11215002[0]));
+            format_value_10125080(fmt_res_11155002, 0, comp_11103138, []);
+            style_11115008.textContent = toJSStr(nsuReplaceStr(nsuReplaceStr(cstrToNimstr(style_11115008.textContent), makeNimstrLit(":scope"), fmt_res_11150005[0]), makeNimstrLit(":component"), fmt_res_11155002[0]));
             F.line = 188;
-            i_11425737 = addInt(i_11425737, 1);
-            if (!(((colontmp__11425736 != null ? colontmp__11425736.length : 0) == l_11425738))) {
+            i_11365737 = addInt(i_11365737, 1);
+            if (!(((colontmp__11365736 != null ? colontmp__11365736.length : 0) == l_11365738))) {
             F.line = 189;
             failed_assert_impl_102680(makeNimstrLit("/var/home/mildred/.choosenim/toolchains/nim-1.2.0/lib/system/iterators.nim(189, 11) `len(a) == L` the length of the seq changed while iterating over it"));
             }
@@ -2442,208 +2442,48 @@ function scope_11163110(node_11163113) {
 
   
 }
-async function fetch_template_11290001(rel_path_11290003, template_selector_11290004, css_11290005) {
-  var result_11290010 = null;
+async function fetch_template_11230001(rel_path_11230003, template_selector_11230004, css_11230005) {
+  var result_11230010 = null;
 
   var F={procname:"fetchutil.fetchTemplate",prev:framePtr,filename:"fetchutil.nim",line:0};
   framePtr = F;
   BeforeRet: do {
     F.line = 14;
-    var tmpl_11290035 = (await fetch_template_11230001(rel_path_11290003));
+    var tmpl_11230035 = (await fetch_template_11170001(rel_path_11230003));
     F.line = 15;
-    var node_11290036 = tmpl_11290035.querySelector(toJSStr(template_selector_11290004)).content;
-    if (css_11290005) {
+    var node_11230036 = tmpl_11230035.querySelector(toJSStr(template_selector_11230004)).content;
+    if (css_11230005) {
     F.line = 17;
-    scope_11163110(node_11290036);
+    scope_11103110(node_11230036);
     }
     
     F.line = 18;
-    result_11290010 = node_11290036;
+    result_11230010 = node_11230036;
     break BeforeRet;
   } while (false);
   framePtr = F.prev;
 
-  return result_11290010;
+  return result_11230010;
 
 }
-function new_11425207() {
-  var result_11425211 = null;
+function new_11365207() {
+  var result_11365211 = null;
 
   var F={procname:"new.new",prev:framePtr,filename:"system.nim",line:0};
   framePtr = F;
   BeforeRet: do {
     F.line = 848;
-    var r_11425401 = null;
+    var r_11365401 = null;
     F.line = 851;
-    r_11425401 = {m_type: NTI11291052, matches: null, node: null, original_node: null, data: null, cmatches: null, config: null};
+    r_11365401 = {m_type: NTI11231052, matches: null, node: null, original_node: null, data: null, cmatches: null, config: null};
     F.line = 852;
-    result_11425211 = r_11425401;
+    result_11365211 = r_11365401;
     break BeforeRet;
   } while (false);
   framePtr = F.prev;
 
-  return result_11425211;
+  return result_11365211;
 
-}
-function add_11375218(x_11375223, x_11375223_Idx, y_11375225) {
-    var Tmp1;
-
-  var F={procname:"add.add",prev:framePtr,filename:"system.nim",line:0};
-  framePtr = F;
-    F.line = 1208;
-    var xl_11375231 = (x_11375223[x_11375223_Idx] != null ? x_11375223[x_11375223_Idx].length : 0);
-    F.line = 1209;
-    if (x_11375223[x_11375223_Idx] === null) x_11375223[x_11375223_Idx] = [];
-               if (x_11375223[x_11375223_Idx].length < (Tmp1 = chckRange(addInt(xl_11375231, (y_11375225 != null ? y_11375225.length : 0)), 0, 2147483647), Tmp1)) { for (var i=x_11375223[x_11375223_Idx].length;i<Tmp1;++i) x_11375223[x_11375223_Idx].push(null); }
-               else { x_11375223[x_11375223_Idx].length = Tmp1; };
-    L2: do {
-      F.line = 1210;
-      var i_11375256 = 0;
-      F.line = 66;
-      var colontmp__11425849 = 0;
-      F.line = 1210;
-      colontmp__11425849 = (y_11375225 != null ? (y_11375225.length-1) : -1);
-      F.line = 77;
-      var res_11425850 = 0;
-      L3: do {
-        F.line = 78;
-          L4: while (true) {
-          if (!(res_11425850 <= colontmp__11425849)) break L4;
-            F.line = 1210;
-            i_11375256 = res_11425850;
-            F.line = 1210;
-            x_11375223[x_11375223_Idx][chckIndx(addInt(xl_11375231, i_11375256), 0, (x_11375223[x_11375223_Idx] != null ? x_11375223[x_11375223_Idx].length : 0)+0-1)-0] = y_11375225[chckIndx(i_11375256, 0, (y_11375225 != null ? y_11375225.length : 0)+0-1)-0];
-            F.line = 80;
-            res_11425850 = addInt(res_11425850, 1);
-          }
-      } while(false);
-    } while(false);
-  framePtr = F.prev;
-
-  
-}
-function compile_11385897(cfgs_11385902, node_11385903) {
-  var result_11385906 = [null];
-
-  var F={procname:"compile.compile",prev:framePtr,filename:"nclearseam.nim",line:0};
-  framePtr = F;
-    F.line = 465;
-    result_11385906[0] = nimCopy(null, [], NTI11385921);
-    L1: do {
-      F.line = 466;
-      var cfg_11385928 = null;
-      F.line = 184;
-      var i_11425845 = 0;
-      F.line = 185;
-      var l_11425846 = (cfgs_11385902 != null ? cfgs_11385902.length : 0);
-      L2: do {
-        F.line = 186;
-          L3: while (true) {
-          if (!(i_11425845 < l_11425846)) break L3;
-            F.line = 466;
-            cfg_11385928 = cfgs_11385902[chckIndx(i_11425845, 0, (cfgs_11385902 != null ? cfgs_11385902.length : 0)+0-1)-0];
-            F.line = 467;
-            add_11375218(result_11385906, 0, cfg_11385928.compile(node_11385903));
-            F.line = 188;
-            i_11425845 = addInt(i_11425845, 1);
-            if (!(((cfgs_11385902 != null ? cfgs_11385902.length : 0) == l_11425846))) {
-            F.line = 189;
-            failed_assert_impl_102680(makeNimstrLit("/var/home/mildred/.choosenim/toolchains/nim-1.2.0/lib/system/iterators.nim(189, 11) `len(a) == L` the length of the seq changed while iterating over it"));
-            }
-            
-          }
-      } while(false);
-    } while(false);
-  framePtr = F.prev;
-
-  return result_11385906[0];
-
-}
-function compile_11415652(cfg_11415656, node_11415657) {
-  var result_11415659 = null;
-
-  var F={procname:"compile.compile",prev:framePtr,filename:"nclearseam.nim",line:0};
-  framePtr = F;
-    if (!(!((node_11415657 == null)))) {
-    F.line = 472;
-    failed_assert_impl_102680(makeNimstrLit("/var/home/mildred/Projects/nclearseam/src/nclearseam.nim(472, 10) `\x0Anot (node == nil)` "));
-    }
-    
-    F.line = 473;
-    result_11415659 = new_11425207();
-    F.line = 474;
-    result_11415659.config = cfg_11415656.config;
-    F.line = 475;
-    result_11415659.original_node = node_11415657;
-    F.line = 476;
-    result_11415659.node = node_11415657.cloneNode(true);
-    F.line = 478;
-    result_11415659.config(result_11415659);
-    F.line = 479;
-    result_11415659.matches = nimCopy(null, compile_11385897(result_11415659.cmatches, result_11415659.node), NTI11385904);
-  framePtr = F.prev;
-
-  return result_11415659;
-
-}
-function new_11415275() {
-  var result_11415279 = null;
-
-  var F={procname:"new.new",prev:framePtr,filename:"system.nim",line:0};
-  framePtr = F;
-  BeforeRet: do {
-    F.line = 848;
-    var r_11415401 = null;
-    F.line = 851;
-    r_11415401 = {m_type: NTI11291056, cmatches: null, config: null};
-    F.line = 852;
-    result_11415279 = r_11415401;
-    break BeforeRet;
-  } while (false);
-  framePtr = F.prev;
-
-  return result_11415279;
-
-}
-function create_11415260(config_11415266) {
-  var result_11415268 = null;
-
-  var F={procname:"create.create",prev:framePtr,filename:"nclearseam.nim",line:0};
-  framePtr = F;
-    F.line = 229;
-    result_11415268 = new_11415275();
-    F.line = 230;
-    result_11415268.config = config_11415266;
-  framePtr = F.prev;
-
-  return result_11415268;
-
-}
-function compile_11406534(node_11406539, configurator_11406545) {
-  var result_11406547 = null;
-
-  var F={procname:"compile.compile",prev:framePtr,filename:"nclearseam.nim",line:0};
-  framePtr = F;
-    F.line = 627;
-    if (!(!((node_11406539 == null)))) {
-    F.line = 629;
-    failed_assert_impl_102680(makeNimstrLit("/var/home/mildred/Projects/nclearseam/src/nclearseam.nim(629, 10) `\x0Anot (node == nil)` "));
-    }
-    
-    result_11406547 = compile_11415652(create_11415260(configurator_11406545), node_11406539);
-  framePtr = F.prev;
-
-  return result_11406547;
-
-}
-function refresh_11356059(c_11356064, refresh_11356066) {
-  var F={procname:"refresh.refresh",prev:framePtr,filename:"nclearseam.nim",line:0};
-  framePtr = F;
-    F.line = 340;
-    if (c_11356064.refresh != null) { c_11356064.refresh.push(refresh_11356066); } else { c_11356064.refresh = [refresh_11356066]; };
-  framePtr = F.prev;
-
-  
 }
 function add_11315218(x_11315223, x_11315223_Idx, y_11315225) {
     var Tmp1;
@@ -2660,21 +2500,21 @@ function add_11315218(x_11315223, x_11315223_Idx, y_11315225) {
       F.line = 1210;
       var i_11315256 = 0;
       F.line = 66;
-      var colontmp__11425881 = 0;
+      var colontmp__11365849 = 0;
       F.line = 1210;
-      colontmp__11425881 = (y_11315225 != null ? (y_11315225.length-1) : -1);
+      colontmp__11365849 = (y_11315225 != null ? (y_11315225.length-1) : -1);
       F.line = 77;
-      var res_11425882 = 0;
+      var res_11365850 = 0;
       L3: do {
         F.line = 78;
           L4: while (true) {
-          if (!(res_11425882 <= colontmp__11425881)) break L4;
+          if (!(res_11365850 <= colontmp__11365849)) break L4;
             F.line = 1210;
-            i_11315256 = res_11425882;
+            i_11315256 = res_11365850;
             F.line = 1210;
             x_11315223[x_11315223_Idx][chckIndx(addInt(xl_11315231, i_11315256), 0, (x_11315223[x_11315223_Idx] != null ? x_11315223[x_11315223_Idx].length : 0)+0-1)-0] = y_11315225[chckIndx(i_11315256, 0, (y_11315225 != null ? y_11315225.length : 0)+0-1)-0];
             F.line = 80;
-            res_11425882 = addInt(res_11425882, 1);
+            res_11365850 = addInt(res_11365850, 1);
           }
       } while(false);
     } while(false);
@@ -2682,7 +2522,167 @@ function add_11315218(x_11315223, x_11315223_Idx, y_11315225) {
 
   
 }
-function compile_11298275(cfg_11298280, node_11298281) {
+function compile_11325897(cfgs_11325902, node_11325903) {
+  var result_11325906 = [null];
+
+  var F={procname:"compile.compile",prev:framePtr,filename:"nclearseam.nim",line:0};
+  framePtr = F;
+    F.line = 465;
+    result_11325906[0] = nimCopy(null, [], NTI11325921);
+    L1: do {
+      F.line = 466;
+      var cfg_11325928 = null;
+      F.line = 184;
+      var i_11365845 = 0;
+      F.line = 185;
+      var l_11365846 = (cfgs_11325902 != null ? cfgs_11325902.length : 0);
+      L2: do {
+        F.line = 186;
+          L3: while (true) {
+          if (!(i_11365845 < l_11365846)) break L3;
+            F.line = 466;
+            cfg_11325928 = cfgs_11325902[chckIndx(i_11365845, 0, (cfgs_11325902 != null ? cfgs_11325902.length : 0)+0-1)-0];
+            F.line = 467;
+            add_11315218(result_11325906, 0, cfg_11325928.compile(node_11325903));
+            F.line = 188;
+            i_11365845 = addInt(i_11365845, 1);
+            if (!(((cfgs_11325902 != null ? cfgs_11325902.length : 0) == l_11365846))) {
+            F.line = 189;
+            failed_assert_impl_102680(makeNimstrLit("/var/home/mildred/.choosenim/toolchains/nim-1.2.0/lib/system/iterators.nim(189, 11) `len(a) == L` the length of the seq changed while iterating over it"));
+            }
+            
+          }
+      } while(false);
+    } while(false);
+  framePtr = F.prev;
+
+  return result_11325906[0];
+
+}
+function compile_11355652(cfg_11355656, node_11355657) {
+  var result_11355659 = null;
+
+  var F={procname:"compile.compile",prev:framePtr,filename:"nclearseam.nim",line:0};
+  framePtr = F;
+    if (!(!((node_11355657 == null)))) {
+    F.line = 472;
+    failed_assert_impl_102680(makeNimstrLit("/var/home/mildred/Projects/nclearseam/src/nclearseam.nim(472, 10) `\x0Anot (node == nil)` "));
+    }
+    
+    F.line = 473;
+    result_11355659 = new_11365207();
+    F.line = 474;
+    result_11355659.config = cfg_11355656.config;
+    F.line = 475;
+    result_11355659.original_node = node_11355657;
+    F.line = 476;
+    result_11355659.node = node_11355657.cloneNode(true);
+    F.line = 478;
+    result_11355659.config(result_11355659);
+    F.line = 479;
+    result_11355659.matches = nimCopy(null, compile_11325897(result_11355659.cmatches, result_11355659.node), NTI11325904);
+  framePtr = F.prev;
+
+  return result_11355659;
+
+}
+function new_11355275() {
+  var result_11355279 = null;
+
+  var F={procname:"new.new",prev:framePtr,filename:"system.nim",line:0};
+  framePtr = F;
+  BeforeRet: do {
+    F.line = 848;
+    var r_11355401 = null;
+    F.line = 851;
+    r_11355401 = {m_type: NTI11231056, cmatches: null, config: null};
+    F.line = 852;
+    result_11355279 = r_11355401;
+    break BeforeRet;
+  } while (false);
+  framePtr = F.prev;
+
+  return result_11355279;
+
+}
+function create_11355260(config_11355266) {
+  var result_11355268 = null;
+
+  var F={procname:"create.create",prev:framePtr,filename:"nclearseam.nim",line:0};
+  framePtr = F;
+    F.line = 229;
+    result_11355268 = new_11355275();
+    F.line = 230;
+    result_11355268.config = config_11355266;
+  framePtr = F.prev;
+
+  return result_11355268;
+
+}
+function compile_11346534(node_11346539, configurator_11346545) {
+  var result_11346547 = null;
+
+  var F={procname:"compile.compile",prev:framePtr,filename:"nclearseam.nim",line:0};
+  framePtr = F;
+    F.line = 627;
+    if (!(!((node_11346539 == null)))) {
+    F.line = 629;
+    failed_assert_impl_102680(makeNimstrLit("/var/home/mildred/Projects/nclearseam/src/nclearseam.nim(629, 10) `\x0Anot (node == nil)` "));
+    }
+    
+    result_11346547 = compile_11355652(create_11355260(configurator_11346545), node_11346539);
+  framePtr = F.prev;
+
+  return result_11346547;
+
+}
+function refresh_11296059(c_11296064, refresh_11296066) {
+  var F={procname:"refresh.refresh",prev:framePtr,filename:"nclearseam.nim",line:0};
+  framePtr = F;
+    F.line = 340;
+    if (c_11296064.refresh != null) { c_11296064.refresh.push(refresh_11296066); } else { c_11296064.refresh = [refresh_11296066]; };
+  framePtr = F.prev;
+
+  
+}
+function add_11255218(x_11255223, x_11255223_Idx, y_11255225) {
+    var Tmp1;
+
+  var F={procname:"add.add",prev:framePtr,filename:"system.nim",line:0};
+  framePtr = F;
+    F.line = 1208;
+    var xl_11255231 = (x_11255223[x_11255223_Idx] != null ? x_11255223[x_11255223_Idx].length : 0);
+    F.line = 1209;
+    if (x_11255223[x_11255223_Idx] === null) x_11255223[x_11255223_Idx] = [];
+               if (x_11255223[x_11255223_Idx].length < (Tmp1 = chckRange(addInt(xl_11255231, (y_11255225 != null ? y_11255225.length : 0)), 0, 2147483647), Tmp1)) { for (var i=x_11255223[x_11255223_Idx].length;i<Tmp1;++i) x_11255223[x_11255223_Idx].push(null); }
+               else { x_11255223[x_11255223_Idx].length = Tmp1; };
+    L2: do {
+      F.line = 1210;
+      var i_11255256 = 0;
+      F.line = 66;
+      var colontmp__11365881 = 0;
+      F.line = 1210;
+      colontmp__11365881 = (y_11255225 != null ? (y_11255225.length-1) : -1);
+      F.line = 77;
+      var res_11365882 = 0;
+      L3: do {
+        F.line = 78;
+          L4: while (true) {
+          if (!(res_11365882 <= colontmp__11365881)) break L4;
+            F.line = 1210;
+            i_11255256 = res_11365882;
+            F.line = 1210;
+            x_11255223[x_11255223_Idx][chckIndx(addInt(xl_11255231, i_11255256), 0, (x_11255223[x_11255223_Idx] != null ? x_11255223[x_11255223_Idx].length : 0)+0-1)-0] = y_11255225[chckIndx(i_11255256, 0, (y_11255225 != null ? y_11255225.length : 0)+0-1)-0];
+            F.line = 80;
+            res_11365882 = addInt(res_11365882, 1);
+          }
+      } while(false);
+    } while(false);
+  framePtr = F.prev;
+
+  
+}
+function compile_11238275(cfg_11238280, node_11238281) {
             var Tmp4;
             var Tmp5;
             var Tmp6;
@@ -2702,87 +2702,87 @@ function compile_11298275(cfg_11298280, node_11298281) {
               var Tmp20;
                         var Tmp24;
 
-  var result_11298343 = null;
+  var result_11238343 = null;
 
   var F={procname:"compile.compile",prev:framePtr,filename:"nclearseam.nim",line:0};
   framePtr = F;
     F.line = 426;
-    result_11298343 = nimCopy(null, [], NTI11298358);
+    result_11238343 = nimCopy(null, [], NTI11238358);
     F.line = 427;
-    var matched_nodes_11298359 = node_11298281.querySelectorAll(toJSStr(cfg_11298280.selector));
-    if (((matched_nodes_11298359 != null ? matched_nodes_11298359.length : 0) == 0)) {
+    var matched_nodes_11238359 = node_11238281.querySelectorAll(toJSStr(cfg_11238280.selector));
+    if (((matched_nodes_11238359 != null ? matched_nodes_11238359.length : 0) == 0)) {
     F.line = 429;
-    var selector_11298365 = nimCopy(null, cfg_11298280.selector, NTI112);
+    var selector_11238365 = nimCopy(null, cfg_11238280.selector, NTI112);
     F.line = 430;
-    var fmt_res_11298366 = [mnewString(0)];
+    var fmt_res_11238366 = [mnewString(0)];
     F.line = 430;
-    if (fmt_res_11298366[0] != null) { fmt_res_11298366[0] = (fmt_res_11298366[0]).concat(makeNimstrLit("Cannot match selector \'")); } else { fmt_res_11298366[0] = makeNimstrLit("Cannot match selector \'"); };
+    if (fmt_res_11238366[0] != null) { fmt_res_11238366[0] = (fmt_res_11238366[0]).concat(makeNimstrLit("Cannot match selector \'")); } else { fmt_res_11238366[0] = makeNimstrLit("Cannot match selector \'"); };
     F.line = 430;
-    format_value_10125080(fmt_res_11298366, 0, selector_11298365, []);
+    format_value_10125080(fmt_res_11238366, 0, selector_11238365, []);
     F.line = 430;
-    if (fmt_res_11298366[0] != null) { fmt_res_11298366[0] = (fmt_res_11298366[0]).concat(makeNimstrLit("\'")); } else { fmt_res_11298366[0] = makeNimstrLit("\'"); };
+    if (fmt_res_11238366[0] != null) { fmt_res_11238366[0] = (fmt_res_11238366[0]).concat(makeNimstrLit("\'")); } else { fmt_res_11238366[0] = makeNimstrLit("\'"); };
     F.line = 430;
-    raiseException({message: nimCopy(null, fmt_res_11298366[0], NTI112), parent: null, m_type: NTI10216017, name: null, trace: null, up: null}, "CompileSelectorError");
+    raiseException({message: nimCopy(null, fmt_res_11238366[0], NTI112), parent: null, m_type: NTI10216017, name: null, trace: null, up: null}, "CompileSelectorError");
     }
     
     L1: do {
       F.line = 432;
-      var matched_node_11305008 = null;
+      var matched_node_11245008 = null;
       F.line = 184;
-      var i_11425876 = 0;
+      var i_11365876 = 0;
       F.line = 185;
-      var l_11425877 = (matched_nodes_11298359 != null ? matched_nodes_11298359.length : 0);
+      var l_11365877 = (matched_nodes_11238359 != null ? matched_nodes_11238359.length : 0);
       L2: do {
         F.line = 186;
           L3: while (true) {
-          if (!(i_11425876 < l_11425877)) break L3;
+          if (!(i_11365876 < l_11365877)) break L3;
             F.line = 432;
-            matched_node_11305008 = matched_nodes_11298359[chckIndx(i_11425876, 0, (matched_nodes_11298359 != null ? matched_nodes_11298359.length : 0)+0-1)-0];
+            matched_node_11245008 = matched_nodes_11238359[chckIndx(i_11365876, 0, (matched_nodes_11238359 != null ? matched_nodes_11238359.length : 0)+0-1)-0];
             F.line = 433;
-            var match_11305016 = {refresh: nimCopy(null, cfg_11298280.refresh, NTI11295329), init: nimCopy(null, cfg_11298280.init, NTI10216259), iter: cfg_11298280.iter, node: matched_node_11305008, selectorKind: 0, serial: 0, value: 0, convert: {kind: 0, simple: null, serial: null, compare: null}, mount_source: null, mount: null, matches: null, inited: false, iterate: {kind: 0, simple: null, serial: null}, mount_template: null, match_templates: null, items: null, anchor: null};
+            var match_11245016 = {refresh: nimCopy(null, cfg_11238280.refresh, NTI11235329), init: nimCopy(null, cfg_11238280.init, NTI10216259), iter: cfg_11238280.iter, node: matched_node_11245008, selectorKind: 0, serial: 0, value: 0, convert: {kind: 0, simple: null, serial: null, compare: null}, mount_source: null, mount: null, matches: null, inited: false, iterate: {kind: 0, simple: null, serial: null}, mount_template: null, match_templates: null, items: null, anchor: null};
             F.line = 438;
-            match_11305016.node = matched_node_11305008;
-            if (match_11305016.iter) {
-            var Tmp4 = match_11305016;
+            match_11245016.node = matched_node_11245008;
+            if (match_11245016.iter) {
+            var Tmp4 = match_11245016;
             if (ConstSet9[Tmp4.iter]===undefined) { raiseFieldError(makeNimstrLit("\'iterate\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
             F.line = 440;
-            var Tmp5 = cfg_11298280;
+            var Tmp5 = cfg_11238280;
             if (ConstSet10[Tmp5.iter]===undefined) { raiseFieldError(makeNimstrLit("\'iterate\' is not accessible using discriminant \'iter\' of type \'MatchConfig\'")); }
-            nimCopy(Tmp4.iterate, Tmp5.iterate, NTI11295416);
-            var Tmp6 = match_11305016;
+            nimCopy(Tmp4.iterate, Tmp5.iterate, NTI11235416);
+            var Tmp6 = match_11245016;
             if (ConstSet11[Tmp6.iter]===undefined) { raiseFieldError(makeNimstrLit("\'anchor\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
             F.line = 441;
-            Tmp6.anchor = matched_node_11305008.ownerDocument.createComment(matched_node_11305008.outerHTML);
-            var Tmp7 = match_11305016;
+            Tmp6.anchor = matched_node_11245008.ownerDocument.createComment(matched_node_11245008.outerHTML);
+            var Tmp7 = match_11245016;
             if (ConstSet12[Tmp7.iter]===undefined) { raiseFieldError(makeNimstrLit("\'mount_template\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
             F.line = 442;
-            Tmp7.mount_template = cfg_11298280.mount;
-            var Tmp8 = match_11305016;
+            Tmp7.mount_template = cfg_11238280.mount;
+            var Tmp8 = match_11245016;
             if (ConstSet13[Tmp8.iter]===undefined) { raiseFieldError(makeNimstrLit("\'match_templates\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
             F.line = 443;
-            Tmp8.match_templates = nimCopy(null, cfg_11298280.cmatches, NTI11295361);
-            var Tmp9 = match_11305016;
+            Tmp8.match_templates = nimCopy(null, cfg_11238280.cmatches, NTI11235361);
+            var Tmp9 = match_11245016;
             if (ConstSet14[Tmp9.iter]===undefined) { raiseFieldError(makeNimstrLit("\'items\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
             F.line = 444;
-            Tmp9.items = nimCopy(null, [], NTI11305042);
+            Tmp9.items = nimCopy(null, [], NTI11245042);
             F.line = 445;
-            var Tmp10 = match_11305016;
+            var Tmp10 = match_11245016;
             if (ConstSet15[Tmp10.iter]===undefined) { raiseFieldError(makeNimstrLit("\'anchor\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
-            matched_node_11305008.parentNode.replaceChild(Tmp10.anchor, matched_node_11305008);
+            matched_node_11245008.parentNode.replaceChild(Tmp10.anchor, matched_node_11245008);
             }
             else {
-              var Tmp11 = match_11305016;
+              var Tmp11 = match_11245016;
               if (ConstSet16[Tmp11.iter]===undefined) { raiseFieldError(makeNimstrLit("\'selectorKind\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
               F.line = 447;
-              var Tmp12 = cfg_11298280;
+              var Tmp12 = cfg_11238280;
               if (ConstSet17[Tmp12.iter]===undefined) { raiseFieldError(makeNimstrLit("\'convert\' is not accessible using discriminant \'iter\' of type \'MatchConfig\'")); }
               Tmp11.selectorKind = Tmp12.convert.kind;
               F.line = 448;
-              var Tmp13 = match_11305016;
+              var Tmp13 = match_11245016;
               if (ConstSet18[Tmp13.iter]===undefined) { raiseFieldError(makeNimstrLit("\'selectorKind\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
               switch (Tmp13.selectorKind) {
               case 1:
-                var Tmp14 = match_11305016;
+                var Tmp14 = match_11245016;
                 if (ConstSet19[Tmp14.selectorKind]===undefined) { raiseFieldError(makeNimstrLit("\'serial\' is not accessible using discriminant \'selectorKind\' of type \'CompMatch\'")); }
                 F.line = 450;
                 Tmp14.serial = 0;
@@ -2790,51 +2790,51 @@ function compile_11298275(cfg_11298280, node_11298281) {
               default: 
                 break;
               }
-              var Tmp15 = match_11305016;
+              var Tmp15 = match_11245016;
               if (ConstSet20[Tmp15.iter]===undefined) { raiseFieldError(makeNimstrLit("\'convert\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
               F.line = 453;
-              var Tmp16 = cfg_11298280;
+              var Tmp16 = cfg_11238280;
               if (ConstSet21[Tmp16.iter]===undefined) { raiseFieldError(makeNimstrLit("\'convert\' is not accessible using discriminant \'iter\' of type \'MatchConfig\'")); }
-              nimCopy(Tmp15.convert, Tmp16.convert, NTI11295387);
-              var Tmp17 = match_11305016;
+              nimCopy(Tmp15.convert, Tmp16.convert, NTI11235387);
+              var Tmp17 = match_11245016;
               if (ConstSet22[Tmp17.iter]===undefined) { raiseFieldError(makeNimstrLit("\'matches\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
               F.line = 454;
-              Tmp17.matches = nimCopy(null, [], NTI11305069);
-              var Tmp18 = match_11305016;
+              Tmp17.matches = nimCopy(null, [], NTI11245069);
+              var Tmp18 = match_11245016;
               if (ConstSet23[Tmp18.iter]===undefined) { raiseFieldError(makeNimstrLit("\'inited\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
               F.line = 455;
               Tmp18.inited = false;
-              var Tmp19 = match_11305016;
+              var Tmp19 = match_11245016;
               if (ConstSet24[Tmp19.iter]===undefined) { raiseFieldError(makeNimstrLit("\'mount\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
               F.line = 456;
               Tmp19.mount = null;
-              if (!((cfg_11298280.mount == null))) {
-              var Tmp20 = match_11305016;
+              if (!((cfg_11238280.mount == null))) {
+              var Tmp20 = match_11245016;
               if (ConstSet25[Tmp20.iter]===undefined) { raiseFieldError(makeNimstrLit("\'mount_source\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
               F.line = 458;
-              Tmp20.mount_source = cfg_11298280.mount;
+              Tmp20.mount_source = cfg_11238280.mount;
               }
               else {
                 L21: do {
                   F.line = 460;
-                  var submatch_11315214 = null;
+                  var submatch_11255214 = null;
                   F.line = 184;
-                  var i_11425873 = 0;
+                  var i_11365873 = 0;
                   F.line = 185;
-                  var l_11425874 = (cfg_11298280.cmatches != null ? cfg_11298280.cmatches.length : 0);
+                  var l_11365874 = (cfg_11238280.cmatches != null ? cfg_11238280.cmatches.length : 0);
                   L22: do {
                     F.line = 186;
                       L23: while (true) {
-                      if (!(i_11425873 < l_11425874)) break L23;
+                      if (!(i_11365873 < l_11365874)) break L23;
                         F.line = 460;
-                        submatch_11315214 = cfg_11298280.cmatches[chckIndx(i_11425873, 0, (cfg_11298280.cmatches != null ? cfg_11298280.cmatches.length : 0)+0-1)-0];
+                        submatch_11255214 = cfg_11238280.cmatches[chckIndx(i_11365873, 0, (cfg_11238280.cmatches != null ? cfg_11238280.cmatches.length : 0)+0-1)-0];
                         F.line = 461;
-                        var Tmp24 = match_11305016;
+                        var Tmp24 = match_11245016;
                         if (ConstSet26[Tmp24.iter]===undefined) { raiseFieldError(makeNimstrLit("\'matches\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
-                        add_11315218(Tmp24, "matches", submatch_11315214.compile(matched_node_11305008));
+                        add_11255218(Tmp24, "matches", submatch_11255214.compile(matched_node_11245008));
                         F.line = 188;
-                        i_11425873 = addInt(i_11425873, 1);
-                        if (!(((cfg_11298280.cmatches != null ? cfg_11298280.cmatches.length : 0) == l_11425874))) {
+                        i_11365873 = addInt(i_11365873, 1);
+                        if (!(((cfg_11238280.cmatches != null ? cfg_11238280.cmatches.length : 0) == l_11365874))) {
                         F.line = 189;
                         failed_assert_impl_102680(makeNimstrLit("/var/home/mildred/.choosenim/toolchains/nim-1.2.0/lib/system/iterators.nim(189, 11) `len(a) == L` the length of the seq changed while iterating over it"));
                         }
@@ -2847,10 +2847,10 @@ function compile_11298275(cfg_11298280, node_11298281) {
             }
             
             F.line = 462;
-            if (result_11298343 != null) { result_11298343.push(match_11305016); } else { result_11298343 = [match_11305016]; };
+            if (result_11238343 != null) { result_11238343.push(match_11245016); } else { result_11238343 = [match_11245016]; };
             F.line = 188;
-            i_11425876 = addInt(i_11425876, 1);
-            if (!(((matched_nodes_11298359 != null ? matched_nodes_11298359.length : 0) == l_11425877))) {
+            i_11365876 = addInt(i_11365876, 1);
+            if (!(((matched_nodes_11238359 != null ? matched_nodes_11238359.length : 0) == l_11365877))) {
             F.line = 189;
             failed_assert_impl_102680(makeNimstrLit("/var/home/mildred/.choosenim/toolchains/nim-1.2.0/lib/system/iterators.nim(189, 11) `len(a) == L` the length of the seq changed while iterating over it"));
             }
@@ -2860,34 +2860,34 @@ function compile_11298275(cfg_11298280, node_11298281) {
     } while(false);
   framePtr = F.prev;
 
-  return result_11298343;
+  return result_11238343;
 
 }
-function compile_11325897(cfgs_11325902, node_11325903) {
-  var result_11325906 = [null];
+function compile_11265897(cfgs_11265902, node_11265903) {
+  var result_11265906 = [null];
 
   var F={procname:"compile.compile",prev:framePtr,filename:"nclearseam.nim",line:0};
   framePtr = F;
     F.line = 465;
-    result_11325906[0] = nimCopy(null, [], NTI11325921);
+    result_11265906[0] = nimCopy(null, [], NTI11265921);
     L1: do {
       F.line = 466;
-      var cfg_11325928 = null;
+      var cfg_11265928 = null;
       F.line = 184;
-      var i_11425920 = 0;
+      var i_11365920 = 0;
       F.line = 185;
-      var l_11425921 = (cfgs_11325902 != null ? cfgs_11325902.length : 0);
+      var l_11365921 = (cfgs_11265902 != null ? cfgs_11265902.length : 0);
       L2: do {
         F.line = 186;
           L3: while (true) {
-          if (!(i_11425920 < l_11425921)) break L3;
+          if (!(i_11365920 < l_11365921)) break L3;
             F.line = 466;
-            cfg_11325928 = cfgs_11325902[chckIndx(i_11425920, 0, (cfgs_11325902 != null ? cfgs_11325902.length : 0)+0-1)-0];
+            cfg_11265928 = cfgs_11265902[chckIndx(i_11365920, 0, (cfgs_11265902 != null ? cfgs_11265902.length : 0)+0-1)-0];
             F.line = 467;
-            add_11315218(result_11325906, 0, cfg_11325928.compile(node_11325903));
+            add_11255218(result_11265906, 0, cfg_11265928.compile(node_11265903));
             F.line = 188;
-            i_11425920 = addInt(i_11425920, 1);
-            if (!(((cfgs_11325902 != null ? cfgs_11325902.length : 0) == l_11425921))) {
+            i_11365920 = addInt(i_11365920, 1);
+            if (!(((cfgs_11265902 != null ? cfgs_11265902.length : 0) == l_11365921))) {
             F.line = 189;
             failed_assert_impl_102680(makeNimstrLit("/var/home/mildred/.choosenim/toolchains/nim-1.2.0/lib/system/iterators.nim(189, 11) `len(a) == L` the length of the seq changed while iterating over it"));
             }
@@ -2897,7 +2897,896 @@ function compile_11325897(cfgs_11325902, node_11325903) {
     } while(false);
   framePtr = F.prev;
 
-  return result_11325906[0];
+  return result_11265906[0];
+
+}
+function create_iter_item_11265839(match_11265844, parent_node_11265845) {
+      var Tmp1;
+    var Tmp2;
+    var Tmp3;
+    var Tmp4;
+
+  var result_11265847 = null;
+
+  var F={procname:"createIterItem.createIterItem",prev:framePtr,filename:"nclearseam.nim",line:0};
+  framePtr = F;
+    F.line = 487;
+    var comp_11265852 = null;
+    F.line = 488;
+    var node_11265853 = null;
+      var Tmp1 = match_11265844;
+      if (ConstSet37[Tmp1.iter]===undefined) { raiseFieldError(makeNimstrLit("\'mount_template\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
+    if (!((Tmp1.mount_template == null))) {
+    F.line = 490;
+    var Tmp2 = match_11265844;
+    if (ConstSet38[Tmp2.iter]===undefined) { raiseFieldError(makeNimstrLit("\'mount_template\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
+    comp_11265852 = Tmp2.mount_template.clone();
+    F.line = 491;
+    node_11265853 = comp_11265852.node();
+    }
+    else {
+      F.line = 493;
+      node_11265853 = match_11265844.node.cloneNode(true);
+    }
+    
+    F.line = 494;
+    var Tmp3 = match_11265844;
+    if (ConstSet39[Tmp3.iter]===undefined) { raiseFieldError(makeNimstrLit("\'match_templates\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
+    result_11265847 = {serial: 0, mount: comp_11265852, node: node_11265853, matches: compile_11265897(Tmp3.match_templates, node_11265853)};
+    F.line = 499;
+    var Tmp4 = match_11265844;
+    if (ConstSet40[Tmp4.iter]===undefined) { raiseFieldError(makeNimstrLit("\'anchor\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
+    parent_node_11265845.insertBefore(node_11265853, Tmp4.anchor);
+  framePtr = F.prev;
+
+  return result_11265847;
+
+}
+function detach_11295474(iter_item_11295478, parent_node_11295479) {
+  var F={procname:"detach.detach",prev:framePtr,filename:"nclearseam.nim",line:0};
+  framePtr = F;
+    F.line = 503;
+    parent_node_11295479.removeChild(iter_item_11295478.node);
+  framePtr = F.prev;
+
+  
+}
+function pop_11295224(s_11295229, s_11295229_Idx) {
+  var result_11295230 = null;
+
+  var F={procname:"pop.pop",prev:framePtr,filename:"system.nim",line:0};
+  framePtr = F;
+    F.line = 1779;
+    var l_11295236 = subInt((s_11295229[s_11295229_Idx] != null ? s_11295229[s_11295229_Idx].length : 0), 1);
+    F.line = 1784;
+    result_11295230 = s_11295229[s_11295229_Idx][chckIndx(l_11295236, 0, (s_11295229[s_11295229_Idx] != null ? s_11295229[s_11295229_Idx].length : 0)+0-1)-0];
+    F.line = 1785;
+    if (s_11295229[s_11295229_Idx] === null) s_11295229[s_11295229_Idx] = [];
+               if (s_11295229[s_11295229_Idx].length < chckRange(l_11295236, 0, 2147483647)) { for (var i=s_11295229[s_11295229_Idx].length;i<chckRange(l_11295236, 0, 2147483647);++i) s_11295229[s_11295229_Idx].push(null); }
+               else { s_11295229[s_11295229_Idx].length = chckRange(l_11295236, 0, 2147483647); };
+  framePtr = F.prev;
+
+  return result_11295230;
+
+}
+function update_11265737(match_11265742, val_11265743, refresh_11265744) {
+    var Tmp1;
+    var Tmp2;
+      var Tmp3;
+      var Tmp4;
+      function HEX3Aanonymous_11265761(s_11265764, s_11265764_Idx) {
+        var result_11265768 = {Field0: false, Field1: 0};
+
+        var F={procname:"update.:anonymous",prev:framePtr,filename:"nclearseam.nim",line:0};
+        framePtr = F;
+          F.line = 515;
+          nimCopy(result_11265768, itf_simple_11265760(), NTI11265765);
+        framePtr = F.prev;
+
+        return result_11265768;
+
+      }
+      var Tmp5;
+      var Tmp6;
+          var Tmp9;
+            var Tmp10;
+            var Tmp11;
+          var Tmp12;
+          var Tmp13;
+            var Tmp14;
+            var Tmp15;
+          var Tmp16;
+          var Tmp17;
+            var Tmp18;
+            var Tmp19;
+          var Tmp31;
+          var Tmp32;
+          var Tmp33;
+      var Tmp34;
+        var Tmp35;
+        var Tmp36;
+        var Tmp37;
+        var Tmp38;
+        var Tmp39;
+          var Tmp40;
+        var Tmp41;
+        var Tmp42;
+        var Tmp43;
+        var Tmp44;
+        var Tmp45;
+        var Tmp46;
+          var Tmp47;
+      var Tmp48;
+      var Tmp49;
+      var Tmp50;
+        var Tmp51;
+      var Tmp55;
+        var Tmp56;
+          var Tmp57;
+      var Tmp58;
+      var Tmp59;
+        var Tmp61;
+
+  var F={procname:"update.update",prev:framePtr,filename:"nclearseam.nim",line:0};
+  framePtr = F;
+    if (match_11265742.iter) {
+    F.line = 508;
+    var i_11265746 = 0;
+    F.line = 509;
+    var Tmp1 = match_11265742;
+    if (ConstSet27[Tmp1.iter]===undefined) { raiseFieldError(makeNimstrLit("\'anchor\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
+    var parent_node_11265749 = Tmp1.anchor.parentNode;
+    F.line = 510;
+    var itf_11265754 = null;
+    F.line = 511;
+    var Tmp2 = match_11265742;
+    if (ConstSet28[Tmp2.iter]===undefined) { raiseFieldError(makeNimstrLit("\'iterate\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
+    switch (Tmp2.iterate.kind) {
+    case 0:
+      F.line = 513;
+      var Tmp3 = match_11265742;
+      if (ConstSet30[Tmp3.iter]===undefined) { raiseFieldError(makeNimstrLit("\'iterate\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
+      var Tmp4 = Tmp3.iterate;
+      if (ConstSet29[Tmp4.kind]===undefined) { raiseFieldError(makeNimstrLit("\'simple\' is not accessible using discriminant \'kind\' of type \'Iterator\'")); }
+      var itf_simple_11265760 = Tmp4.simple(val_11265743);
+      F.line = 514;
+      itf_11265754 = HEX3Aanonymous_11265761;
+      break;
+    case 1:
+      F.line = 517;
+      var Tmp5 = match_11265742;
+      if (ConstSet32[Tmp5.iter]===undefined) { raiseFieldError(makeNimstrLit("\'iterate\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
+      var Tmp6 = Tmp5.iterate;
+      if (ConstSet31[Tmp6.kind]===undefined) { raiseFieldError(makeNimstrLit("\'serial\' is not accessible using discriminant \'kind\' of type \'Iterator\'")); }
+      itf_11265754 = Tmp6.serial(val_11265743);
+      break;
+    }
+    L7: do {
+      F.line = 519;
+        L8: while (true) {
+        if (!true) break L8;
+          F.line = 520;
+            var Tmp10 = match_11265742;
+            if (ConstSet33[Tmp10.iter]===undefined) { raiseFieldError(makeNimstrLit("\'items\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
+          if ((i_11265746 < ((Tmp11 = Tmp10.items, Tmp11) != null ? Tmp11.length : 0))) {
+          var Tmp12 = match_11265742;
+          if (ConstSet34[Tmp12.iter]===undefined) { raiseFieldError(makeNimstrLit("\'items\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
+          Tmp9 = (Tmp13 = Tmp12.items, Tmp13)[chckIndx(i_11265746, 0, (Tmp13 != null ? Tmp13.length : 0)+0-1)-0].serial;
+          }
+          else {
+          Tmp9 = 0;
+          }
+          
+          var serial_11265813 = [Tmp9];
+          F.line = 521;
+          var changed_11265814 = refresh_11265744;
+          F.line = 522;
+          var it_11265816 = itf_11265754(serial_11265813, 0);
+          if ((it_11265816["Field0"] == false)) {
+          F.line = 523;
+          break L7;
+          }
+          
+          F.line = 524;
+          var item_11265817 = it_11265816["Field1"];
+          F.line = 526;
+          var iter_item_11265822 = null;
+          F.line = 527;
+          var inited_11265823 = false;
+            var Tmp14 = match_11265742;
+            if (ConstSet35[Tmp14.iter]===undefined) { raiseFieldError(makeNimstrLit("\'items\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
+          if ((i_11265746 < ((Tmp15 = Tmp14.items, Tmp15) != null ? Tmp15.length : 0))) {
+          F.line = 531;
+          var Tmp16 = match_11265742;
+          if (ConstSet36[Tmp16.iter]===undefined) { raiseFieldError(makeNimstrLit("\'items\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
+          iter_item_11265822 = (Tmp17 = Tmp16.items, Tmp17)[chckIndx(i_11265746, 0, (Tmp17 != null ? Tmp17.length : 0)+0-1)-0];
+          F.line = 532;
+          inited_11265823 = true;
+          F.line = 533;
+          changed_11265814 = true;
+          }
+          else {
+            F.line = 535;
+            iter_item_11265822 = create_iter_item_11265839(match_11265742, parent_node_11265749);
+            F.line = 536;
+            var Tmp18 = match_11265742;
+            if (ConstSet41[Tmp18.iter]===undefined) { raiseFieldError(makeNimstrLit("\'items\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
+            if ((Tmp19 = Tmp18.items, Tmp19) != null) { Tmp19.push(iter_item_11265822); } else { Tmp19 = [iter_item_11265822]; };
+            F.line = 537;
+            inited_11265823 = false;
+            if (!((serial_11265813[0] == iter_item_11265822.serial))) {
+            F.line = 539;
+            changed_11265814 = true;
+            }
+            
+          }
+          
+          if (!(inited_11265823)) {
+          L20: do {
+            F.line = 543;
+            var init_proc_11275214 = null;
+            F.line = 184;
+            var i_11365891 = 0;
+            F.line = 185;
+            var l_11365892 = (match_11265742.init != null ? match_11265742.init.length : 0);
+            L21: do {
+              F.line = 186;
+                L22: while (true) {
+                if (!(i_11365891 < l_11365892)) break L22;
+                  F.line = 543;
+                  init_proc_11275214 = match_11265742.init[chckIndx(i_11365891, 0, (match_11265742.init != null ? match_11265742.init.length : 0)+0-1)-0];
+                  F.line = 544;
+                  init_proc_11275214(iter_item_11265822.node);
+                  F.line = 188;
+                  i_11365891 = addInt(i_11365891, 1);
+                  if (!(((match_11265742.init != null ? match_11265742.init.length : 0) == l_11365892))) {
+                  F.line = 189;
+                  failed_assert_impl_102680(makeNimstrLit("/var/home/mildred/.choosenim/toolchains/nim-1.2.0/lib/system/iterators.nim(189, 11) `len(a) == L` the length of the seq changed while iterating over it"));
+                  }
+                  
+                }
+            } while(false);
+          } while(false);
+          }
+          
+          if (!((iter_item_11265822.mount == null))) {
+          F.line = 548;
+          iter_item_11265822.mount.update(item_11265817, refresh_11265744);
+          }
+          
+          L23: do {
+            F.line = 551;
+            var submatch_11285214 = null;
+            F.line = 184;
+            var i_11365896 = 0;
+            F.line = 185;
+            var l_11365897 = (iter_item_11265822.matches != null ? iter_item_11265822.matches.length : 0);
+            L24: do {
+              F.line = 186;
+                L25: while (true) {
+                if (!(i_11365896 < l_11365897)) break L25;
+                  F.line = 551;
+                  submatch_11285214 = iter_item_11265822.matches[chckIndx(i_11365896, 0, (iter_item_11265822.matches != null ? iter_item_11265822.matches.length : 0)+0-1)-0];
+                  F.line = 552;
+                  submatch_11285214.update(item_11265817, refresh_11265744);
+                  F.line = 188;
+                  i_11365896 = addInt(i_11365896, 1);
+                  if (!(((iter_item_11265822.matches != null ? iter_item_11265822.matches.length : 0) == l_11365897))) {
+                  F.line = 189;
+                  failed_assert_impl_102680(makeNimstrLit("/var/home/mildred/.choosenim/toolchains/nim-1.2.0/lib/system/iterators.nim(189, 11) `len(a) == L` the length of the seq changed while iterating over it"));
+                  }
+                  
+                }
+            } while(false);
+          } while(false);
+          L26: do {
+            F.line = 555;
+            var refresh_proc_11295214 = null;
+            F.line = 184;
+            var i_11365901 = 0;
+            F.line = 185;
+            var l_11365902 = (match_11265742.refresh != null ? match_11265742.refresh.length : 0);
+            L27: do {
+              F.line = 186;
+                L28: while (true) {
+                if (!(i_11365901 < l_11365902)) break L28;
+                  F.line = 555;
+                  refresh_proc_11295214 = match_11265742.refresh[chckIndx(i_11365901, 0, (match_11265742.refresh != null ? match_11265742.refresh.length : 0)+0-1)-0];
+                  F.line = 556;
+                  refresh_proc_11295214(iter_item_11265822.node, item_11265817);
+                  F.line = 188;
+                  i_11365901 = addInt(i_11365901, 1);
+                  if (!(((match_11265742.refresh != null ? match_11265742.refresh.length : 0) == l_11365902))) {
+                  F.line = 189;
+                  failed_assert_impl_102680(makeNimstrLit("/var/home/mildred/.choosenim/toolchains/nim-1.2.0/lib/system/iterators.nim(189, 11) `len(a) == L` the length of the seq changed while iterating over it"));
+                  }
+                  
+                }
+            } while(false);
+          } while(false);
+          F.line = 558;
+          i_11265746 = addInt(i_11265746, 1);
+        }
+    } while(false);
+    L29: do {
+      F.line = 561;
+        L30: while (true) {
+          var Tmp31 = match_11265742;
+          if (ConstSet42[Tmp31.iter]===undefined) { raiseFieldError(makeNimstrLit("\'items\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
+        if (!(i_11265746 < ((Tmp32 = Tmp31.items, Tmp32) != null ? Tmp32.length : 0))) break L30;
+          F.line = 562;
+          var Tmp33 = match_11265742;
+          if (ConstSet43[Tmp33.iter]===undefined) { raiseFieldError(makeNimstrLit("\'items\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
+          detach_11295474(pop_11295224(Tmp33, "items"), parent_node_11265749);
+        }
+    } while(false);
+    }
+    else {
+      F.line = 564;
+      var changed_11295493 = refresh_11265744;
+      F.line = 565;
+      var node_11295494 = match_11265742.node;
+      F.line = 566;
+      var converted_val_11295495 = 0;
+      F.line = 568;
+      var Tmp34 = match_11265742;
+      if (ConstSet44[Tmp34.iter]===undefined) { raiseFieldError(makeNimstrLit("\'convert\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
+      switch (Tmp34.convert.kind) {
+      case 0:
+        F.line = 570;
+        var Tmp35 = match_11265742;
+        if (ConstSet46[Tmp35.iter]===undefined) { raiseFieldError(makeNimstrLit("\'convert\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
+        var Tmp36 = Tmp35.convert;
+        if (ConstSet45[Tmp36.kind]===undefined) { raiseFieldError(makeNimstrLit("\'simple\' is not accessible using discriminant \'kind\' of type \'TypeSelector\'")); }
+        converted_val_11295495 = Tmp36.simple(val_11265743);
+        F.line = 571;
+        changed_11295493 = true;
+        break;
+      case 1:
+        F.line = 573;
+        var Tmp37 = match_11265742;
+        if (ConstSet47[Tmp37.selectorKind]===undefined) { raiseFieldError(makeNimstrLit("\'serial\' is not accessible using discriminant \'selectorKind\' of type \'CompMatch\'")); }
+        var serial_11295503 = [Tmp37.serial];
+        F.line = 574;
+        var Tmp38 = match_11265742;
+        if (ConstSet49[Tmp38.iter]===undefined) { raiseFieldError(makeNimstrLit("\'convert\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
+        var Tmp39 = Tmp38.convert;
+        if (ConstSet48[Tmp39.kind]===undefined) { raiseFieldError(makeNimstrLit("\'serial\' is not accessible using discriminant \'kind\' of type \'TypeSelector\'")); }
+        converted_val_11295495 = Tmp39.serial(val_11265743, serial_11295503, 0);
+          var Tmp40 = match_11265742;
+          if (ConstSet50[Tmp40.selectorKind]===undefined) { raiseFieldError(makeNimstrLit("\'serial\' is not accessible using discriminant \'selectorKind\' of type \'CompMatch\'")); }
+        if (!((serial_11295503[0] == Tmp40.serial))) {
+        F.line = 576;
+        changed_11295493 = true;
+        }
+        
+        break;
+      case 2:
+        F.line = 578;
+        var Tmp41 = match_11265742;
+        if (ConstSet52[Tmp41.iter]===undefined) { raiseFieldError(makeNimstrLit("\'convert\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
+        var Tmp42 = Tmp41.convert;
+        if (ConstSet51[Tmp42.kind]===undefined) { raiseFieldError(makeNimstrLit("\'compare\' is not accessible using discriminant \'kind\' of type \'TypeSelector\'")); }
+        var Tmp43 = match_11265742;
+        if (ConstSet53[Tmp43.selectorKind]===undefined) { raiseFieldError(makeNimstrLit("\'value\' is not accessible using discriminant \'selectorKind\' of type \'CompMatch\'")); }
+        var res_11295515 = Tmp42.compare(val_11265743, Tmp43.value);
+        F.line = 579;
+        converted_val_11295495 = res_11295515.Field0;
+        var Tmp44 = match_11265742;
+        if (ConstSet54[Tmp44.selectorKind]===undefined) { raiseFieldError(makeNimstrLit("\'value\' is not accessible using discriminant \'selectorKind\' of type \'CompMatch\'")); }
+        F.line = 580;
+        Tmp44.value = res_11295515.Field0;
+        if (res_11295515.Field1) {
+        F.line = 582;
+        changed_11295493 = true;
+        }
+        
+        break;
+      }
+        var Tmp46 = match_11265742;
+        if (ConstSet55[Tmp46.iter]===undefined) { raiseFieldError(makeNimstrLit("\'mount\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
+        if (!(Tmp46.mount == null)) Tmp45 = false; else {          var Tmp47 = match_11265742;
+          if (ConstSet56[Tmp47.iter]===undefined) { raiseFieldError(makeNimstrLit("\'mount_source\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
+          Tmp45 = !((Tmp47.mount_source == null));        }      if (Tmp45) {
+      var Tmp48 = match_11265742;
+      if (ConstSet57[Tmp48.iter]===undefined) { raiseFieldError(makeNimstrLit("\'mount\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
+      F.line = 586;
+      var Tmp49 = match_11265742;
+      if (ConstSet58[Tmp49.iter]===undefined) { raiseFieldError(makeNimstrLit("\'mount_source\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
+      Tmp48.mount = Tmp49.mount_source.clone();
+      F.line = 587;
+      var Tmp50 = match_11265742;
+      if (ConstSet59[Tmp50.iter]===undefined) { raiseFieldError(makeNimstrLit("\'mount\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
+      node_11295494.parentNode.replaceChild(Tmp50.mount.node(), node_11295494);
+      }
+      
+        var Tmp51 = match_11265742;
+        if (ConstSet60[Tmp51.iter]===undefined) { raiseFieldError(makeNimstrLit("\'inited\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
+      if (!(Tmp51.inited)) {
+      L52: do {
+        F.line = 591;
+        var init_proc_11295552 = null;
+        F.line = 184;
+        var i_11365906 = 0;
+        F.line = 185;
+        var l_11365907 = (match_11265742.init != null ? match_11265742.init.length : 0);
+        L53: do {
+          F.line = 186;
+            L54: while (true) {
+            if (!(i_11365906 < l_11365907)) break L54;
+              F.line = 591;
+              init_proc_11295552 = match_11265742.init[chckIndx(i_11365906, 0, (match_11265742.init != null ? match_11265742.init.length : 0)+0-1)-0];
+              F.line = 592;
+              init_proc_11295552(node_11295494);
+              F.line = 188;
+              i_11365906 = addInt(i_11365906, 1);
+              if (!(((match_11265742.init != null ? match_11265742.init.length : 0) == l_11365907))) {
+              F.line = 189;
+              failed_assert_impl_102680(makeNimstrLit("/var/home/mildred/.choosenim/toolchains/nim-1.2.0/lib/system/iterators.nim(189, 11) `len(a) == L` the length of the seq changed while iterating over it"));
+              }
+              
+            }
+        } while(false);
+      } while(false);
+      var Tmp55 = match_11265742;
+      if (ConstSet61[Tmp55.iter]===undefined) { raiseFieldError(makeNimstrLit("\'inited\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
+      F.line = 593;
+      Tmp55.inited = true;
+      F.line = 594;
+      changed_11295493 = true;
+      }
+      
+        if (!changed_11295493) Tmp56 = false; else {          var Tmp57 = match_11265742;
+          if (ConstSet62[Tmp57.iter]===undefined) { raiseFieldError(makeNimstrLit("\'mount\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
+          Tmp56 = !((Tmp57.mount == null));        }      if (Tmp56) {
+      F.line = 598;
+      var Tmp58 = match_11265742;
+      if (ConstSet63[Tmp58.iter]===undefined) { raiseFieldError(makeNimstrLit("\'mount\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
+      node_11295494 = Tmp58.mount.node();
+      F.line = 599;
+      var Tmp59 = match_11265742;
+      if (ConstSet64[Tmp59.iter]===undefined) { raiseFieldError(makeNimstrLit("\'mount\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
+      Tmp59.mount.update(converted_val_11295495, refresh_11265744);
+      }
+      
+      if (changed_11295493) {
+      L60: do {
+        F.line = 603;
+        var submatch_11295577 = null;
+        F.line = 182;
+        var colontmp__11365910 = null;
+        F.line = 603;
+        var Tmp61 = match_11265742;
+        if (ConstSet65[Tmp61.iter]===undefined) { raiseFieldError(makeNimstrLit("\'matches\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
+        colontmp__11365910 = Tmp61.matches;
+        F.line = 184;
+        var i_11365911 = 0;
+        F.line = 185;
+        var l_11365912 = (colontmp__11365910 != null ? colontmp__11365910.length : 0);
+        L62: do {
+          F.line = 186;
+            L63: while (true) {
+            if (!(i_11365911 < l_11365912)) break L63;
+              F.line = 603;
+              submatch_11295577 = colontmp__11365910[chckIndx(i_11365911, 0, (colontmp__11365910 != null ? colontmp__11365910.length : 0)+0-1)-0];
+              F.line = 604;
+              submatch_11295577.update(converted_val_11295495, refresh_11265744);
+              F.line = 188;
+              i_11365911 = addInt(i_11365911, 1);
+              if (!(((colontmp__11365910 != null ? colontmp__11365910.length : 0) == l_11365912))) {
+              F.line = 189;
+              failed_assert_impl_102680(makeNimstrLit("/var/home/mildred/.choosenim/toolchains/nim-1.2.0/lib/system/iterators.nim(189, 11) `len(a) == L` the length of the seq changed while iterating over it"));
+              }
+              
+            }
+        } while(false);
+      } while(false);
+      }
+      
+      if (changed_11295493) {
+      L64: do {
+        F.line = 608;
+        var refresh_proc_11295584 = null;
+        F.line = 184;
+        var i_11365915 = 0;
+        F.line = 185;
+        var l_11365916 = (match_11265742.refresh != null ? match_11265742.refresh.length : 0);
+        L65: do {
+          F.line = 186;
+            L66: while (true) {
+            if (!(i_11365915 < l_11365916)) break L66;
+              F.line = 608;
+              refresh_proc_11295584 = match_11265742.refresh[chckIndx(i_11365915, 0, (match_11265742.refresh != null ? match_11265742.refresh.length : 0)+0-1)-0];
+              F.line = 609;
+              refresh_proc_11295584(node_11295494, converted_val_11295495);
+              F.line = 188;
+              i_11365915 = addInt(i_11365915, 1);
+              if (!(((match_11265742.refresh != null ? match_11265742.refresh.length : 0) == l_11365916))) {
+              F.line = 189;
+              failed_assert_impl_102680(makeNimstrLit("/var/home/mildred/.choosenim/toolchains/nim-1.2.0/lib/system/iterators.nim(189, 11) `len(a) == L` the length of the seq changed while iterating over it"));
+              }
+              
+            }
+        } while(false);
+      } while(false);
+      }
+      
+    }
+    
+  framePtr = F.prev;
+
+  
+}
+function as_interface_11265717(match_11265722) {
+    function HEX3Aanonymous_11265729(data_11265731, refresh_11265732) {
+      var F={procname:"asInterface.:anonymous",prev:framePtr,filename:"nclearseam.nim",line:0};
+      framePtr = F;
+        F.line = 663;
+        update_11265737(match_11265722, data_11265731, refresh_11265732);
+      framePtr = F.prev;
+
+      
+    }
+
+  var result_11265724 = null;
+
+  var F={procname:"asInterface.asInterface",prev:framePtr,filename:"nclearseam.nim",line:0};
+  framePtr = F;
+    F.line = 662;
+    result_11265724 = {update: HEX3Aanonymous_11265729};
+  framePtr = F.prev;
+
+  return result_11265724;
+
+}
+function as_interface_11238036(config_11238041) {
+    function HEX3Aanonymous_11238048(node_11238050) {
+      var result_11238056 = null;
+
+      var F={procname:"asInterface.:anonymous",prev:framePtr,filename:"nclearseam.nim",line:0};
+      framePtr = F;
+        F.line = 669;
+        result_11238056 = nimCopy(null, [], NTI11238071);
+        L1: do {
+          F.line = 670;
+          var comp_match_11265214 = null;
+          F.line = 182;
+          var colontmp__11365863 = null;
+          F.line = 670;
+          colontmp__11365863 = compile_11238275(config_11238041, node_11238050);
+          F.line = 184;
+          var i_11365865 = 0;
+          F.line = 185;
+          var l_11365866 = (colontmp__11365863 != null ? colontmp__11365863.length : 0);
+          L2: do {
+            F.line = 186;
+              L3: while (true) {
+              if (!(i_11365865 < l_11365866)) break L3;
+                F.line = 670;
+                comp_match_11265214 = colontmp__11365863[chckIndx(i_11365865, 0, (colontmp__11365863 != null ? colontmp__11365863.length : 0)+0-1)-0];
+                F.line = 671;
+                if (result_11238056 != null) { result_11238056.push(as_interface_11265717(comp_match_11265214)); } else { result_11238056 = [as_interface_11265717(comp_match_11265214)]; };
+                F.line = 188;
+                i_11365865 = addInt(i_11365865, 1);
+                if (!(((colontmp__11365863 != null ? colontmp__11365863.length : 0) == l_11365866))) {
+                F.line = 189;
+                failed_assert_impl_102680(makeNimstrLit("/var/home/mildred/.choosenim/toolchains/nim-1.2.0/lib/system/iterators.nim(189, 11) `len(a) == L` the length of the seq changed while iterating over it"));
+                }
+                
+              }
+          } while(false);
+        } while(false);
+      framePtr = F.prev;
+
+      return result_11238056;
+
+    }
+
+  var result_11238043 = null;
+
+  var F={procname:"asInterface.asInterface",prev:framePtr,filename:"nclearseam.nim",line:0};
+  framePtr = F;
+    F.line = 667;
+    result_11238043 = {compile: HEX3Aanonymous_11238048};
+  framePtr = F.prev;
+
+  return result_11238043;
+
+}
+function match_11237481(c_11237486, selector_11237487, convert_11237489, actions_11237495) {
+  var result_11237497 = null;
+
+  var F={procname:"match.match",prev:framePtr,filename:"nclearseam.nim",line:0};
+  framePtr = F;
+    F.line = 250;
+    result_11237497 = {selector: nimCopy(null, selector_11237487, NTI112), refresh: [], init: [], mount: null, iter: false, convert: nimCopy(null, convert_11237489, NTI11235387), cmatches: null, iterate: {kind: 0, simple: null, serial: null}};
+    F.line = 257;
+    if (c_11237486.cmatches != null) { c_11237486.cmatches.push(as_interface_11238036(result_11237497)); } else { c_11237486.cmatches = [as_interface_11238036(result_11237497)]; };
+    if (!((actions_11237495 == null))) {
+    F.line = 259;
+    actions_11237495(result_11237497);
+    }
+    
+  framePtr = F.prev;
+
+  return result_11237497;
+
+}
+function match_11236139(c_11236144, selector_11236145, convert_11236147, equal_11236151, actions_11236157) {
+    function HEX3Aanonymous_11236167(data_11236169, old_data_11236170) {
+      var result_11236174 = {Field0: 0, Field1: false};
+
+      var F={procname:"match.:anonymous",prev:framePtr,filename:"nclearseam.nim",line:0};
+      framePtr = F;
+        F.line = 296;
+        var data2_11236175 = convert_11236147(data_11236169);
+        F.line = 297;
+        var colontmp__11365858 = data2_11236175;
+        F.line = 297;
+        var colontmp__11365859 = !(equal_11236151(data2_11236175, old_data_11236170));
+        F.line = 297;
+        nimCopy(result_11236174, {Field0: colontmp__11365858, Field1: colontmp__11365859}, NTI11236171);
+      framePtr = F.prev;
+
+      return result_11236174;
+
+    }
+
+  var result_11236159 = null;
+
+  var F={procname:"match.match",prev:framePtr,filename:"nclearseam.nim",line:0};
+  framePtr = F;
+    F.line = 293;
+    var type_selector_11236205 = {kind: 2, compare: HEX3Aanonymous_11236167, simple: null, serial: null};
+    F.line = 298;
+    result_11236159 = match_11237481(c_11236144, selector_11236145, type_selector_11236205, actions_11236157);
+  framePtr = F.prev;
+
+  return result_11236159;
+
+}
+function eql_11235294(s1_11235297, s2_11235298) {
+  var result_11235299 = false;
+
+  var F={procname:"eql.eql",prev:framePtr,filename:"nclearseam.nim",line:0};
+  framePtr = F;
+    F.line = 779;
+    result_11235299 = (s1_11235297 == s2_11235298);
+  framePtr = F.prev;
+
+  return result_11235299;
+
+}
+function set_text_11296005() {
+    function HEX3Aanonymous_11296014(node_11296016, text_11296017) {
+      var F={procname:"setText.:anonymous",prev:framePtr,filename:"util.nim",line:0};
+      framePtr = F;
+        F.line = 49;
+        node_11296016.textContent = toJSStr(cstrToNimstr((text_11296017)+""));
+      framePtr = F.prev;
+
+      
+    }
+
+  var result_11296013 = null;
+
+  var F={procname:"setText.setText",prev:framePtr,filename:"util.nim",line:0};
+  framePtr = F;
+    F.line = 49;
+    result_11296013 = HEX3Aanonymous_11296014;
+  framePtr = F.prev;
+
+  return result_11296013;
+
+}
+function init_11346384(c_11346389, init_11346390) {
+  var F={procname:"init.init",prev:framePtr,filename:"nclearseam.nim",line:0};
+  framePtr = F;
+    F.line = 345;
+    if (c_11346389.init != null) { c_11346389.init.push(init_11346390); } else { c_11346389.init = [init_11346390]; };
+  framePtr = F.prev;
+
+  
+}
+function add_event_listener_11346207(c_11346212, event_11346213, cb_11346214, use_capture_11346215) {
+    event_11346213 = nimCopy(null, event_11346213, NTI112);
+    function HEX3Aanonymous_11346353(node_11346355) {
+      var F={procname:"addEventListener.:anonymous",prev:framePtr,filename:"util.nim",line:0};
+      framePtr = F;
+        F.line = 33;
+        node_11346355.addEventListener(toJSStr(event_11346213), cb_11346214, use_capture_11346215);
+      framePtr = F.prev;
+
+      
+    }
+
+  var F={procname:"addEventListener.addEventListener",prev:framePtr,filename:"util.nim",line:0};
+  framePtr = F;
+    F.line = 32;
+    init_11346384(c_11346212, HEX3Aanonymous_11346353);
+  framePtr = F.prev;
+
+  
+}
+function compile_11299384(cfg_11299389, node_11299390) {
+            var Tmp4;
+            var Tmp5;
+            var Tmp6;
+            var Tmp7;
+            var Tmp8;
+            var Tmp9;
+            var Tmp10;
+              var Tmp11;
+              var Tmp12;
+              var Tmp13;
+                var Tmp14;
+              var Tmp15;
+              var Tmp16;
+              var Tmp17;
+              var Tmp18;
+              var Tmp19;
+              var Tmp20;
+                        var Tmp24;
+
+  var result_11299452 = null;
+
+  var F={procname:"compile.compile",prev:framePtr,filename:"nclearseam.nim",line:0};
+  framePtr = F;
+    F.line = 426;
+    result_11299452 = nimCopy(null, [], NTI11299467);
+    F.line = 427;
+    var matched_nodes_11299468 = node_11299390.querySelectorAll(toJSStr(cfg_11299389.selector));
+    if (((matched_nodes_11299468 != null ? matched_nodes_11299468.length : 0) == 0)) {
+    F.line = 429;
+    var selector_11299474 = nimCopy(null, cfg_11299389.selector, NTI112);
+    F.line = 430;
+    var fmt_res_11299475 = [mnewString(0)];
+    F.line = 430;
+    if (fmt_res_11299475[0] != null) { fmt_res_11299475[0] = (fmt_res_11299475[0]).concat(makeNimstrLit("Cannot match selector \'")); } else { fmt_res_11299475[0] = makeNimstrLit("Cannot match selector \'"); };
+    F.line = 430;
+    format_value_10125080(fmt_res_11299475, 0, selector_11299474, []);
+    F.line = 430;
+    if (fmt_res_11299475[0] != null) { fmt_res_11299475[0] = (fmt_res_11299475[0]).concat(makeNimstrLit("\'")); } else { fmt_res_11299475[0] = makeNimstrLit("\'"); };
+    F.line = 430;
+    raiseException({message: nimCopy(null, fmt_res_11299475[0], NTI112), parent: null, m_type: NTI10216017, name: null, trace: null, up: null}, "CompileSelectorError");
+    }
+    
+    L1: do {
+      F.line = 432;
+      var matched_node_11305008 = null;
+      F.line = 184;
+      var i_11365939 = 0;
+      F.line = 185;
+      var l_11365940 = (matched_nodes_11299468 != null ? matched_nodes_11299468.length : 0);
+      L2: do {
+        F.line = 186;
+          L3: while (true) {
+          if (!(i_11365939 < l_11365940)) break L3;
+            F.line = 432;
+            matched_node_11305008 = matched_nodes_11299468[chckIndx(i_11365939, 0, (matched_nodes_11299468 != null ? matched_nodes_11299468.length : 0)+0-1)-0];
+            F.line = 433;
+            var match_11305016 = {refresh: nimCopy(null, cfg_11299389.refresh, NTI11296709), init: nimCopy(null, cfg_11299389.init, NTI10216259), iter: cfg_11299389.iter, node: matched_node_11305008, selectorKind: 0, serial: 0, value: null, convert: {kind: 0, simple: null, serial: null, compare: null}, mount_source: null, mount: null, matches: null, inited: false, iterate: {kind: 0, simple: null, serial: null}, mount_template: null, match_templates: null, items: null, anchor: null};
+            F.line = 438;
+            match_11305016.node = matched_node_11305008;
+            if (match_11305016.iter) {
+            var Tmp4 = match_11305016;
+            if (ConstSet66[Tmp4.iter]===undefined) { raiseFieldError(makeNimstrLit("\'iterate\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
+            F.line = 440;
+            var Tmp5 = cfg_11299389;
+            if (ConstSet67[Tmp5.iter]===undefined) { raiseFieldError(makeNimstrLit("\'iterate\' is not accessible using discriminant \'iter\' of type \'MatchConfig\'")); }
+            nimCopy(Tmp4.iterate, Tmp5.iterate, NTI11296773);
+            var Tmp6 = match_11305016;
+            if (ConstSet68[Tmp6.iter]===undefined) { raiseFieldError(makeNimstrLit("\'anchor\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
+            F.line = 441;
+            Tmp6.anchor = matched_node_11305008.ownerDocument.createComment(matched_node_11305008.outerHTML);
+            var Tmp7 = match_11305016;
+            if (ConstSet69[Tmp7.iter]===undefined) { raiseFieldError(makeNimstrLit("\'mount_template\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
+            F.line = 442;
+            Tmp7.mount_template = cfg_11299389.mount;
+            var Tmp8 = match_11305016;
+            if (ConstSet70[Tmp8.iter]===undefined) { raiseFieldError(makeNimstrLit("\'match_templates\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
+            F.line = 443;
+            Tmp8.match_templates = nimCopy(null, cfg_11299389.cmatches, NTI11296715);
+            var Tmp9 = match_11305016;
+            if (ConstSet71[Tmp9.iter]===undefined) { raiseFieldError(makeNimstrLit("\'items\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
+            F.line = 444;
+            Tmp9.items = nimCopy(null, [], NTI11305042);
+            F.line = 445;
+            var Tmp10 = match_11305016;
+            if (ConstSet72[Tmp10.iter]===undefined) { raiseFieldError(makeNimstrLit("\'anchor\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
+            matched_node_11305008.parentNode.replaceChild(Tmp10.anchor, matched_node_11305008);
+            }
+            else {
+              var Tmp11 = match_11305016;
+              if (ConstSet73[Tmp11.iter]===undefined) { raiseFieldError(makeNimstrLit("\'selectorKind\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
+              F.line = 447;
+              var Tmp12 = cfg_11299389;
+              if (ConstSet74[Tmp12.iter]===undefined) { raiseFieldError(makeNimstrLit("\'convert\' is not accessible using discriminant \'iter\' of type \'MatchConfig\'")); }
+              Tmp11.selectorKind = Tmp12.convert.kind;
+              F.line = 448;
+              var Tmp13 = match_11305016;
+              if (ConstSet75[Tmp13.iter]===undefined) { raiseFieldError(makeNimstrLit("\'selectorKind\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
+              switch (Tmp13.selectorKind) {
+              case 1:
+                var Tmp14 = match_11305016;
+                if (ConstSet76[Tmp14.selectorKind]===undefined) { raiseFieldError(makeNimstrLit("\'serial\' is not accessible using discriminant \'selectorKind\' of type \'CompMatch\'")); }
+                F.line = 450;
+                Tmp14.serial = 0;
+                break;
+              default: 
+                break;
+              }
+              var Tmp15 = match_11305016;
+              if (ConstSet77[Tmp15.iter]===undefined) { raiseFieldError(makeNimstrLit("\'convert\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
+              F.line = 453;
+              var Tmp16 = cfg_11299389;
+              if (ConstSet78[Tmp16.iter]===undefined) { raiseFieldError(makeNimstrLit("\'convert\' is not accessible using discriminant \'iter\' of type \'MatchConfig\'")); }
+              nimCopy(Tmp15.convert, Tmp16.convert, NTI11296741);
+              var Tmp17 = match_11305016;
+              if (ConstSet79[Tmp17.iter]===undefined) { raiseFieldError(makeNimstrLit("\'matches\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
+              F.line = 454;
+              Tmp17.matches = nimCopy(null, [], NTI11305069);
+              var Tmp18 = match_11305016;
+              if (ConstSet80[Tmp18.iter]===undefined) { raiseFieldError(makeNimstrLit("\'inited\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
+              F.line = 455;
+              Tmp18.inited = false;
+              var Tmp19 = match_11305016;
+              if (ConstSet81[Tmp19.iter]===undefined) { raiseFieldError(makeNimstrLit("\'mount\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
+              F.line = 456;
+              Tmp19.mount = null;
+              if (!((cfg_11299389.mount == null))) {
+              var Tmp20 = match_11305016;
+              if (ConstSet82[Tmp20.iter]===undefined) { raiseFieldError(makeNimstrLit("\'mount_source\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
+              F.line = 458;
+              Tmp20.mount_source = cfg_11299389.mount;
+              }
+              else {
+                L21: do {
+                  F.line = 460;
+                  var submatch_11315214 = null;
+                  F.line = 184;
+                  var i_11365936 = 0;
+                  F.line = 185;
+                  var l_11365937 = (cfg_11299389.cmatches != null ? cfg_11299389.cmatches.length : 0);
+                  L22: do {
+                    F.line = 186;
+                      L23: while (true) {
+                      if (!(i_11365936 < l_11365937)) break L23;
+                        F.line = 460;
+                        submatch_11315214 = cfg_11299389.cmatches[chckIndx(i_11365936, 0, (cfg_11299389.cmatches != null ? cfg_11299389.cmatches.length : 0)+0-1)-0];
+                        F.line = 461;
+                        var Tmp24 = match_11305016;
+                        if (ConstSet83[Tmp24.iter]===undefined) { raiseFieldError(makeNimstrLit("\'matches\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
+                        add_11315218(Tmp24, "matches", submatch_11315214.compile(matched_node_11305008));
+                        F.line = 188;
+                        i_11365936 = addInt(i_11365936, 1);
+                        if (!(((cfg_11299389.cmatches != null ? cfg_11299389.cmatches.length : 0) == l_11365937))) {
+                        F.line = 189;
+                        failed_assert_impl_102680(makeNimstrLit("/var/home/mildred/.choosenim/toolchains/nim-1.2.0/lib/system/iterators.nim(189, 11) `len(a) == L` the length of the seq changed while iterating over it"));
+                        }
+                        
+                      }
+                  } while(false);
+                } while(false);
+              }
+              
+            }
+            
+            F.line = 462;
+            if (result_11299452 != null) { result_11299452.push(match_11305016); } else { result_11299452 = [match_11305016]; };
+            F.line = 188;
+            i_11365939 = addInt(i_11365939, 1);
+            if (!(((matched_nodes_11299468 != null ? matched_nodes_11299468.length : 0) == l_11365940))) {
+            F.line = 189;
+            failed_assert_impl_102680(makeNimstrLit("/var/home/mildred/.choosenim/toolchains/nim-1.2.0/lib/system/iterators.nim(189, 11) `len(a) == L` the length of the seq changed while iterating over it"));
+            }
+            
+          }
+      } while(false);
+    } while(false);
+  framePtr = F.prev;
+
+  return result_11299452;
 
 }
 function create_iter_item_11325839(match_11325844, parent_node_11325845) {
@@ -2915,11 +3804,11 @@ function create_iter_item_11325839(match_11325844, parent_node_11325845) {
     F.line = 488;
     var node_11325853 = null;
       var Tmp1 = match_11325844;
-      if (ConstSet37[Tmp1.iter]===undefined) { raiseFieldError(makeNimstrLit("\'mount_template\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
+      if (ConstSet94[Tmp1.iter]===undefined) { raiseFieldError(makeNimstrLit("\'mount_template\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
     if (!((Tmp1.mount_template == null))) {
     F.line = 490;
     var Tmp2 = match_11325844;
-    if (ConstSet38[Tmp2.iter]===undefined) { raiseFieldError(makeNimstrLit("\'mount_template\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
+    if (ConstSet95[Tmp2.iter]===undefined) { raiseFieldError(makeNimstrLit("\'mount_template\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
     comp_11325852 = Tmp2.mount_template.clone();
     F.line = 491;
     node_11325853 = comp_11325852.node();
@@ -2931,42 +3820,42 @@ function create_iter_item_11325839(match_11325844, parent_node_11325845) {
     
     F.line = 494;
     var Tmp3 = match_11325844;
-    if (ConstSet39[Tmp3.iter]===undefined) { raiseFieldError(makeNimstrLit("\'match_templates\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
+    if (ConstSet96[Tmp3.iter]===undefined) { raiseFieldError(makeNimstrLit("\'match_templates\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
     result_11325847 = {serial: 0, mount: comp_11325852, node: node_11325853, matches: compile_11325897(Tmp3.match_templates, node_11325853)};
     F.line = 499;
     var Tmp4 = match_11325844;
-    if (ConstSet40[Tmp4.iter]===undefined) { raiseFieldError(makeNimstrLit("\'anchor\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
+    if (ConstSet97[Tmp4.iter]===undefined) { raiseFieldError(makeNimstrLit("\'anchor\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
     parent_node_11325845.insertBefore(node_11325853, Tmp4.anchor);
   framePtr = F.prev;
 
   return result_11325847;
 
 }
-function detach_11355474(iter_item_11355478, parent_node_11355479) {
+function detach_11345474(iter_item_11345478, parent_node_11345479) {
   var F={procname:"detach.detach",prev:framePtr,filename:"nclearseam.nim",line:0};
   framePtr = F;
     F.line = 503;
-    parent_node_11355479.removeChild(iter_item_11355478.node);
+    parent_node_11345479.removeChild(iter_item_11345478.node);
   framePtr = F.prev;
 
   
 }
-function pop_11355224(s_11355229, s_11355229_Idx) {
-  var result_11355230 = null;
+function pop_11345224(s_11345229, s_11345229_Idx) {
+  var result_11345230 = null;
 
   var F={procname:"pop.pop",prev:framePtr,filename:"system.nim",line:0};
   framePtr = F;
     F.line = 1779;
-    var l_11355236 = subInt((s_11355229[s_11355229_Idx] != null ? s_11355229[s_11355229_Idx].length : 0), 1);
+    var l_11345236 = subInt((s_11345229[s_11345229_Idx] != null ? s_11345229[s_11345229_Idx].length : 0), 1);
     F.line = 1784;
-    result_11355230 = s_11355229[s_11355229_Idx][chckIndx(l_11355236, 0, (s_11355229[s_11355229_Idx] != null ? s_11355229[s_11355229_Idx].length : 0)+0-1)-0];
+    result_11345230 = s_11345229[s_11345229_Idx][chckIndx(l_11345236, 0, (s_11345229[s_11345229_Idx] != null ? s_11345229[s_11345229_Idx].length : 0)+0-1)-0];
     F.line = 1785;
-    if (s_11355229[s_11355229_Idx] === null) s_11355229[s_11355229_Idx] = [];
-               if (s_11355229[s_11355229_Idx].length < chckRange(l_11355236, 0, 2147483647)) { for (var i=s_11355229[s_11355229_Idx].length;i<chckRange(l_11355236, 0, 2147483647);++i) s_11355229[s_11355229_Idx].push(null); }
-               else { s_11355229[s_11355229_Idx].length = chckRange(l_11355236, 0, 2147483647); };
+    if (s_11345229[s_11345229_Idx] === null) s_11345229[s_11345229_Idx] = [];
+               if (s_11345229[s_11345229_Idx].length < chckRange(l_11345236, 0, 2147483647)) { for (var i=s_11345229[s_11345229_Idx].length;i<chckRange(l_11345236, 0, 2147483647);++i) s_11345229[s_11345229_Idx].push(null); }
+               else { s_11345229[s_11345229_Idx].length = chckRange(l_11345236, 0, 2147483647); };
   framePtr = F.prev;
 
-  return result_11355230;
+  return result_11345230;
 
 }
 function update_11325737(match_11325742, val_11325743, refresh_11325744) {
@@ -2975,7 +3864,7 @@ function update_11325737(match_11325742, val_11325743, refresh_11325744) {
       var Tmp3;
       var Tmp4;
       function HEX3Aanonymous_11325761(s_11325764, s_11325764_Idx) {
-        var result_11325768 = {Field0: false, Field1: 0};
+        var result_11325768 = {Field0: false, Field1: null};
 
         var F={procname:"update.:anonymous",prev:framePtr,filename:"nclearseam.nim",line:0};
         framePtr = F;
@@ -3034,20 +3923,20 @@ function update_11325737(match_11325742, val_11325743, refresh_11325744) {
     var i_11325746 = 0;
     F.line = 509;
     var Tmp1 = match_11325742;
-    if (ConstSet27[Tmp1.iter]===undefined) { raiseFieldError(makeNimstrLit("\'anchor\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
+    if (ConstSet84[Tmp1.iter]===undefined) { raiseFieldError(makeNimstrLit("\'anchor\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
     var parent_node_11325749 = Tmp1.anchor.parentNode;
     F.line = 510;
     var itf_11325754 = null;
     F.line = 511;
     var Tmp2 = match_11325742;
-    if (ConstSet28[Tmp2.iter]===undefined) { raiseFieldError(makeNimstrLit("\'iterate\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
+    if (ConstSet85[Tmp2.iter]===undefined) { raiseFieldError(makeNimstrLit("\'iterate\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
     switch (Tmp2.iterate.kind) {
     case 0:
       F.line = 513;
       var Tmp3 = match_11325742;
-      if (ConstSet30[Tmp3.iter]===undefined) { raiseFieldError(makeNimstrLit("\'iterate\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
+      if (ConstSet87[Tmp3.iter]===undefined) { raiseFieldError(makeNimstrLit("\'iterate\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
       var Tmp4 = Tmp3.iterate;
-      if (ConstSet29[Tmp4.kind]===undefined) { raiseFieldError(makeNimstrLit("\'simple\' is not accessible using discriminant \'kind\' of type \'Iterator\'")); }
+      if (ConstSet86[Tmp4.kind]===undefined) { raiseFieldError(makeNimstrLit("\'simple\' is not accessible using discriminant \'kind\' of type \'Iterator\'")); }
       var itf_simple_11325760 = Tmp4.simple(val_11325743);
       F.line = 514;
       itf_11325754 = HEX3Aanonymous_11325761;
@@ -3055,9 +3944,9 @@ function update_11325737(match_11325742, val_11325743, refresh_11325744) {
     case 1:
       F.line = 517;
       var Tmp5 = match_11325742;
-      if (ConstSet32[Tmp5.iter]===undefined) { raiseFieldError(makeNimstrLit("\'iterate\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
+      if (ConstSet89[Tmp5.iter]===undefined) { raiseFieldError(makeNimstrLit("\'iterate\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
       var Tmp6 = Tmp5.iterate;
-      if (ConstSet31[Tmp6.kind]===undefined) { raiseFieldError(makeNimstrLit("\'serial\' is not accessible using discriminant \'kind\' of type \'Iterator\'")); }
+      if (ConstSet88[Tmp6.kind]===undefined) { raiseFieldError(makeNimstrLit("\'serial\' is not accessible using discriminant \'kind\' of type \'Iterator\'")); }
       itf_11325754 = Tmp6.serial(val_11325743);
       break;
     }
@@ -3067,10 +3956,10 @@ function update_11325737(match_11325742, val_11325743, refresh_11325744) {
         if (!true) break L8;
           F.line = 520;
             var Tmp10 = match_11325742;
-            if (ConstSet33[Tmp10.iter]===undefined) { raiseFieldError(makeNimstrLit("\'items\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
+            if (ConstSet90[Tmp10.iter]===undefined) { raiseFieldError(makeNimstrLit("\'items\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
           if ((i_11325746 < ((Tmp11 = Tmp10.items, Tmp11) != null ? Tmp11.length : 0))) {
           var Tmp12 = match_11325742;
-          if (ConstSet34[Tmp12.iter]===undefined) { raiseFieldError(makeNimstrLit("\'items\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
+          if (ConstSet91[Tmp12.iter]===undefined) { raiseFieldError(makeNimstrLit("\'items\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
           Tmp9 = (Tmp13 = Tmp12.items, Tmp13)[chckIndx(i_11325746, 0, (Tmp13 != null ? Tmp13.length : 0)+0-1)-0].serial;
           }
           else {
@@ -3094,11 +3983,11 @@ function update_11325737(match_11325742, val_11325743, refresh_11325744) {
           F.line = 527;
           var inited_11325823 = false;
             var Tmp14 = match_11325742;
-            if (ConstSet35[Tmp14.iter]===undefined) { raiseFieldError(makeNimstrLit("\'items\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
+            if (ConstSet92[Tmp14.iter]===undefined) { raiseFieldError(makeNimstrLit("\'items\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
           if ((i_11325746 < ((Tmp15 = Tmp14.items, Tmp15) != null ? Tmp15.length : 0))) {
           F.line = 531;
           var Tmp16 = match_11325742;
-          if (ConstSet36[Tmp16.iter]===undefined) { raiseFieldError(makeNimstrLit("\'items\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
+          if (ConstSet93[Tmp16.iter]===undefined) { raiseFieldError(makeNimstrLit("\'items\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
           iter_item_11325822 = (Tmp17 = Tmp16.items, Tmp17)[chckIndx(i_11325746, 0, (Tmp17 != null ? Tmp17.length : 0)+0-1)-0];
           F.line = 532;
           inited_11325823 = true;
@@ -3110,7 +3999,7 @@ function update_11325737(match_11325742, val_11325743, refresh_11325744) {
             iter_item_11325822 = create_iter_item_11325839(match_11325742, parent_node_11325749);
             F.line = 536;
             var Tmp18 = match_11325742;
-            if (ConstSet41[Tmp18.iter]===undefined) { raiseFieldError(makeNimstrLit("\'items\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
+            if (ConstSet98[Tmp18.iter]===undefined) { raiseFieldError(makeNimstrLit("\'items\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
             if ((Tmp19 = Tmp18.items, Tmp19) != null) { Tmp19.push(iter_item_11325822); } else { Tmp19 = [iter_item_11325822]; };
             F.line = 537;
             inited_11325823 = false;
@@ -3124,22 +4013,22 @@ function update_11325737(match_11325742, val_11325743, refresh_11325744) {
           if (!(inited_11325823)) {
           L20: do {
             F.line = 543;
-            var init_proc_11335214 = null;
+            var init_proc_11326000 = null;
             F.line = 184;
-            var i_11425891 = 0;
+            var i_11365945 = 0;
             F.line = 185;
-            var l_11425892 = (match_11325742.init != null ? match_11325742.init.length : 0);
+            var l_11365946 = (match_11325742.init != null ? match_11325742.init.length : 0);
             L21: do {
               F.line = 186;
                 L22: while (true) {
-                if (!(i_11425891 < l_11425892)) break L22;
+                if (!(i_11365945 < l_11365946)) break L22;
                   F.line = 543;
-                  init_proc_11335214 = match_11325742.init[chckIndx(i_11425891, 0, (match_11325742.init != null ? match_11325742.init.length : 0)+0-1)-0];
+                  init_proc_11326000 = match_11325742.init[chckIndx(i_11365945, 0, (match_11325742.init != null ? match_11325742.init.length : 0)+0-1)-0];
                   F.line = 544;
-                  init_proc_11335214(iter_item_11325822.node);
+                  init_proc_11326000(iter_item_11325822.node);
                   F.line = 188;
-                  i_11425891 = addInt(i_11425891, 1);
-                  if (!(((match_11325742.init != null ? match_11325742.init.length : 0) == l_11425892))) {
+                  i_11365945 = addInt(i_11365945, 1);
+                  if (!(((match_11325742.init != null ? match_11325742.init.length : 0) == l_11365946))) {
                   F.line = 189;
                   failed_assert_impl_102680(makeNimstrLit("/var/home/mildred/.choosenim/toolchains/nim-1.2.0/lib/system/iterators.nim(189, 11) `len(a) == L` the length of the seq changed while iterating over it"));
                   }
@@ -3156,22 +4045,22 @@ function update_11325737(match_11325742, val_11325743, refresh_11325744) {
           
           L23: do {
             F.line = 551;
-            var submatch_11345214 = null;
+            var submatch_11335214 = null;
             F.line = 184;
-            var i_11425896 = 0;
+            var i_11365950 = 0;
             F.line = 185;
-            var l_11425897 = (iter_item_11325822.matches != null ? iter_item_11325822.matches.length : 0);
+            var l_11365951 = (iter_item_11325822.matches != null ? iter_item_11325822.matches.length : 0);
             L24: do {
               F.line = 186;
                 L25: while (true) {
-                if (!(i_11425896 < l_11425897)) break L25;
+                if (!(i_11365950 < l_11365951)) break L25;
                   F.line = 551;
-                  submatch_11345214 = iter_item_11325822.matches[chckIndx(i_11425896, 0, (iter_item_11325822.matches != null ? iter_item_11325822.matches.length : 0)+0-1)-0];
+                  submatch_11335214 = iter_item_11325822.matches[chckIndx(i_11365950, 0, (iter_item_11325822.matches != null ? iter_item_11325822.matches.length : 0)+0-1)-0];
                   F.line = 552;
-                  submatch_11345214.update(item_11325817, refresh_11325744);
+                  submatch_11335214.update(item_11325817, refresh_11325744);
                   F.line = 188;
-                  i_11425896 = addInt(i_11425896, 1);
-                  if (!(((iter_item_11325822.matches != null ? iter_item_11325822.matches.length : 0) == l_11425897))) {
+                  i_11365950 = addInt(i_11365950, 1);
+                  if (!(((iter_item_11325822.matches != null ? iter_item_11325822.matches.length : 0) == l_11365951))) {
                   F.line = 189;
                   failed_assert_impl_102680(makeNimstrLit("/var/home/mildred/.choosenim/toolchains/nim-1.2.0/lib/system/iterators.nim(189, 11) `len(a) == L` the length of the seq changed while iterating over it"));
                   }
@@ -3181,22 +4070,22 @@ function update_11325737(match_11325742, val_11325743, refresh_11325744) {
           } while(false);
           L26: do {
             F.line = 555;
-            var refresh_proc_11355214 = null;
+            var refresh_proc_11345214 = null;
             F.line = 184;
-            var i_11425901 = 0;
+            var i_11365955 = 0;
             F.line = 185;
-            var l_11425902 = (match_11325742.refresh != null ? match_11325742.refresh.length : 0);
+            var l_11365956 = (match_11325742.refresh != null ? match_11325742.refresh.length : 0);
             L27: do {
               F.line = 186;
                 L28: while (true) {
-                if (!(i_11425901 < l_11425902)) break L28;
+                if (!(i_11365955 < l_11365956)) break L28;
                   F.line = 555;
-                  refresh_proc_11355214 = match_11325742.refresh[chckIndx(i_11425901, 0, (match_11325742.refresh != null ? match_11325742.refresh.length : 0)+0-1)-0];
+                  refresh_proc_11345214 = match_11325742.refresh[chckIndx(i_11365955, 0, (match_11325742.refresh != null ? match_11325742.refresh.length : 0)+0-1)-0];
                   F.line = 556;
-                  refresh_proc_11355214(iter_item_11325822.node, item_11325817);
+                  refresh_proc_11345214(iter_item_11325822.node, item_11325817);
                   F.line = 188;
-                  i_11425901 = addInt(i_11425901, 1);
-                  if (!(((match_11325742.refresh != null ? match_11325742.refresh.length : 0) == l_11425902))) {
+                  i_11365955 = addInt(i_11365955, 1);
+                  if (!(((match_11325742.refresh != null ? match_11325742.refresh.length : 0) == l_11365956))) {
                   F.line = 189;
                   failed_assert_impl_102680(makeNimstrLit("/var/home/mildred/.choosenim/toolchains/nim-1.2.0/lib/system/iterators.nim(189, 11) `len(a) == L` the length of the seq changed while iterating over it"));
                   }
@@ -3212,115 +4101,115 @@ function update_11325737(match_11325742, val_11325743, refresh_11325744) {
       F.line = 561;
         L30: while (true) {
           var Tmp31 = match_11325742;
-          if (ConstSet42[Tmp31.iter]===undefined) { raiseFieldError(makeNimstrLit("\'items\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
+          if (ConstSet99[Tmp31.iter]===undefined) { raiseFieldError(makeNimstrLit("\'items\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
         if (!(i_11325746 < ((Tmp32 = Tmp31.items, Tmp32) != null ? Tmp32.length : 0))) break L30;
           F.line = 562;
           var Tmp33 = match_11325742;
-          if (ConstSet43[Tmp33.iter]===undefined) { raiseFieldError(makeNimstrLit("\'items\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
-          detach_11355474(pop_11355224(Tmp33, "items"), parent_node_11325749);
+          if (ConstSet100[Tmp33.iter]===undefined) { raiseFieldError(makeNimstrLit("\'items\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
+          detach_11345474(pop_11345224(Tmp33, "items"), parent_node_11325749);
         }
     } while(false);
     }
     else {
       F.line = 564;
-      var changed_11355493 = refresh_11325744;
+      var changed_11345493 = refresh_11325744;
       F.line = 565;
-      var node_11355494 = match_11325742.node;
+      var node_11345494 = match_11325742.node;
       F.line = 566;
-      var converted_val_11355495 = 0;
+      var converted_val_11345495 = null;
       F.line = 568;
       var Tmp34 = match_11325742;
-      if (ConstSet44[Tmp34.iter]===undefined) { raiseFieldError(makeNimstrLit("\'convert\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
+      if (ConstSet101[Tmp34.iter]===undefined) { raiseFieldError(makeNimstrLit("\'convert\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
       switch (Tmp34.convert.kind) {
       case 0:
         F.line = 570;
         var Tmp35 = match_11325742;
-        if (ConstSet46[Tmp35.iter]===undefined) { raiseFieldError(makeNimstrLit("\'convert\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
+        if (ConstSet103[Tmp35.iter]===undefined) { raiseFieldError(makeNimstrLit("\'convert\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
         var Tmp36 = Tmp35.convert;
-        if (ConstSet45[Tmp36.kind]===undefined) { raiseFieldError(makeNimstrLit("\'simple\' is not accessible using discriminant \'kind\' of type \'TypeSelector\'")); }
-        converted_val_11355495 = Tmp36.simple(val_11325743);
+        if (ConstSet102[Tmp36.kind]===undefined) { raiseFieldError(makeNimstrLit("\'simple\' is not accessible using discriminant \'kind\' of type \'TypeSelector\'")); }
+        converted_val_11345495 = Tmp36.simple(val_11325743);
         F.line = 571;
-        changed_11355493 = true;
+        changed_11345493 = true;
         break;
       case 1:
         F.line = 573;
         var Tmp37 = match_11325742;
-        if (ConstSet47[Tmp37.selectorKind]===undefined) { raiseFieldError(makeNimstrLit("\'serial\' is not accessible using discriminant \'selectorKind\' of type \'CompMatch\'")); }
-        var serial_11355503 = [Tmp37.serial];
+        if (ConstSet104[Tmp37.selectorKind]===undefined) { raiseFieldError(makeNimstrLit("\'serial\' is not accessible using discriminant \'selectorKind\' of type \'CompMatch\'")); }
+        var serial_11345503 = [Tmp37.serial];
         F.line = 574;
         var Tmp38 = match_11325742;
-        if (ConstSet49[Tmp38.iter]===undefined) { raiseFieldError(makeNimstrLit("\'convert\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
+        if (ConstSet106[Tmp38.iter]===undefined) { raiseFieldError(makeNimstrLit("\'convert\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
         var Tmp39 = Tmp38.convert;
-        if (ConstSet48[Tmp39.kind]===undefined) { raiseFieldError(makeNimstrLit("\'serial\' is not accessible using discriminant \'kind\' of type \'TypeSelector\'")); }
-        converted_val_11355495 = Tmp39.serial(val_11325743, serial_11355503, 0);
+        if (ConstSet105[Tmp39.kind]===undefined) { raiseFieldError(makeNimstrLit("\'serial\' is not accessible using discriminant \'kind\' of type \'TypeSelector\'")); }
+        converted_val_11345495 = Tmp39.serial(val_11325743, serial_11345503, 0);
           var Tmp40 = match_11325742;
-          if (ConstSet50[Tmp40.selectorKind]===undefined) { raiseFieldError(makeNimstrLit("\'serial\' is not accessible using discriminant \'selectorKind\' of type \'CompMatch\'")); }
-        if (!((serial_11355503[0] == Tmp40.serial))) {
+          if (ConstSet107[Tmp40.selectorKind]===undefined) { raiseFieldError(makeNimstrLit("\'serial\' is not accessible using discriminant \'selectorKind\' of type \'CompMatch\'")); }
+        if (!((serial_11345503[0] == Tmp40.serial))) {
         F.line = 576;
-        changed_11355493 = true;
+        changed_11345493 = true;
         }
         
         break;
       case 2:
         F.line = 578;
         var Tmp41 = match_11325742;
-        if (ConstSet52[Tmp41.iter]===undefined) { raiseFieldError(makeNimstrLit("\'convert\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
+        if (ConstSet109[Tmp41.iter]===undefined) { raiseFieldError(makeNimstrLit("\'convert\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
         var Tmp42 = Tmp41.convert;
-        if (ConstSet51[Tmp42.kind]===undefined) { raiseFieldError(makeNimstrLit("\'compare\' is not accessible using discriminant \'kind\' of type \'TypeSelector\'")); }
+        if (ConstSet108[Tmp42.kind]===undefined) { raiseFieldError(makeNimstrLit("\'compare\' is not accessible using discriminant \'kind\' of type \'TypeSelector\'")); }
         var Tmp43 = match_11325742;
-        if (ConstSet53[Tmp43.selectorKind]===undefined) { raiseFieldError(makeNimstrLit("\'value\' is not accessible using discriminant \'selectorKind\' of type \'CompMatch\'")); }
-        var res_11355515 = Tmp42.compare(val_11325743, Tmp43.value);
+        if (ConstSet110[Tmp43.selectorKind]===undefined) { raiseFieldError(makeNimstrLit("\'value\' is not accessible using discriminant \'selectorKind\' of type \'CompMatch\'")); }
+        var res_11345515 = Tmp42.compare(val_11325743, Tmp43.value);
         F.line = 579;
-        converted_val_11355495 = res_11355515.Field0;
+        converted_val_11345495 = res_11345515.Field0;
         var Tmp44 = match_11325742;
-        if (ConstSet54[Tmp44.selectorKind]===undefined) { raiseFieldError(makeNimstrLit("\'value\' is not accessible using discriminant \'selectorKind\' of type \'CompMatch\'")); }
+        if (ConstSet111[Tmp44.selectorKind]===undefined) { raiseFieldError(makeNimstrLit("\'value\' is not accessible using discriminant \'selectorKind\' of type \'CompMatch\'")); }
         F.line = 580;
-        Tmp44.value = res_11355515.Field0;
-        if (res_11355515.Field1) {
+        Tmp44.value = res_11345515.Field0;
+        if (res_11345515.Field1) {
         F.line = 582;
-        changed_11355493 = true;
+        changed_11345493 = true;
         }
         
         break;
       }
         var Tmp46 = match_11325742;
-        if (ConstSet55[Tmp46.iter]===undefined) { raiseFieldError(makeNimstrLit("\'mount\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
+        if (ConstSet112[Tmp46.iter]===undefined) { raiseFieldError(makeNimstrLit("\'mount\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
         if (!(Tmp46.mount == null)) Tmp45 = false; else {          var Tmp47 = match_11325742;
-          if (ConstSet56[Tmp47.iter]===undefined) { raiseFieldError(makeNimstrLit("\'mount_source\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
+          if (ConstSet113[Tmp47.iter]===undefined) { raiseFieldError(makeNimstrLit("\'mount_source\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
           Tmp45 = !((Tmp47.mount_source == null));        }      if (Tmp45) {
       var Tmp48 = match_11325742;
-      if (ConstSet57[Tmp48.iter]===undefined) { raiseFieldError(makeNimstrLit("\'mount\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
+      if (ConstSet114[Tmp48.iter]===undefined) { raiseFieldError(makeNimstrLit("\'mount\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
       F.line = 586;
       var Tmp49 = match_11325742;
-      if (ConstSet58[Tmp49.iter]===undefined) { raiseFieldError(makeNimstrLit("\'mount_source\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
+      if (ConstSet115[Tmp49.iter]===undefined) { raiseFieldError(makeNimstrLit("\'mount_source\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
       Tmp48.mount = Tmp49.mount_source.clone();
       F.line = 587;
       var Tmp50 = match_11325742;
-      if (ConstSet59[Tmp50.iter]===undefined) { raiseFieldError(makeNimstrLit("\'mount\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
-      node_11355494.parentNode.replaceChild(Tmp50.mount.node(), node_11355494);
+      if (ConstSet116[Tmp50.iter]===undefined) { raiseFieldError(makeNimstrLit("\'mount\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
+      node_11345494.parentNode.replaceChild(Tmp50.mount.node(), node_11345494);
       }
       
         var Tmp51 = match_11325742;
-        if (ConstSet60[Tmp51.iter]===undefined) { raiseFieldError(makeNimstrLit("\'inited\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
+        if (ConstSet117[Tmp51.iter]===undefined) { raiseFieldError(makeNimstrLit("\'inited\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
       if (!(Tmp51.inited)) {
       L52: do {
         F.line = 591;
-        var init_proc_11355552 = null;
+        var init_proc_11345552 = null;
         F.line = 184;
-        var i_11425906 = 0;
+        var i_11365960 = 0;
         F.line = 185;
-        var l_11425907 = (match_11325742.init != null ? match_11325742.init.length : 0);
+        var l_11365961 = (match_11325742.init != null ? match_11325742.init.length : 0);
         L53: do {
           F.line = 186;
             L54: while (true) {
-            if (!(i_11425906 < l_11425907)) break L54;
+            if (!(i_11365960 < l_11365961)) break L54;
               F.line = 591;
-              init_proc_11355552 = match_11325742.init[chckIndx(i_11425906, 0, (match_11325742.init != null ? match_11325742.init.length : 0)+0-1)-0];
+              init_proc_11345552 = match_11325742.init[chckIndx(i_11365960, 0, (match_11325742.init != null ? match_11325742.init.length : 0)+0-1)-0];
               F.line = 592;
-              init_proc_11355552(node_11355494);
+              init_proc_11345552(node_11345494);
               F.line = 188;
-              i_11425906 = addInt(i_11425906, 1);
-              if (!(((match_11325742.init != null ? match_11325742.init.length : 0) == l_11425907))) {
+              i_11365960 = addInt(i_11365960, 1);
+              if (!(((match_11325742.init != null ? match_11325742.init.length : 0) == l_11365961))) {
               F.line = 189;
               failed_assert_impl_102680(makeNimstrLit("/var/home/mildred/.choosenim/toolchains/nim-1.2.0/lib/system/iterators.nim(189, 11) `len(a) == L` the length of the seq changed while iterating over it"));
               }
@@ -3329,51 +4218,51 @@ function update_11325737(match_11325742, val_11325743, refresh_11325744) {
         } while(false);
       } while(false);
       var Tmp55 = match_11325742;
-      if (ConstSet61[Tmp55.iter]===undefined) { raiseFieldError(makeNimstrLit("\'inited\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
+      if (ConstSet118[Tmp55.iter]===undefined) { raiseFieldError(makeNimstrLit("\'inited\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
       F.line = 593;
       Tmp55.inited = true;
       F.line = 594;
-      changed_11355493 = true;
+      changed_11345493 = true;
       }
       
-        if (!changed_11355493) Tmp56 = false; else {          var Tmp57 = match_11325742;
-          if (ConstSet62[Tmp57.iter]===undefined) { raiseFieldError(makeNimstrLit("\'mount\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
+        if (!changed_11345493) Tmp56 = false; else {          var Tmp57 = match_11325742;
+          if (ConstSet119[Tmp57.iter]===undefined) { raiseFieldError(makeNimstrLit("\'mount\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
           Tmp56 = !((Tmp57.mount == null));        }      if (Tmp56) {
       F.line = 598;
       var Tmp58 = match_11325742;
-      if (ConstSet63[Tmp58.iter]===undefined) { raiseFieldError(makeNimstrLit("\'mount\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
-      node_11355494 = Tmp58.mount.node();
+      if (ConstSet120[Tmp58.iter]===undefined) { raiseFieldError(makeNimstrLit("\'mount\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
+      node_11345494 = Tmp58.mount.node();
       F.line = 599;
       var Tmp59 = match_11325742;
-      if (ConstSet64[Tmp59.iter]===undefined) { raiseFieldError(makeNimstrLit("\'mount\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
-      Tmp59.mount.update(converted_val_11355495, refresh_11325744);
+      if (ConstSet121[Tmp59.iter]===undefined) { raiseFieldError(makeNimstrLit("\'mount\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
+      Tmp59.mount.update(converted_val_11345495, refresh_11325744);
       }
       
-      if (changed_11355493) {
+      if (changed_11345493) {
       L60: do {
         F.line = 603;
-        var submatch_11355577 = null;
+        var submatch_11345577 = null;
         F.line = 182;
-        var colontmp__11425910 = null;
+        var colontmp__11365964 = null;
         F.line = 603;
         var Tmp61 = match_11325742;
-        if (ConstSet65[Tmp61.iter]===undefined) { raiseFieldError(makeNimstrLit("\'matches\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
-        colontmp__11425910 = Tmp61.matches;
+        if (ConstSet122[Tmp61.iter]===undefined) { raiseFieldError(makeNimstrLit("\'matches\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
+        colontmp__11365964 = Tmp61.matches;
         F.line = 184;
-        var i_11425911 = 0;
+        var i_11365965 = 0;
         F.line = 185;
-        var l_11425912 = (colontmp__11425910 != null ? colontmp__11425910.length : 0);
+        var l_11365966 = (colontmp__11365964 != null ? colontmp__11365964.length : 0);
         L62: do {
           F.line = 186;
             L63: while (true) {
-            if (!(i_11425911 < l_11425912)) break L63;
+            if (!(i_11365965 < l_11365966)) break L63;
               F.line = 603;
-              submatch_11355577 = colontmp__11425910[chckIndx(i_11425911, 0, (colontmp__11425910 != null ? colontmp__11425910.length : 0)+0-1)-0];
+              submatch_11345577 = colontmp__11365964[chckIndx(i_11365965, 0, (colontmp__11365964 != null ? colontmp__11365964.length : 0)+0-1)-0];
               F.line = 604;
-              submatch_11355577.update(converted_val_11355495, refresh_11325744);
+              submatch_11345577.update(converted_val_11345495, refresh_11325744);
               F.line = 188;
-              i_11425911 = addInt(i_11425911, 1);
-              if (!(((colontmp__11425910 != null ? colontmp__11425910.length : 0) == l_11425912))) {
+              i_11365965 = addInt(i_11365965, 1);
+              if (!(((colontmp__11365964 != null ? colontmp__11365964.length : 0) == l_11365966))) {
               F.line = 189;
               failed_assert_impl_102680(makeNimstrLit("/var/home/mildred/.choosenim/toolchains/nim-1.2.0/lib/system/iterators.nim(189, 11) `len(a) == L` the length of the seq changed while iterating over it"));
               }
@@ -3383,25 +4272,25 @@ function update_11325737(match_11325742, val_11325743, refresh_11325744) {
       } while(false);
       }
       
-      if (changed_11355493) {
+      if (changed_11345493) {
       L64: do {
         F.line = 608;
-        var refresh_proc_11355584 = null;
+        var refresh_proc_11345584 = null;
         F.line = 184;
-        var i_11425915 = 0;
+        var i_11365969 = 0;
         F.line = 185;
-        var l_11425916 = (match_11325742.refresh != null ? match_11325742.refresh.length : 0);
+        var l_11365970 = (match_11325742.refresh != null ? match_11325742.refresh.length : 0);
         L65: do {
           F.line = 186;
             L66: while (true) {
-            if (!(i_11425915 < l_11425916)) break L66;
+            if (!(i_11365969 < l_11365970)) break L66;
               F.line = 608;
-              refresh_proc_11355584 = match_11325742.refresh[chckIndx(i_11425915, 0, (match_11325742.refresh != null ? match_11325742.refresh.length : 0)+0-1)-0];
+              refresh_proc_11345584 = match_11325742.refresh[chckIndx(i_11365969, 0, (match_11325742.refresh != null ? match_11325742.refresh.length : 0)+0-1)-0];
               F.line = 609;
-              refresh_proc_11355584(node_11355494, converted_val_11355495);
+              refresh_proc_11345584(node_11345494, converted_val_11345495);
               F.line = 188;
-              i_11425915 = addInt(i_11425915, 1);
-              if (!(((match_11325742.refresh != null ? match_11325742.refresh.length : 0) == l_11425916))) {
+              i_11365969 = addInt(i_11365969, 1);
+              if (!(((match_11325742.refresh != null ? match_11325742.refresh.length : 0) == l_11365970))) {
               F.line = 189;
               failed_assert_impl_102680(makeNimstrLit("/var/home/mildred/.choosenim/toolchains/nim-1.2.0/lib/system/iterators.nim(189, 11) `len(a) == L` the length of the seq changed while iterating over it"));
               }
@@ -3439,36 +4328,36 @@ function as_interface_11325717(match_11325722) {
   return result_11325724;
 
 }
-function as_interface_11298036(config_11298041) {
-    function HEX3Aanonymous_11298048(node_11298050) {
-      var result_11298056 = null;
+function as_interface_11299145(config_11299150) {
+    function HEX3Aanonymous_11299157(node_11299159) {
+      var result_11299165 = null;
 
       var F={procname:"asInterface.:anonymous",prev:framePtr,filename:"nclearseam.nim",line:0};
       framePtr = F;
         F.line = 669;
-        result_11298056 = nimCopy(null, [], NTI11298071);
+        result_11299165 = nimCopy(null, [], NTI11299180);
         L1: do {
           F.line = 670;
           var comp_match_11325214 = null;
           F.line = 182;
-          var colontmp__11425863 = null;
+          var colontmp__11365927 = null;
           F.line = 670;
-          colontmp__11425863 = compile_11298275(config_11298041, node_11298050);
+          colontmp__11365927 = compile_11299384(config_11299150, node_11299159);
           F.line = 184;
-          var i_11425865 = 0;
+          var i_11365929 = 0;
           F.line = 185;
-          var l_11425866 = (colontmp__11425863 != null ? colontmp__11425863.length : 0);
+          var l_11365930 = (colontmp__11365927 != null ? colontmp__11365927.length : 0);
           L2: do {
             F.line = 186;
               L3: while (true) {
-              if (!(i_11425865 < l_11425866)) break L3;
+              if (!(i_11365929 < l_11365930)) break L3;
                 F.line = 670;
-                comp_match_11325214 = colontmp__11425863[chckIndx(i_11425865, 0, (colontmp__11425863 != null ? colontmp__11425863.length : 0)+0-1)-0];
+                comp_match_11325214 = colontmp__11365927[chckIndx(i_11365929, 0, (colontmp__11365927 != null ? colontmp__11365927.length : 0)+0-1)-0];
                 F.line = 671;
-                if (result_11298056 != null) { result_11298056.push(as_interface_11325717(comp_match_11325214)); } else { result_11298056 = [as_interface_11325717(comp_match_11325214)]; };
+                if (result_11299165 != null) { result_11299165.push(as_interface_11325717(comp_match_11325214)); } else { result_11299165 = [as_interface_11325717(comp_match_11325214)]; };
                 F.line = 188;
-                i_11425865 = addInt(i_11425865, 1);
-                if (!(((colontmp__11425863 != null ? colontmp__11425863.length : 0) == l_11425866))) {
+                i_11365929 = addInt(i_11365929, 1);
+                if (!(((colontmp__11365927 != null ? colontmp__11365927.length : 0) == l_11365930))) {
                 F.line = 189;
                 failed_assert_impl_102680(makeNimstrLit("/var/home/mildred/.choosenim/toolchains/nim-1.2.0/lib/system/iterators.nim(189, 11) `len(a) == L` the length of the seq changed while iterating over it"));
                 }
@@ -3478,990 +4367,101 @@ function as_interface_11298036(config_11298041) {
         } while(false);
       framePtr = F.prev;
 
-      return result_11298056;
+      return result_11299165;
 
     }
 
-  var result_11298043 = null;
+  var result_11299152 = null;
 
   var F={procname:"asInterface.asInterface",prev:framePtr,filename:"nclearseam.nim",line:0};
   framePtr = F;
     F.line = 667;
-    result_11298043 = {compile: HEX3Aanonymous_11298048};
+    result_11299152 = {compile: HEX3Aanonymous_11299157};
   framePtr = F.prev;
 
-  return result_11298043;
+  return result_11299152;
 
 }
-function match_11297481(c_11297486, selector_11297487, convert_11297489, actions_11297495) {
-  var result_11297497 = null;
+function match_11298590(c_11298595, selector_11298596, convert_11298598, actions_11298604) {
+  var result_11298606 = null;
 
   var F={procname:"match.match",prev:framePtr,filename:"nclearseam.nim",line:0};
   framePtr = F;
     F.line = 250;
-    result_11297497 = {selector: nimCopy(null, selector_11297487, NTI112), refresh: [], init: [], mount: null, iter: false, convert: nimCopy(null, convert_11297489, NTI11295387), cmatches: null, iterate: {kind: 0, simple: null, serial: null}};
+    result_11298606 = {selector: nimCopy(null, selector_11298596, NTI112), refresh: [], init: [], mount: null, iter: false, convert: nimCopy(null, convert_11298598, NTI11296741), cmatches: null, iterate: {kind: 0, simple: null, serial: null}};
     F.line = 257;
-    if (c_11297486.cmatches != null) { c_11297486.cmatches.push(as_interface_11298036(result_11297497)); } else { c_11297486.cmatches = [as_interface_11298036(result_11297497)]; };
-    if (!((actions_11297495 == null))) {
+    if (c_11298595.cmatches != null) { c_11298595.cmatches.push(as_interface_11299145(result_11298606)); } else { c_11298595.cmatches = [as_interface_11299145(result_11298606)]; };
+    if (!((actions_11298604 == null))) {
     F.line = 259;
-    actions_11297495(result_11297497);
+    actions_11298604(result_11298606);
     }
     
   framePtr = F.prev;
 
-  return result_11297497;
+  return result_11298606;
 
 }
-function match_11296139(c_11296144, selector_11296145, convert_11296147, equal_11296151, actions_11296157) {
-    function HEX3Aanonymous_11296167(data_11296169, old_data_11296170) {
-      var result_11296174 = {Field0: 0, Field1: false};
-
-      var F={procname:"match.:anonymous",prev:framePtr,filename:"nclearseam.nim",line:0};
-      framePtr = F;
-        F.line = 296;
-        var data2_11296175 = convert_11296147(data_11296169);
-        F.line = 297;
-        var colontmp__11425858 = data2_11296175;
-        F.line = 297;
-        var colontmp__11425859 = !(equal_11296151(data2_11296175, old_data_11296170));
-        F.line = 297;
-        nimCopy(result_11296174, {Field0: colontmp__11425858, Field1: colontmp__11425859}, NTI11296171);
-      framePtr = F.prev;
-
-      return result_11296174;
-
-    }
-
-  var result_11296159 = null;
-
-  var F={procname:"match.match",prev:framePtr,filename:"nclearseam.nim",line:0};
-  framePtr = F;
-    F.line = 293;
-    var type_selector_11296205 = {kind: 2, compare: HEX3Aanonymous_11296167, simple: null, serial: null};
-    F.line = 298;
-    result_11296159 = match_11297481(c_11296144, selector_11296145, type_selector_11296205, actions_11296157);
-  framePtr = F.prev;
-
-  return result_11296159;
-
-}
-function eql_11295294(s1_11295297, s2_11295298) {
-  var result_11295299 = false;
-
-  var F={procname:"eql.eql",prev:framePtr,filename:"nclearseam.nim",line:0};
-  framePtr = F;
-    F.line = 827;
-    result_11295299 = (s1_11295297 == s2_11295298);
-  framePtr = F.prev;
-
-  return result_11295299;
-
-}
-function set_text_11356005() {
-    function HEX3Aanonymous_11356014(node_11356016, text_11356017) {
-      var F={procname:"setText.:anonymous",prev:framePtr,filename:"util.nim",line:0};
-      framePtr = F;
-        F.line = 49;
-        node_11356016.textContent = toJSStr(cstrToNimstr((text_11356017)+""));
-      framePtr = F.prev;
-
-      
-    }
-
-  var result_11356013 = null;
-
-  var F={procname:"setText.setText",prev:framePtr,filename:"util.nim",line:0};
-  framePtr = F;
-    F.line = 49;
-    result_11356013 = HEX3Aanonymous_11356014;
-  framePtr = F.prev;
-
-  return result_11356013;
-
-}
-function init_11406384(c_11406389, init_11406390) {
-  var F={procname:"init.init",prev:framePtr,filename:"nclearseam.nim",line:0};
-  framePtr = F;
-    F.line = 345;
-    if (c_11406389.init != null) { c_11406389.init.push(init_11406390); } else { c_11406389.init = [init_11406390]; };
-  framePtr = F.prev;
-
-  
-}
-function add_event_listener_11406207(c_11406212, event_11406213, cb_11406214, use_capture_11406215) {
-    event_11406213 = nimCopy(null, event_11406213, NTI112);
-    function HEX3Aanonymous_11406353(node_11406355) {
-      var F={procname:"addEventListener.:anonymous",prev:framePtr,filename:"util.nim",line:0};
-      framePtr = F;
-        F.line = 33;
-        node_11406355.addEventListener(toJSStr(event_11406213), cb_11406214, use_capture_11406215);
-      framePtr = F.prev;
-
-      
-    }
-
-  var F={procname:"addEventListener.addEventListener",prev:framePtr,filename:"util.nim",line:0};
-  framePtr = F;
-    F.line = 32;
-    init_11406384(c_11406212, HEX3Aanonymous_11406353);
-  framePtr = F.prev;
-
-  
-}
-function compile_11359384(cfg_11359389, node_11359390) {
-            var Tmp4;
-            var Tmp5;
-            var Tmp6;
-            var Tmp7;
-            var Tmp8;
-            var Tmp9;
-            var Tmp10;
-              var Tmp11;
-              var Tmp12;
-              var Tmp13;
-                var Tmp14;
-              var Tmp15;
-              var Tmp16;
-              var Tmp17;
-              var Tmp18;
-              var Tmp19;
-              var Tmp20;
-                        var Tmp24;
-
-  var result_11359452 = null;
-
-  var F={procname:"compile.compile",prev:framePtr,filename:"nclearseam.nim",line:0};
-  framePtr = F;
-    F.line = 426;
-    result_11359452 = nimCopy(null, [], NTI11359467);
-    F.line = 427;
-    var matched_nodes_11359468 = node_11359390.querySelectorAll(toJSStr(cfg_11359389.selector));
-    if (((matched_nodes_11359468 != null ? matched_nodes_11359468.length : 0) == 0)) {
-    F.line = 429;
-    var selector_11359474 = nimCopy(null, cfg_11359389.selector, NTI112);
-    F.line = 430;
-    var fmt_res_11359475 = [mnewString(0)];
-    F.line = 430;
-    if (fmt_res_11359475[0] != null) { fmt_res_11359475[0] = (fmt_res_11359475[0]).concat(makeNimstrLit("Cannot match selector \'")); } else { fmt_res_11359475[0] = makeNimstrLit("Cannot match selector \'"); };
-    F.line = 430;
-    format_value_10125080(fmt_res_11359475, 0, selector_11359474, []);
-    F.line = 430;
-    if (fmt_res_11359475[0] != null) { fmt_res_11359475[0] = (fmt_res_11359475[0]).concat(makeNimstrLit("\'")); } else { fmt_res_11359475[0] = makeNimstrLit("\'"); };
-    F.line = 430;
-    raiseException({message: nimCopy(null, fmt_res_11359475[0], NTI112), parent: null, m_type: NTI10216017, name: null, trace: null, up: null}, "CompileSelectorError");
-    }
-    
-    L1: do {
-      F.line = 432;
-      var matched_node_11365008 = null;
-      F.line = 184;
-      var i_11425939 = 0;
-      F.line = 185;
-      var l_11425940 = (matched_nodes_11359468 != null ? matched_nodes_11359468.length : 0);
-      L2: do {
-        F.line = 186;
-          L3: while (true) {
-          if (!(i_11425939 < l_11425940)) break L3;
-            F.line = 432;
-            matched_node_11365008 = matched_nodes_11359468[chckIndx(i_11425939, 0, (matched_nodes_11359468 != null ? matched_nodes_11359468.length : 0)+0-1)-0];
-            F.line = 433;
-            var match_11365016 = {refresh: nimCopy(null, cfg_11359389.refresh, NTI11356709), init: nimCopy(null, cfg_11359389.init, NTI10216259), iter: cfg_11359389.iter, node: matched_node_11365008, selectorKind: 0, serial: 0, value: null, convert: {kind: 0, simple: null, serial: null, compare: null}, mount_source: null, mount: null, matches: null, inited: false, iterate: {kind: 0, simple: null, serial: null}, mount_template: null, match_templates: null, items: null, anchor: null};
-            F.line = 438;
-            match_11365016.node = matched_node_11365008;
-            if (match_11365016.iter) {
-            var Tmp4 = match_11365016;
-            if (ConstSet66[Tmp4.iter]===undefined) { raiseFieldError(makeNimstrLit("\'iterate\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
-            F.line = 440;
-            var Tmp5 = cfg_11359389;
-            if (ConstSet67[Tmp5.iter]===undefined) { raiseFieldError(makeNimstrLit("\'iterate\' is not accessible using discriminant \'iter\' of type \'MatchConfig\'")); }
-            nimCopy(Tmp4.iterate, Tmp5.iterate, NTI11356773);
-            var Tmp6 = match_11365016;
-            if (ConstSet68[Tmp6.iter]===undefined) { raiseFieldError(makeNimstrLit("\'anchor\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
-            F.line = 441;
-            Tmp6.anchor = matched_node_11365008.ownerDocument.createComment(matched_node_11365008.outerHTML);
-            var Tmp7 = match_11365016;
-            if (ConstSet69[Tmp7.iter]===undefined) { raiseFieldError(makeNimstrLit("\'mount_template\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
-            F.line = 442;
-            Tmp7.mount_template = cfg_11359389.mount;
-            var Tmp8 = match_11365016;
-            if (ConstSet70[Tmp8.iter]===undefined) { raiseFieldError(makeNimstrLit("\'match_templates\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
-            F.line = 443;
-            Tmp8.match_templates = nimCopy(null, cfg_11359389.cmatches, NTI11356715);
-            var Tmp9 = match_11365016;
-            if (ConstSet71[Tmp9.iter]===undefined) { raiseFieldError(makeNimstrLit("\'items\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
-            F.line = 444;
-            Tmp9.items = nimCopy(null, [], NTI11365042);
-            F.line = 445;
-            var Tmp10 = match_11365016;
-            if (ConstSet72[Tmp10.iter]===undefined) { raiseFieldError(makeNimstrLit("\'anchor\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
-            matched_node_11365008.parentNode.replaceChild(Tmp10.anchor, matched_node_11365008);
-            }
-            else {
-              var Tmp11 = match_11365016;
-              if (ConstSet73[Tmp11.iter]===undefined) { raiseFieldError(makeNimstrLit("\'selectorKind\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
-              F.line = 447;
-              var Tmp12 = cfg_11359389;
-              if (ConstSet74[Tmp12.iter]===undefined) { raiseFieldError(makeNimstrLit("\'convert\' is not accessible using discriminant \'iter\' of type \'MatchConfig\'")); }
-              Tmp11.selectorKind = Tmp12.convert.kind;
-              F.line = 448;
-              var Tmp13 = match_11365016;
-              if (ConstSet75[Tmp13.iter]===undefined) { raiseFieldError(makeNimstrLit("\'selectorKind\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
-              switch (Tmp13.selectorKind) {
-              case 1:
-                var Tmp14 = match_11365016;
-                if (ConstSet76[Tmp14.selectorKind]===undefined) { raiseFieldError(makeNimstrLit("\'serial\' is not accessible using discriminant \'selectorKind\' of type \'CompMatch\'")); }
-                F.line = 450;
-                Tmp14.serial = 0;
-                break;
-              default: 
-                break;
-              }
-              var Tmp15 = match_11365016;
-              if (ConstSet77[Tmp15.iter]===undefined) { raiseFieldError(makeNimstrLit("\'convert\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
-              F.line = 453;
-              var Tmp16 = cfg_11359389;
-              if (ConstSet78[Tmp16.iter]===undefined) { raiseFieldError(makeNimstrLit("\'convert\' is not accessible using discriminant \'iter\' of type \'MatchConfig\'")); }
-              nimCopy(Tmp15.convert, Tmp16.convert, NTI11356741);
-              var Tmp17 = match_11365016;
-              if (ConstSet79[Tmp17.iter]===undefined) { raiseFieldError(makeNimstrLit("\'matches\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
-              F.line = 454;
-              Tmp17.matches = nimCopy(null, [], NTI11365069);
-              var Tmp18 = match_11365016;
-              if (ConstSet80[Tmp18.iter]===undefined) { raiseFieldError(makeNimstrLit("\'inited\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
-              F.line = 455;
-              Tmp18.inited = false;
-              var Tmp19 = match_11365016;
-              if (ConstSet81[Tmp19.iter]===undefined) { raiseFieldError(makeNimstrLit("\'mount\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
-              F.line = 456;
-              Tmp19.mount = null;
-              if (!((cfg_11359389.mount == null))) {
-              var Tmp20 = match_11365016;
-              if (ConstSet82[Tmp20.iter]===undefined) { raiseFieldError(makeNimstrLit("\'mount_source\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
-              F.line = 458;
-              Tmp20.mount_source = cfg_11359389.mount;
-              }
-              else {
-                L21: do {
-                  F.line = 460;
-                  var submatch_11375214 = null;
-                  F.line = 184;
-                  var i_11425936 = 0;
-                  F.line = 185;
-                  var l_11425937 = (cfg_11359389.cmatches != null ? cfg_11359389.cmatches.length : 0);
-                  L22: do {
-                    F.line = 186;
-                      L23: while (true) {
-                      if (!(i_11425936 < l_11425937)) break L23;
-                        F.line = 460;
-                        submatch_11375214 = cfg_11359389.cmatches[chckIndx(i_11425936, 0, (cfg_11359389.cmatches != null ? cfg_11359389.cmatches.length : 0)+0-1)-0];
-                        F.line = 461;
-                        var Tmp24 = match_11365016;
-                        if (ConstSet83[Tmp24.iter]===undefined) { raiseFieldError(makeNimstrLit("\'matches\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
-                        add_11375218(Tmp24, "matches", submatch_11375214.compile(matched_node_11365008));
-                        F.line = 188;
-                        i_11425936 = addInt(i_11425936, 1);
-                        if (!(((cfg_11359389.cmatches != null ? cfg_11359389.cmatches.length : 0) == l_11425937))) {
-                        F.line = 189;
-                        failed_assert_impl_102680(makeNimstrLit("/var/home/mildred/.choosenim/toolchains/nim-1.2.0/lib/system/iterators.nim(189, 11) `len(a) == L` the length of the seq changed while iterating over it"));
-                        }
-                        
-                      }
-                  } while(false);
-                } while(false);
-              }
-              
-            }
-            
-            F.line = 462;
-            if (result_11359452 != null) { result_11359452.push(match_11365016); } else { result_11359452 = [match_11365016]; };
-            F.line = 188;
-            i_11425939 = addInt(i_11425939, 1);
-            if (!(((matched_nodes_11359468 != null ? matched_nodes_11359468.length : 0) == l_11425940))) {
-            F.line = 189;
-            failed_assert_impl_102680(makeNimstrLit("/var/home/mildred/.choosenim/toolchains/nim-1.2.0/lib/system/iterators.nim(189, 11) `len(a) == L` the length of the seq changed while iterating over it"));
-            }
-            
-          }
-      } while(false);
-    } while(false);
-  framePtr = F.prev;
-
-  return result_11359452;
-
-}
-function create_iter_item_11385839(match_11385844, parent_node_11385845) {
-      var Tmp1;
-    var Tmp2;
-    var Tmp3;
-    var Tmp4;
-
-  var result_11385847 = null;
-
-  var F={procname:"createIterItem.createIterItem",prev:framePtr,filename:"nclearseam.nim",line:0};
-  framePtr = F;
-    F.line = 487;
-    var comp_11385852 = null;
-    F.line = 488;
-    var node_11385853 = null;
-      var Tmp1 = match_11385844;
-      if (ConstSet94[Tmp1.iter]===undefined) { raiseFieldError(makeNimstrLit("\'mount_template\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
-    if (!((Tmp1.mount_template == null))) {
-    F.line = 490;
-    var Tmp2 = match_11385844;
-    if (ConstSet95[Tmp2.iter]===undefined) { raiseFieldError(makeNimstrLit("\'mount_template\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
-    comp_11385852 = Tmp2.mount_template.clone();
-    F.line = 491;
-    node_11385853 = comp_11385852.node();
-    }
-    else {
-      F.line = 493;
-      node_11385853 = match_11385844.node.cloneNode(true);
-    }
-    
-    F.line = 494;
-    var Tmp3 = match_11385844;
-    if (ConstSet96[Tmp3.iter]===undefined) { raiseFieldError(makeNimstrLit("\'match_templates\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
-    result_11385847 = {serial: 0, mount: comp_11385852, node: node_11385853, matches: compile_11385897(Tmp3.match_templates, node_11385853)};
-    F.line = 499;
-    var Tmp4 = match_11385844;
-    if (ConstSet97[Tmp4.iter]===undefined) { raiseFieldError(makeNimstrLit("\'anchor\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
-    parent_node_11385845.insertBefore(node_11385853, Tmp4.anchor);
-  framePtr = F.prev;
-
-  return result_11385847;
-
-}
-function detach_11405474(iter_item_11405478, parent_node_11405479) {
-  var F={procname:"detach.detach",prev:framePtr,filename:"nclearseam.nim",line:0};
-  framePtr = F;
-    F.line = 503;
-    parent_node_11405479.removeChild(iter_item_11405478.node);
-  framePtr = F.prev;
-
-  
-}
-function pop_11405224(s_11405229, s_11405229_Idx) {
-  var result_11405230 = null;
-
-  var F={procname:"pop.pop",prev:framePtr,filename:"system.nim",line:0};
-  framePtr = F;
-    F.line = 1779;
-    var l_11405236 = subInt((s_11405229[s_11405229_Idx] != null ? s_11405229[s_11405229_Idx].length : 0), 1);
-    F.line = 1784;
-    result_11405230 = s_11405229[s_11405229_Idx][chckIndx(l_11405236, 0, (s_11405229[s_11405229_Idx] != null ? s_11405229[s_11405229_Idx].length : 0)+0-1)-0];
-    F.line = 1785;
-    if (s_11405229[s_11405229_Idx] === null) s_11405229[s_11405229_Idx] = [];
-               if (s_11405229[s_11405229_Idx].length < chckRange(l_11405236, 0, 2147483647)) { for (var i=s_11405229[s_11405229_Idx].length;i<chckRange(l_11405236, 0, 2147483647);++i) s_11405229[s_11405229_Idx].push(null); }
-               else { s_11405229[s_11405229_Idx].length = chckRange(l_11405236, 0, 2147483647); };
-  framePtr = F.prev;
-
-  return result_11405230;
-
-}
-function update_11385737(match_11385742, val_11385743, refresh_11385744) {
-    var Tmp1;
-    var Tmp2;
-      var Tmp3;
-      var Tmp4;
-      function HEX3Aanonymous_11385761(s_11385764, s_11385764_Idx) {
-        var result_11385768 = {Field0: false, Field1: null};
-
-        var F={procname:"update.:anonymous",prev:framePtr,filename:"nclearseam.nim",line:0};
-        framePtr = F;
-          F.line = 515;
-          nimCopy(result_11385768, itf_simple_11385760(), NTI11385765);
-        framePtr = F.prev;
-
-        return result_11385768;
-
-      }
-      var Tmp5;
-      var Tmp6;
-          var Tmp9;
-            var Tmp10;
-            var Tmp11;
-          var Tmp12;
-          var Tmp13;
-            var Tmp14;
-            var Tmp15;
-          var Tmp16;
-          var Tmp17;
-            var Tmp18;
-            var Tmp19;
-          var Tmp31;
-          var Tmp32;
-          var Tmp33;
-      var Tmp34;
-        var Tmp35;
-        var Tmp36;
-        var Tmp37;
-        var Tmp38;
-        var Tmp39;
-          var Tmp40;
-        var Tmp41;
-        var Tmp42;
-        var Tmp43;
-        var Tmp44;
-        var Tmp45;
-        var Tmp46;
-          var Tmp47;
-      var Tmp48;
-      var Tmp49;
-      var Tmp50;
-        var Tmp51;
-      var Tmp55;
-        var Tmp56;
-          var Tmp57;
-      var Tmp58;
-      var Tmp59;
-        var Tmp61;
-
-  var F={procname:"update.update",prev:framePtr,filename:"nclearseam.nim",line:0};
-  framePtr = F;
-    if (match_11385742.iter) {
-    F.line = 508;
-    var i_11385746 = 0;
-    F.line = 509;
-    var Tmp1 = match_11385742;
-    if (ConstSet84[Tmp1.iter]===undefined) { raiseFieldError(makeNimstrLit("\'anchor\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
-    var parent_node_11385749 = Tmp1.anchor.parentNode;
-    F.line = 510;
-    var itf_11385754 = null;
-    F.line = 511;
-    var Tmp2 = match_11385742;
-    if (ConstSet85[Tmp2.iter]===undefined) { raiseFieldError(makeNimstrLit("\'iterate\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
-    switch (Tmp2.iterate.kind) {
-    case 0:
-      F.line = 513;
-      var Tmp3 = match_11385742;
-      if (ConstSet87[Tmp3.iter]===undefined) { raiseFieldError(makeNimstrLit("\'iterate\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
-      var Tmp4 = Tmp3.iterate;
-      if (ConstSet86[Tmp4.kind]===undefined) { raiseFieldError(makeNimstrLit("\'simple\' is not accessible using discriminant \'kind\' of type \'Iterator\'")); }
-      var itf_simple_11385760 = Tmp4.simple(val_11385743);
-      F.line = 514;
-      itf_11385754 = HEX3Aanonymous_11385761;
-      break;
-    case 1:
-      F.line = 517;
-      var Tmp5 = match_11385742;
-      if (ConstSet89[Tmp5.iter]===undefined) { raiseFieldError(makeNimstrLit("\'iterate\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
-      var Tmp6 = Tmp5.iterate;
-      if (ConstSet88[Tmp6.kind]===undefined) { raiseFieldError(makeNimstrLit("\'serial\' is not accessible using discriminant \'kind\' of type \'Iterator\'")); }
-      itf_11385754 = Tmp6.serial(val_11385743);
-      break;
-    }
-    L7: do {
-      F.line = 519;
-        L8: while (true) {
-        if (!true) break L8;
-          F.line = 520;
-            var Tmp10 = match_11385742;
-            if (ConstSet90[Tmp10.iter]===undefined) { raiseFieldError(makeNimstrLit("\'items\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
-          if ((i_11385746 < ((Tmp11 = Tmp10.items, Tmp11) != null ? Tmp11.length : 0))) {
-          var Tmp12 = match_11385742;
-          if (ConstSet91[Tmp12.iter]===undefined) { raiseFieldError(makeNimstrLit("\'items\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
-          Tmp9 = (Tmp13 = Tmp12.items, Tmp13)[chckIndx(i_11385746, 0, (Tmp13 != null ? Tmp13.length : 0)+0-1)-0].serial;
-          }
-          else {
-          Tmp9 = 0;
-          }
-          
-          var serial_11385813 = [Tmp9];
-          F.line = 521;
-          var changed_11385814 = refresh_11385744;
-          F.line = 522;
-          var it_11385816 = itf_11385754(serial_11385813, 0);
-          if ((it_11385816["Field0"] == false)) {
-          F.line = 523;
-          break L7;
-          }
-          
-          F.line = 524;
-          var item_11385817 = it_11385816["Field1"];
-          F.line = 526;
-          var iter_item_11385822 = null;
-          F.line = 527;
-          var inited_11385823 = false;
-            var Tmp14 = match_11385742;
-            if (ConstSet92[Tmp14.iter]===undefined) { raiseFieldError(makeNimstrLit("\'items\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
-          if ((i_11385746 < ((Tmp15 = Tmp14.items, Tmp15) != null ? Tmp15.length : 0))) {
-          F.line = 531;
-          var Tmp16 = match_11385742;
-          if (ConstSet93[Tmp16.iter]===undefined) { raiseFieldError(makeNimstrLit("\'items\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
-          iter_item_11385822 = (Tmp17 = Tmp16.items, Tmp17)[chckIndx(i_11385746, 0, (Tmp17 != null ? Tmp17.length : 0)+0-1)-0];
-          F.line = 532;
-          inited_11385823 = true;
-          F.line = 533;
-          changed_11385814 = true;
-          }
-          else {
-            F.line = 535;
-            iter_item_11385822 = create_iter_item_11385839(match_11385742, parent_node_11385749);
-            F.line = 536;
-            var Tmp18 = match_11385742;
-            if (ConstSet98[Tmp18.iter]===undefined) { raiseFieldError(makeNimstrLit("\'items\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
-            if ((Tmp19 = Tmp18.items, Tmp19) != null) { Tmp19.push(iter_item_11385822); } else { Tmp19 = [iter_item_11385822]; };
-            F.line = 537;
-            inited_11385823 = false;
-            if (!((serial_11385813[0] == iter_item_11385822.serial))) {
-            F.line = 539;
-            changed_11385814 = true;
-            }
-            
-          }
-          
-          if (!(inited_11385823)) {
-          L20: do {
-            F.line = 543;
-            var init_proc_11386000 = null;
-            F.line = 184;
-            var i_11425945 = 0;
-            F.line = 185;
-            var l_11425946 = (match_11385742.init != null ? match_11385742.init.length : 0);
-            L21: do {
-              F.line = 186;
-                L22: while (true) {
-                if (!(i_11425945 < l_11425946)) break L22;
-                  F.line = 543;
-                  init_proc_11386000 = match_11385742.init[chckIndx(i_11425945, 0, (match_11385742.init != null ? match_11385742.init.length : 0)+0-1)-0];
-                  F.line = 544;
-                  init_proc_11386000(iter_item_11385822.node);
-                  F.line = 188;
-                  i_11425945 = addInt(i_11425945, 1);
-                  if (!(((match_11385742.init != null ? match_11385742.init.length : 0) == l_11425946))) {
-                  F.line = 189;
-                  failed_assert_impl_102680(makeNimstrLit("/var/home/mildred/.choosenim/toolchains/nim-1.2.0/lib/system/iterators.nim(189, 11) `len(a) == L` the length of the seq changed while iterating over it"));
-                  }
-                  
-                }
-            } while(false);
-          } while(false);
-          }
-          
-          if (!((iter_item_11385822.mount == null))) {
-          F.line = 548;
-          iter_item_11385822.mount.update(item_11385817, refresh_11385744);
-          }
-          
-          L23: do {
-            F.line = 551;
-            var submatch_11395214 = null;
-            F.line = 184;
-            var i_11425950 = 0;
-            F.line = 185;
-            var l_11425951 = (iter_item_11385822.matches != null ? iter_item_11385822.matches.length : 0);
-            L24: do {
-              F.line = 186;
-                L25: while (true) {
-                if (!(i_11425950 < l_11425951)) break L25;
-                  F.line = 551;
-                  submatch_11395214 = iter_item_11385822.matches[chckIndx(i_11425950, 0, (iter_item_11385822.matches != null ? iter_item_11385822.matches.length : 0)+0-1)-0];
-                  F.line = 552;
-                  submatch_11395214.update(item_11385817, refresh_11385744);
-                  F.line = 188;
-                  i_11425950 = addInt(i_11425950, 1);
-                  if (!(((iter_item_11385822.matches != null ? iter_item_11385822.matches.length : 0) == l_11425951))) {
-                  F.line = 189;
-                  failed_assert_impl_102680(makeNimstrLit("/var/home/mildred/.choosenim/toolchains/nim-1.2.0/lib/system/iterators.nim(189, 11) `len(a) == L` the length of the seq changed while iterating over it"));
-                  }
-                  
-                }
-            } while(false);
-          } while(false);
-          L26: do {
-            F.line = 555;
-            var refresh_proc_11405214 = null;
-            F.line = 184;
-            var i_11425955 = 0;
-            F.line = 185;
-            var l_11425956 = (match_11385742.refresh != null ? match_11385742.refresh.length : 0);
-            L27: do {
-              F.line = 186;
-                L28: while (true) {
-                if (!(i_11425955 < l_11425956)) break L28;
-                  F.line = 555;
-                  refresh_proc_11405214 = match_11385742.refresh[chckIndx(i_11425955, 0, (match_11385742.refresh != null ? match_11385742.refresh.length : 0)+0-1)-0];
-                  F.line = 556;
-                  refresh_proc_11405214(iter_item_11385822.node, item_11385817);
-                  F.line = 188;
-                  i_11425955 = addInt(i_11425955, 1);
-                  if (!(((match_11385742.refresh != null ? match_11385742.refresh.length : 0) == l_11425956))) {
-                  F.line = 189;
-                  failed_assert_impl_102680(makeNimstrLit("/var/home/mildred/.choosenim/toolchains/nim-1.2.0/lib/system/iterators.nim(189, 11) `len(a) == L` the length of the seq changed while iterating over it"));
-                  }
-                  
-                }
-            } while(false);
-          } while(false);
-          F.line = 558;
-          i_11385746 = addInt(i_11385746, 1);
-        }
-    } while(false);
-    L29: do {
-      F.line = 561;
-        L30: while (true) {
-          var Tmp31 = match_11385742;
-          if (ConstSet99[Tmp31.iter]===undefined) { raiseFieldError(makeNimstrLit("\'items\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
-        if (!(i_11385746 < ((Tmp32 = Tmp31.items, Tmp32) != null ? Tmp32.length : 0))) break L30;
-          F.line = 562;
-          var Tmp33 = match_11385742;
-          if (ConstSet100[Tmp33.iter]===undefined) { raiseFieldError(makeNimstrLit("\'items\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
-          detach_11405474(pop_11405224(Tmp33, "items"), parent_node_11385749);
-        }
-    } while(false);
-    }
-    else {
-      F.line = 564;
-      var changed_11405493 = refresh_11385744;
-      F.line = 565;
-      var node_11405494 = match_11385742.node;
-      F.line = 566;
-      var converted_val_11405495 = null;
-      F.line = 568;
-      var Tmp34 = match_11385742;
-      if (ConstSet101[Tmp34.iter]===undefined) { raiseFieldError(makeNimstrLit("\'convert\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
-      switch (Tmp34.convert.kind) {
-      case 0:
-        F.line = 570;
-        var Tmp35 = match_11385742;
-        if (ConstSet103[Tmp35.iter]===undefined) { raiseFieldError(makeNimstrLit("\'convert\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
-        var Tmp36 = Tmp35.convert;
-        if (ConstSet102[Tmp36.kind]===undefined) { raiseFieldError(makeNimstrLit("\'simple\' is not accessible using discriminant \'kind\' of type \'TypeSelector\'")); }
-        converted_val_11405495 = Tmp36.simple(val_11385743);
-        F.line = 571;
-        changed_11405493 = true;
-        break;
-      case 1:
-        F.line = 573;
-        var Tmp37 = match_11385742;
-        if (ConstSet104[Tmp37.selectorKind]===undefined) { raiseFieldError(makeNimstrLit("\'serial\' is not accessible using discriminant \'selectorKind\' of type \'CompMatch\'")); }
-        var serial_11405503 = [Tmp37.serial];
-        F.line = 574;
-        var Tmp38 = match_11385742;
-        if (ConstSet106[Tmp38.iter]===undefined) { raiseFieldError(makeNimstrLit("\'convert\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
-        var Tmp39 = Tmp38.convert;
-        if (ConstSet105[Tmp39.kind]===undefined) { raiseFieldError(makeNimstrLit("\'serial\' is not accessible using discriminant \'kind\' of type \'TypeSelector\'")); }
-        converted_val_11405495 = Tmp39.serial(val_11385743, serial_11405503, 0);
-          var Tmp40 = match_11385742;
-          if (ConstSet107[Tmp40.selectorKind]===undefined) { raiseFieldError(makeNimstrLit("\'serial\' is not accessible using discriminant \'selectorKind\' of type \'CompMatch\'")); }
-        if (!((serial_11405503[0] == Tmp40.serial))) {
-        F.line = 576;
-        changed_11405493 = true;
-        }
-        
-        break;
-      case 2:
-        F.line = 578;
-        var Tmp41 = match_11385742;
-        if (ConstSet109[Tmp41.iter]===undefined) { raiseFieldError(makeNimstrLit("\'convert\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
-        var Tmp42 = Tmp41.convert;
-        if (ConstSet108[Tmp42.kind]===undefined) { raiseFieldError(makeNimstrLit("\'compare\' is not accessible using discriminant \'kind\' of type \'TypeSelector\'")); }
-        var Tmp43 = match_11385742;
-        if (ConstSet110[Tmp43.selectorKind]===undefined) { raiseFieldError(makeNimstrLit("\'value\' is not accessible using discriminant \'selectorKind\' of type \'CompMatch\'")); }
-        var res_11405515 = Tmp42.compare(val_11385743, Tmp43.value);
-        F.line = 579;
-        converted_val_11405495 = res_11405515.Field0;
-        var Tmp44 = match_11385742;
-        if (ConstSet111[Tmp44.selectorKind]===undefined) { raiseFieldError(makeNimstrLit("\'value\' is not accessible using discriminant \'selectorKind\' of type \'CompMatch\'")); }
-        F.line = 580;
-        Tmp44.value = res_11405515.Field0;
-        if (res_11405515.Field1) {
-        F.line = 582;
-        changed_11405493 = true;
-        }
-        
-        break;
-      }
-        var Tmp46 = match_11385742;
-        if (ConstSet112[Tmp46.iter]===undefined) { raiseFieldError(makeNimstrLit("\'mount\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
-        if (!(Tmp46.mount == null)) Tmp45 = false; else {          var Tmp47 = match_11385742;
-          if (ConstSet113[Tmp47.iter]===undefined) { raiseFieldError(makeNimstrLit("\'mount_source\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
-          Tmp45 = !((Tmp47.mount_source == null));        }      if (Tmp45) {
-      var Tmp48 = match_11385742;
-      if (ConstSet114[Tmp48.iter]===undefined) { raiseFieldError(makeNimstrLit("\'mount\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
-      F.line = 586;
-      var Tmp49 = match_11385742;
-      if (ConstSet115[Tmp49.iter]===undefined) { raiseFieldError(makeNimstrLit("\'mount_source\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
-      Tmp48.mount = Tmp49.mount_source.clone();
-      F.line = 587;
-      var Tmp50 = match_11385742;
-      if (ConstSet116[Tmp50.iter]===undefined) { raiseFieldError(makeNimstrLit("\'mount\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
-      node_11405494.parentNode.replaceChild(Tmp50.mount.node(), node_11405494);
-      }
-      
-        var Tmp51 = match_11385742;
-        if (ConstSet117[Tmp51.iter]===undefined) { raiseFieldError(makeNimstrLit("\'inited\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
-      if (!(Tmp51.inited)) {
-      L52: do {
-        F.line = 591;
-        var init_proc_11405552 = null;
-        F.line = 184;
-        var i_11425960 = 0;
-        F.line = 185;
-        var l_11425961 = (match_11385742.init != null ? match_11385742.init.length : 0);
-        L53: do {
-          F.line = 186;
-            L54: while (true) {
-            if (!(i_11425960 < l_11425961)) break L54;
-              F.line = 591;
-              init_proc_11405552 = match_11385742.init[chckIndx(i_11425960, 0, (match_11385742.init != null ? match_11385742.init.length : 0)+0-1)-0];
-              F.line = 592;
-              init_proc_11405552(node_11405494);
-              F.line = 188;
-              i_11425960 = addInt(i_11425960, 1);
-              if (!(((match_11385742.init != null ? match_11385742.init.length : 0) == l_11425961))) {
-              F.line = 189;
-              failed_assert_impl_102680(makeNimstrLit("/var/home/mildred/.choosenim/toolchains/nim-1.2.0/lib/system/iterators.nim(189, 11) `len(a) == L` the length of the seq changed while iterating over it"));
-              }
-              
-            }
-        } while(false);
-      } while(false);
-      var Tmp55 = match_11385742;
-      if (ConstSet118[Tmp55.iter]===undefined) { raiseFieldError(makeNimstrLit("\'inited\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
-      F.line = 593;
-      Tmp55.inited = true;
-      F.line = 594;
-      changed_11405493 = true;
-      }
-      
-        if (!changed_11405493) Tmp56 = false; else {          var Tmp57 = match_11385742;
-          if (ConstSet119[Tmp57.iter]===undefined) { raiseFieldError(makeNimstrLit("\'mount\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
-          Tmp56 = !((Tmp57.mount == null));        }      if (Tmp56) {
-      F.line = 598;
-      var Tmp58 = match_11385742;
-      if (ConstSet120[Tmp58.iter]===undefined) { raiseFieldError(makeNimstrLit("\'mount\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
-      node_11405494 = Tmp58.mount.node();
-      F.line = 599;
-      var Tmp59 = match_11385742;
-      if (ConstSet121[Tmp59.iter]===undefined) { raiseFieldError(makeNimstrLit("\'mount\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
-      Tmp59.mount.update(converted_val_11405495, refresh_11385744);
-      }
-      
-      if (changed_11405493) {
-      L60: do {
-        F.line = 603;
-        var submatch_11405577 = null;
-        F.line = 182;
-        var colontmp__11425964 = null;
-        F.line = 603;
-        var Tmp61 = match_11385742;
-        if (ConstSet122[Tmp61.iter]===undefined) { raiseFieldError(makeNimstrLit("\'matches\' is not accessible using discriminant \'iter\' of type \'CompMatch\'")); }
-        colontmp__11425964 = Tmp61.matches;
-        F.line = 184;
-        var i_11425965 = 0;
-        F.line = 185;
-        var l_11425966 = (colontmp__11425964 != null ? colontmp__11425964.length : 0);
-        L62: do {
-          F.line = 186;
-            L63: while (true) {
-            if (!(i_11425965 < l_11425966)) break L63;
-              F.line = 603;
-              submatch_11405577 = colontmp__11425964[chckIndx(i_11425965, 0, (colontmp__11425964 != null ? colontmp__11425964.length : 0)+0-1)-0];
-              F.line = 604;
-              submatch_11405577.update(converted_val_11405495, refresh_11385744);
-              F.line = 188;
-              i_11425965 = addInt(i_11425965, 1);
-              if (!(((colontmp__11425964 != null ? colontmp__11425964.length : 0) == l_11425966))) {
-              F.line = 189;
-              failed_assert_impl_102680(makeNimstrLit("/var/home/mildred/.choosenim/toolchains/nim-1.2.0/lib/system/iterators.nim(189, 11) `len(a) == L` the length of the seq changed while iterating over it"));
-              }
-              
-            }
-        } while(false);
-      } while(false);
-      }
-      
-      if (changed_11405493) {
-      L64: do {
-        F.line = 608;
-        var refresh_proc_11405584 = null;
-        F.line = 184;
-        var i_11425969 = 0;
-        F.line = 185;
-        var l_11425970 = (match_11385742.refresh != null ? match_11385742.refresh.length : 0);
-        L65: do {
-          F.line = 186;
-            L66: while (true) {
-            if (!(i_11425969 < l_11425970)) break L66;
-              F.line = 608;
-              refresh_proc_11405584 = match_11385742.refresh[chckIndx(i_11425969, 0, (match_11385742.refresh != null ? match_11385742.refresh.length : 0)+0-1)-0];
-              F.line = 609;
-              refresh_proc_11405584(node_11405494, converted_val_11405495);
-              F.line = 188;
-              i_11425969 = addInt(i_11425969, 1);
-              if (!(((match_11385742.refresh != null ? match_11385742.refresh.length : 0) == l_11425970))) {
-              F.line = 189;
-              failed_assert_impl_102680(makeNimstrLit("/var/home/mildred/.choosenim/toolchains/nim-1.2.0/lib/system/iterators.nim(189, 11) `len(a) == L` the length of the seq changed while iterating over it"));
-              }
-              
-            }
-        } while(false);
-      } while(false);
-      }
-      
-    }
-    
-  framePtr = F.prev;
-
-  
-}
-function as_interface_11385717(match_11385722) {
-    function HEX3Aanonymous_11385729(data_11385731, refresh_11385732) {
-      var F={procname:"asInterface.:anonymous",prev:framePtr,filename:"nclearseam.nim",line:0};
-      framePtr = F;
-        F.line = 663;
-        update_11385737(match_11385722, data_11385731, refresh_11385732);
-      framePtr = F.prev;
-
-      
-    }
-
-  var result_11385724 = null;
-
-  var F={procname:"asInterface.asInterface",prev:framePtr,filename:"nclearseam.nim",line:0};
-  framePtr = F;
-    F.line = 662;
-    result_11385724 = {update: HEX3Aanonymous_11385729};
-  framePtr = F.prev;
-
-  return result_11385724;
-
-}
-function as_interface_11359145(config_11359150) {
-    function HEX3Aanonymous_11359157(node_11359159) {
-      var result_11359165 = null;
-
-      var F={procname:"asInterface.:anonymous",prev:framePtr,filename:"nclearseam.nim",line:0};
-      framePtr = F;
-        F.line = 669;
-        result_11359165 = nimCopy(null, [], NTI11359180);
-        L1: do {
-          F.line = 670;
-          var comp_match_11385214 = null;
-          F.line = 182;
-          var colontmp__11425927 = null;
-          F.line = 670;
-          colontmp__11425927 = compile_11359384(config_11359150, node_11359159);
-          F.line = 184;
-          var i_11425929 = 0;
-          F.line = 185;
-          var l_11425930 = (colontmp__11425927 != null ? colontmp__11425927.length : 0);
-          L2: do {
-            F.line = 186;
-              L3: while (true) {
-              if (!(i_11425929 < l_11425930)) break L3;
-                F.line = 670;
-                comp_match_11385214 = colontmp__11425927[chckIndx(i_11425929, 0, (colontmp__11425927 != null ? colontmp__11425927.length : 0)+0-1)-0];
-                F.line = 671;
-                if (result_11359165 != null) { result_11359165.push(as_interface_11385717(comp_match_11385214)); } else { result_11359165 = [as_interface_11385717(comp_match_11385214)]; };
-                F.line = 188;
-                i_11425929 = addInt(i_11425929, 1);
-                if (!(((colontmp__11425927 != null ? colontmp__11425927.length : 0) == l_11425930))) {
-                F.line = 189;
-                failed_assert_impl_102680(makeNimstrLit("/var/home/mildred/.choosenim/toolchains/nim-1.2.0/lib/system/iterators.nim(189, 11) `len(a) == L` the length of the seq changed while iterating over it"));
-                }
-                
-              }
-          } while(false);
-        } while(false);
-      framePtr = F.prev;
-
-      return result_11359165;
-
-    }
-
-  var result_11359152 = null;
-
-  var F={procname:"asInterface.asInterface",prev:framePtr,filename:"nclearseam.nim",line:0};
-  framePtr = F;
-    F.line = 667;
-    result_11359152 = {compile: HEX3Aanonymous_11359157};
-  framePtr = F.prev;
-
-  return result_11359152;
-
-}
-function match_11358590(c_11358595, selector_11358596, convert_11358598, actions_11358604) {
-  var result_11358606 = null;
-
-  var F={procname:"match.match",prev:framePtr,filename:"nclearseam.nim",line:0};
-  framePtr = F;
-    F.line = 250;
-    result_11358606 = {selector: nimCopy(null, selector_11358596, NTI112), refresh: [], init: [], mount: null, iter: false, convert: nimCopy(null, convert_11358598, NTI11356741), cmatches: null, iterate: {kind: 0, simple: null, serial: null}};
-    F.line = 257;
-    if (c_11358595.cmatches != null) { c_11358595.cmatches.push(as_interface_11359145(result_11358606)); } else { c_11358595.cmatches = [as_interface_11359145(result_11358606)]; };
-    if (!((actions_11358604 == null))) {
-    F.line = 259;
-    actions_11358604(result_11358606);
-    }
-    
-  framePtr = F.prev;
-
-  return result_11358606;
-
-}
-function match_11357290(c_11357295, selector_11357296, convert_11357298, actions_11357304) {
-  var result_11357306 = null;
+function match_11297290(c_11297295, selector_11297296, convert_11297298, actions_11297304) {
+  var result_11297306 = null;
 
   var F={procname:"match.match",prev:framePtr,filename:"nclearseam.nim",line:0};
   framePtr = F;
     F.line = 275;
-    var type_selector_11357314 = {kind: 0, simple: convert_11357298, serial: null, compare: null};
+    var type_selector_11297314 = {kind: 0, simple: convert_11297298, serial: null, compare: null};
     F.line = 278;
-    result_11357306 = match_11358590(c_11357295, selector_11357296, type_selector_11357314, actions_11357304);
+    result_11297306 = match_11298590(c_11297295, selector_11297296, type_selector_11297314, actions_11297304);
   framePtr = F.prev;
 
-  return result_11357306;
+  return result_11297306;
 
 }
-function id_11357244(data_11357247) {
-  var result_11357248 = null;
+function id_11297244(data_11297247) {
+  var result_11297248 = null;
 
   var F={procname:"id.id",prev:framePtr,filename:"nclearseam.nim",line:0};
   framePtr = F;
     F.line = 200;
-    result_11357248 = data_11357247;
+    result_11297248 = data_11297247;
   framePtr = F.prev;
 
-  return result_11357248;
+  return result_11297248;
 
 }
-function match_11357224(c_11357228, selector_11357229, actions_11357235) {
-  var result_11357237 = null;
+function match_11297224(c_11297228, selector_11297229, actions_11297235) {
+  var result_11297237 = null;
 
   var F={procname:"match.match",prev:framePtr,filename:"nclearseam.nim",line:0};
   framePtr = F;
     F.line = 333;
-    result_11357237 = match_11357290(c_11357228, selector_11357229, id_11357244, actions_11357235);
+    result_11297237 = match_11297290(c_11297228, selector_11297229, id_11297244, actions_11297235);
   framePtr = F.prev;
 
-  return result_11357237;
+  return result_11297237;
 
 }
-function update_11406029(t_11406033, data_11406034, refresh_11406035) {
+function update_11346029(t_11346033, data_11346034, refresh_11346035) {
   var F={procname:"update.update",prev:framePtr,filename:"nclearseam.nim",line:0};
   framePtr = F;
     F.line = 639;
-    t_11406033.data = data_11406034;
+    t_11346033.data = data_11346034;
     L1: do {
       F.line = 640;
-      var match_11406042 = null;
+      var match_11346042 = null;
       F.line = 184;
-      var i_11425974 = 0;
+      var i_11365974 = 0;
       F.line = 185;
-      var l_11425975 = (t_11406033.matches != null ? t_11406033.matches.length : 0);
+      var l_11365975 = (t_11346033.matches != null ? t_11346033.matches.length : 0);
       L2: do {
         F.line = 186;
           L3: while (true) {
-          if (!(i_11425974 < l_11425975)) break L3;
+          if (!(i_11365974 < l_11365975)) break L3;
             F.line = 640;
-            match_11406042 = t_11406033.matches[chckIndx(i_11425974, 0, (t_11406033.matches != null ? t_11406033.matches.length : 0)+0-1)-0];
+            match_11346042 = t_11346033.matches[chckIndx(i_11365974, 0, (t_11346033.matches != null ? t_11346033.matches.length : 0)+0-1)-0];
             F.line = 641;
-            match_11406042.update(data_11406034, refresh_11406035);
+            match_11346042.update(data_11346034, refresh_11346035);
             F.line = 188;
-            i_11425974 = addInt(i_11425974, 1);
-            if (!(((t_11406033.matches != null ? t_11406033.matches.length : 0) == l_11425975))) {
+            i_11365974 = addInt(i_11365974, 1);
+            if (!(((t_11346033.matches != null ? t_11346033.matches.length : 0) == l_11365975))) {
             F.line = 189;
             failed_assert_impl_102680(makeNimstrLit("/var/home/mildred/.choosenim/toolchains/nim-1.2.0/lib/system/iterators.nim(189, 11) `len(a) == L` the length of the seq changed while iterating over it"));
             }
@@ -4473,29 +4473,29 @@ function update_11406029(t_11406033, data_11406034, refresh_11406035) {
 
   
 }
-function HEX3Aanonymous_11291174(node_11291177) {
-    function HEX3Aanonymous_11291184(b_11291191) {
-        function HEX3Aanonymous_11295001(arg0_11295003) {
-          var result_11295005 = 0;
+function HEX3Aanonymous_11231174(node_11231177) {
+    function HEX3Aanonymous_11231184(b_11231191) {
+        function HEX3Aanonymous_11235001(arg0_11235003) {
+          var result_11235005 = 0;
 
           var F={procname:":anonymous.:anonymous",prev:framePtr,filename:"button.nim",line:0};
           framePtr = F;
-            F.line = 17;
-            result_11295005 = arg0_11295003.times;
+            F.line = 16;
+            result_11235005 = arg0_11235003.times;
           framePtr = F.prev;
 
-          return result_11295005;
+          return result_11235005;
 
         }
-        function HEX3Aanonymous_11405958(event_11405960) {
+        function HEX3Aanonymous_11345958(event_11345960) {
           var F={procname:":anonymous.:anonymous",prev:framePtr,filename:"button.nim",line:0};
           framePtr = F;
+            F.line = 18;
+            b_11231191.data.times = addInt(b_11231191.data.times, 1);
             F.line = 19;
-            b_11291191.data.times = addInt(b_11291191.data.times, 1);
+            console.log("button clicked", b_11231191.data.times);
             F.line = 20;
-            console.log("button clicked", b_11291191.data.times);
-            F.line = 21;
-            update_11406029(b_11291191, b_11291191.data, false);
+            update_11346029(b_11231191, b_11231191.data, false);
           framePtr = F.prev;
 
           
@@ -4503,137 +4503,137 @@ function HEX3Aanonymous_11291174(node_11291177) {
 
       var F={procname:":anonymous.:anonymous",prev:framePtr,filename:"button.nim",line:0};
       framePtr = F;
+        F.line = 16;
+        refresh_11296059(match_11236139(b_11231191, makeNimstrLit(".times"), HEX3Aanonymous_11235001, eql_11235294, null), set_text_11296005());
         F.line = 17;
-        refresh_11356059(match_11296139(b_11291191, makeNimstrLit(".times"), HEX3Aanonymous_11295001, eql_11295294, null), set_text_11356005());
-        F.line = 18;
-        add_event_listener_11406207(match_11357224(b_11291191, makeNimstrLit("button"), null), makeNimstrLit("click"), HEX3Aanonymous_11405958, false);
+        add_event_listener_11346207(match_11297224(b_11231191, makeNimstrLit("button"), null), makeNimstrLit("click"), HEX3Aanonymous_11345958, false);
       framePtr = F.prev;
 
       
     }
 
-  var result_11291182 = null;
+  var result_11231182 = null;
 
   var F={procname:"button.:anonymous",prev:framePtr,filename:"button.nim",line:0};
   framePtr = F;
   BeforeRet: do {
-    F.line = 16;
-    result_11291182 = compile_11406534(node_11291177, HEX3Aanonymous_11291184);
+    F.line = 15;
+    result_11231182 = compile_11346534(node_11231177, HEX3Aanonymous_11231184);
     break BeforeRet;
   } while (false);
   framePtr = F.prev;
 
-  return result_11291182;
+  return result_11231182;
 
 }
-var button_11291105 = [null];
-declare_11425583(components_10276124[0], button_11291105, 0, fetch_template_11290001(makeNimstrLit("button.html"), makeNimstrLit("template"), true), HEX3Aanonymous_11291174);
-function map_10285058(s_10285063, op_10285066) {
-  var result_10285068 = null;
+var button_11231105 = [null];
+declare_11365583(components_10218124[0], button_11231105, 0, fetch_template_11230001(makeNimstrLit("button.html"), makeNimstrLit("template"), true), HEX3Aanonymous_11231174);
+function map_10225058(s_10225063, op_10225066) {
+  var result_10225068 = null;
 
   var F={procname:"map.map",prev:framePtr,filename:"sequtils.nim",line:0};
   framePtr = F;
     F.line = 374;
-    result_10285068 = new Array(chckRange((s_10285063 != null ? s_10285063.length : 0), 0, 2147483647)); for (var i=0;i<chckRange((s_10285063 != null ? s_10285063.length : 0), 0, 2147483647);++i) {result_10285068[i]=null;}    L1: do {
+    result_10225068 = new Array(chckRange((s_10225063 != null ? s_10225063.length : 0), 0, 2147483647)); for (var i=0;i<chckRange((s_10225063 != null ? s_10225063.length : 0), 0, 2147483647);++i) {result_10225068[i]=null;}    L1: do {
       F.line = 375;
-      var i_10285091 = 0;
+      var i_10225091 = 0;
       F.line = 104;
-      var colontmp__11430817 = 0;
+      var colontmp__11370817 = 0;
       F.line = 375;
-      colontmp__11430817 = (s_10285063 != null ? s_10285063.length : 0);
+      colontmp__11370817 = (s_10225063 != null ? s_10225063.length : 0);
       F.line = 106;
-      var i_11430818 = 0;
+      var i_11370818 = 0;
       L2: do {
         F.line = 107;
           L3: while (true) {
-          if (!(i_11430818 < colontmp__11430817)) break L3;
+          if (!(i_11370818 < colontmp__11370817)) break L3;
             F.line = 375;
-            i_10285091 = i_11430818;
+            i_10225091 = i_11370818;
             F.line = 376;
-            result_10285068[chckIndx(i_10285091, 0, (result_10285068 != null ? result_10285068.length : 0)+0-1)-0] = op_10285066(s_10285063[chckIndx(i_10285091, 0, (s_10285063 != null ? s_10285063.length : 0)+0-1)-0]);
+            result_10225068[chckIndx(i_10225091, 0, (result_10225068 != null ? result_10225068.length : 0)+0-1)-0] = op_10225066(s_10225063[chckIndx(i_10225091, 0, (s_10225063 != null ? s_10225063.length : 0)+0-1)-0]);
             F.line = 109;
-            i_11430818 = addInt(i_11430818, 1);
+            i_11370818 = addInt(i_11370818, 1);
           }
       } while(false);
     } while(false);
   framePtr = F.prev;
 
-  return result_10285068;
+  return result_10225068;
 
 }
-async function init_10285001(registry_10285003) {
-    function HEX3Aanonymous_10285020(p_10285022) {
-      var result_10285027 = null;
+async function init_10225001(registry_10225003) {
+    function HEX3Aanonymous_10225020(p_10225022) {
+      var result_10225027 = null;
 
       var F={procname:"init.:anonymous",prev:framePtr,filename:"registry.nim",line:0};
       framePtr = F;
         F.line = 26;
-        result_10285027 = p_10285022();
+        result_10225027 = p_10225022();
       framePtr = F.prev;
 
-      return result_10285027;
+      return result_10225027;
 
     }
 
-  var result_10285008 = null;
+  var result_10225008 = null;
 
   var F={procname:"registry.init",prev:framePtr,filename:"registry.nim",line:0};
   framePtr = F;
   BeforeRet: do {
     F.line = 26;
-    (await (Promise.all((map_10285058(registry_10285003.Field0, HEX3Aanonymous_10285020)))));
+    (await (Promise.all((map_10225058(registry_10225003.Field0, HEX3Aanonymous_10225020)))));
     F.line = 131;
-    result_10285008 = undefined;
+    result_10225008 = undefined;
     break BeforeRet;
   } while (false);
   framePtr = F.prev;
 
-  return result_10285008;
+  return result_10225008;
 
 }
-function attach_11430399(t_11430403, target_11430404, anchor_11430405, data_11430406) {
+function attach_11370399(t_11370403, target_11370404, anchor_11370405, data_11370406) {
   var F={procname:"attach.attach",prev:framePtr,filename:"nclearseam.nim",line:0};
   framePtr = F;
     F.line = 647;
-    update_11406029(t_11430403, data_11430406, true);
+    update_11346029(t_11370403, data_11370406, true);
     F.line = 648;
-    target_11430404.insertBefore(t_11430403.node, anchor_11430405);
+    target_11370404.insertBefore(t_11370403.node, anchor_11370405);
   framePtr = F.prev;
 
   
 }
-function clone_11430097(comp_11430101) {
-  var result_11430103 = null;
+function clone_11370097(comp_11370101) {
+  var result_11370103 = null;
 
   var F={procname:"clone.clone",prev:framePtr,filename:"nclearseam.nim",line:0};
   framePtr = F;
   BeforeRet: do {
     F.line = 634;
-    result_11430103 = compile_11415652({config: comp_11430101.config, m_type: NTI11291056, cmatches: null}, comp_11430101.original_node);
+    result_11370103 = compile_11355652({config: comp_11370101.config, m_type: NTI11231056, cmatches: null}, comp_11370101.original_node);
     break BeforeRet;
   } while (false);
   framePtr = F.prev;
 
-  return result_11430103;
+  return result_11370103;
 
 }
-async function main_11430001() {
-  var result_11430007 = null;
+async function main_11370001() {
+  var result_11370007 = null;
 
   var F={procname:"index.main",prev:framePtr,filename:"index.nim",line:0};
   framePtr = F;
   BeforeRet: do {
     F.line = 10;
-    (await init_10285001(components_10276124[0]));
+    (await init_10225001(components_10218124[0]));
     F.line = 11;
-    attach_11430399(clone_11430097(button_11291105[0]), document.body, null, {times: 0});
+    attach_11370399(clone_11370097(button_11231105[0]), document.body, null, {times: 0});
     F.line = 131;
-    result_11430007 = undefined;
+    result_11370007 = undefined;
     break BeforeRet;
   } while (false);
   framePtr = F.prev;
 
-  return result_11430007;
+  return result_11370007;
 
 }
-main_11430001();
+main_11370001();

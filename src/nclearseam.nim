@@ -722,55 +722,7 @@ proc late*[D](lateComp: proc(): Component[D]): ComponentInterface[D] =
 # Helper procs
 #
 
-proc getObjectType(ty, ty0: NimNode = nil): NimNode =
-  case ty.kind
-  of nnkObjectTy:
-    return ty
-  of nnkSym:
-    return getObjectType(getTypeImpl(ty), if ty0 == nil: ty else: ty0)
-  of nnkBracketExpr:
-    case typeKind(ty[0])
-    of ntyTypeDesc, ntyRef:
-      return getObjectType(ty[1], if ty0 == nil: ty else: ty0)
-    else:
-      assert(false, "Expected object type " & $typeKind(ty[0]) & "[...] to be an object type")
-  else:
-    assert(false, "Expected object type " & $ty.kind & " to be an object type")
-
-# TODO: use typeof() operator as an improvement (in case the type is not in
-# scope)
-proc getTypeRecord(recList, identifier: NimNode): NimNode =
-  assert(recList.kind == nnkRecList or recList.kind == nnkRecCase,
-         "expect recList of be a record list or case, but got " & $recList.kind)
-  assert(identifier.kind == nnkIdent,
-         "did not expect identifier to be " & $identifier.kind)
-  for i in 0 .. recList.len-1:
-    let child = recList[i]
-    case child.kind
-    of nnkIdentDefs:
-      if child[0] == identifier:
-        return child[1]
-    of nnkRecCase:
-      let res = getTypeRecord(getObjectType(child), identifier)
-      if res != nil: return res
-    of nnkOfBranch:
-      let res = getTypeRecord(getObjectType(child[1]), identifier)
-      if res != nil: return res
-    else:
-      assert(false, "did not expect " & $recList.kind & " to contain " & $child.kind)
-  return nil
-
 macro get_fields*(t: typedesc, args: varargs[untyped]): untyped =
-  #var types: seq[NimNode] = @[ getObjectType(getType(t)) ]
-
-  #for i in 0 .. args.len-1:
-  #  let t1 = types[i]
-  #  assert(t1.kind == nnkObjectTy,
-  #         "Expected lookup `" & $args[i] & "` type to be object got " & $t1.kind)
-  #  let t2 = getTypeRecord(t1[2], args[i])
-  #  assert(t2 != nil,
-  #         "Did not find record " & $args[i] & " in type " & $t1.kind)
-  #  types.add(t2)
 
   # Return type goes first, then all the arguments
   var dotExpr: NimNode = ident("arg0")
@@ -790,8 +742,8 @@ macro get_fields*(t: typedesc, args: varargs[untyped]): untyped =
   statements.add(newNimNode(nnkReturnStmt).add(ident("arg" & $(args.len))))
 
   var params: seq[NimNode] = @[
-    newIdentNode("auto"), #types[args.len],   # return type
-    newIdentDefs(ident("arg0"), t),  # argument
+    newIdentNode("auto"),           # return type
+    newIdentDefs(ident("arg0"), t), # argument
   ]
 
   result = newProc(procType = nnkLambda, params = params, body = dotExpr)
