@@ -18,19 +18,37 @@ proc `|`*[T1,T2,T3] (p1: proc(x: T1): T2, p2: proc(x: T2): T3): proc(x: T1): T3 
 macro get_fields_macro(t: untyped, args: varargs[untyped]): untyped =
 
   # Return type goes first, then all the arguments
-  var dotExpr: NimNode = ident("arg0")
   var statements: NimNode = newStmtList()
 
+
   for i in 0 .. args.len-1:
-    dotExpr = newDotExpr(dotExpr, args[i])
+    #dumpAstGen:
+    #  var arg1 = arg0.argsi
+    #  when compiles(arg1 == nil):
+    #    if arg1 == nil:
+    #      arg1 = new(typeof(arg1))
     let dot = newDotExpr(ident("arg" & $i), args[i])
-    let ifexpr = newNimNode(nnkIfExpr)
-      .add(newNimNode(nnkElifExpr)
-        .add(newCall(bindSym"isNil", dot))
-        .add(newCall(bindSym"new", newNimNode(nnkTypeOfExpr).add(dot))))
-      .add(newNimNode(nnkElseExpr)
-        .add(dot))
-    statements.add(newLetStmt(ident("arg" & $(i+1)), ifexpr))
+    let arg1 = ident("arg" & $(i+1))
+    statements.add(
+      nnkVarSection.newTree(
+        nnkIdentDefs.newTree(arg1, newEmptyNode(), dot)
+      ),
+      nnkWhenStmt.newTree(
+        nnkElifBranch.newTree(
+          newCall(bindSym"compiles", newCall(bindSym"isNil", arg1)),
+          nnkStmtList.newTree(
+            nnkIfStmt.newTree(
+              nnkElifBranch.newTree(
+                newCall(bindSym"isNil", arg1),
+                nnkStmtList.newTree(
+                  nnkAsgn.newTree(arg1, newCall(bindSym"new", nnkTypeOfExpr.newTree(arg1)))
+                )
+              )
+            )
+          )
+        )
+      )
+    )
 
   statements.add(newNimNode(nnkReturnStmt).add(ident("arg" & $(args.len))))
 
@@ -39,7 +57,7 @@ macro get_fields_macro(t: untyped, args: varargs[untyped]): untyped =
     newIdentDefs(ident("arg0"), t), # argument
   ]
 
-  result = newProc(procType = nnkLambda, params = params, body = dotExpr)
+  result = newProc(procType = nnkLambda, params = params, body = statements)
 
 template get*[X,D](c: MatchConfig[X,D], args: varargs[untyped]): auto =
   get_fields_macro(c.D, args)
