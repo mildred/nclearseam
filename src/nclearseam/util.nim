@@ -109,6 +109,17 @@ proc setText*(node: dom.Node, text: string) =
 proc setText*[T](typ: typedesc[T]): proc(node: dom.Node, text: T) =
   result = (proc(node: dom.Node, text: T) = node.textContent = $text)
 
+proc setValue*[T](typ: typedesc[T]): proc(node: dom.Node, value: T) =
+  return proc(node: dom.Node, value: T) =
+    node.toJs.value = value
+
+proc bindValue*[T](typ: typedesc[T]): proc(node: dom.Node, value: T, init: bool) =
+  return proc(node: dom.Node, value: T, init: bool) =
+    if init:
+      node.addEventListener("change") do(e: dom.Event):
+        discard # TODO: update value and refresh component
+    node.toJs.value = value
+
 #
 # Helper procedures to create iterator functions
 #

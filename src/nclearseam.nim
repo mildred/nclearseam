@@ -23,7 +23,12 @@ type
   ## Procedure callback that is called whenever a part of a template needs to \
   ## be initialized (such as installing event handlers)
 
-  ProcRefresh*[D] = proc(node: dom.Node, data: D) ## \
+  ProcRefreshSimple*[D] = proc(node: dom.Node, data: D) ## \
+  ## Procedure callback that is called whenever a part of a template needs to \
+  ## be refreshed on data change.
+
+  # TODO: use a RefreshEvent argument ?
+  ProcRefresh*[D] = proc(node: dom.Node, data: D, init: bool) ## \
   ## Procedure callback that is called whenever a part of a template needs to \
   ## be refreshed on data change.
 
@@ -39,6 +44,15 @@ type
   ## Serial changes means that the value has changed. if the serial has not
   ## changed since last run, the value is considered identical and update is not
   ## performed.
+
+  # TODO: accept this in the API
+  ProcTypeSelectorIdentified*[D1,D2] = proc(data: D1): tuple[id: string, val: D2] ## \
+  ## Procedure that fetches a part of a larger dataset and returns a smaller
+  ## part. retuens also an id variable that correspond to a unique identifier of
+  ## the selected value in the context of data.
+  ##
+  ## If the caller knows which value changed, identified bu the unique id, it
+  ## can decide not to update the compoent tree affected by this data.
 
   ProcTypeSelectorCompare*[D1,D2] = proc(data: D1, oldData: D2): tuple[data: D2, changed: bool] ## \
   ## Procedure that fetches a part of a larger dataset and returns a smaller
@@ -332,6 +346,12 @@ proc match*[D](c: Config[D], selector: string, actions: proc(x: MatchConfig[D,D]
   ## Match variant for `Config` with no data refinement
   match[D,D](c, selector, id[D], actions)
 
+proc refresh*[X,D](c: MatchConfig[X,D], refresh: ProcRefreshSimple[D]) =
+  ## Add a `ProcRefresh` callback procedure to a match. The callback is called
+  ## whenever the data associated with the match changes. It can be used to
+  ## update the DOM node text contents, event handlers, ...
+  c.refresh.add(proc(node: dom.Node, data: D, init: bool) = refresh(node, data))
+
 proc refresh*[X,D](c: MatchConfig[X,D], refresh: ProcRefresh[D]) =
   ## Add a `ProcRefresh` callback procedure to a match. The callback is called
   ## whenever the data associated with the match changes. It can be used to
@@ -552,7 +572,7 @@ proc update[D,D2](match: CompMatch[D,D2], val: D, refresh: bool) =
 
       # Refresh the node
       for refreshProc in match.refresh:
-        refreshProc(iter_item.node, item)
+        refreshProc(iter_item.node, item, not inited)
 
       i = i + 1
 
@@ -586,7 +606,8 @@ proc update[D,D2](match: CompMatch[D,D2], val: D, refresh: bool) =
       node.parentNode.replaceChild(match.mount.node(), node)
 
     # Initialize DOM Node
-    if not match.inited:
+    let inited = match.inited
+    if not inited:
       for initProc in match.init:
         initProc(node)
       match.inited = true
@@ -605,7 +626,7 @@ proc update[D,D2](match: CompMatch[D,D2], val: D, refresh: bool) =
     # Refresh the node
     if changed:
       for refreshProc in match.refresh:
-        refreshProc(node, convertedVal)
+        refreshProc(node, convertedVal, not inited)
 
 #
 # API
@@ -632,6 +653,11 @@ proc clone*[D](comp: Component[D]): Component[D] =
   ## Clones a component, allows to operate them separately
   return compile(Config[D](config: comp.config), comp.original_node)
 
+# TODO: accept a list or a tree of value ids that wewe modified. First id would
+# be the subtree modified relative to root data object, second idea, the
+# modified subtree compared to the first id subset, and so on.
+#
+# tree could refresh multiple part of the tree instead of a single part
 proc update*[D](t: Component[D], data: D, refresh: bool = false) =
   ## Feeds data to a compiled component, calling the refresh callbacks when
   ## needed.
