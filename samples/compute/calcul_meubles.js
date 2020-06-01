@@ -4102,7 +4102,7 @@ function bind_value_12246249() {
         }
         
         F.line = 239;
-        (re_12246262.node).value = (re_12246262.data);
+        (re_12246262.node).value = #.value;
       framePtr = F.prev;
 
       

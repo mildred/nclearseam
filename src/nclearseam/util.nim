@@ -236,7 +236,7 @@ proc bindValue*[T](typ: typedesc[T]): ProcRefresh[T] =
     if re.init:
       re.node.addEventListener("change") do(e: dom.Event):
         re.set(re.node.toJs["value"].to(T))
-    re.node.toJs.value = re.data.toJs
+    re.node.toJs.value = value
 
 #
 # Helper procedures to create iterator functions
