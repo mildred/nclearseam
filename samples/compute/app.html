@@ -1,0 +1,41 @@
+<template>
+  <div>
+    <style scope>
+      .toolbar:component {
+        /* position: fixed is enough to create a block formatting context and
+           avoid a clearfix */
+        position: fixed;
+        width: 100%;
+        min-height: 1em;
+        font-size: 0.8em;
+        background-color: var(--light-bg-color);
+        top: 0;
+        transform: translateY(calc(1rem - 100%));
+      }
+      .toolbar:component:hover {
+        transform: translateY(0);
+        transition: transform 0.1s;
+      }
+      :scope {
+        padding-top: 0.5rem;
+      }
+    </style>
+
+    <div class="toolbar">
+      <button class="ouvrir">Ouvrir...</button>
+      <button class="click">Chique <span class="times"></span> fois</button>
+    </div>
+
+    <p>
+      Chiqué <span class="times"></span> fois.
+    </p>
+    <p>
+      Il y a <span class="num-children"></span> enfants.
+    </p>
+
+    <hr/>
+
+    <div class="settings">
+    </div>
+  </div>
+</template>
