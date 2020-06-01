@@ -167,8 +167,11 @@ proc combine_set_fields[D1,D2,D3](
     set2(val2, val3)
     set1(data, val2))
 
+# Workaround https://github.com/nim-lang/Nim/issues/14534
+proc paren[T](x: T): T {.importcpp: "(#)", nodecl.}
+
 template `->`*[T1,T2](left: TypeSelector[T1,T2], ident: untyped): auto =
-  TypeSelector[T1, get_fields_type_macro(T2, ident)](
+  paren(TypeSelector[T1, get_fields_type_macro(T2, ident)](
     get: left.get | get_fields_macro(T2, ident),
     set: proc(data: var T1, val3: get_fields_type_macro(T2, ident)) =
       let val2 = left.get(data)
@@ -176,7 +179,7 @@ template `->`*[T1,T2](left: TypeSelector[T1,T2], ident: untyped): auto =
       set2(val2, val3)
       left.set(data, val2),
     id:  left.id & @[astToStr(ident)]
-  )
+  ))
 
 proc access*[D](c: Config[D]): TypeSelector[D,D] =
   result = TypeSelector[D,D](
@@ -234,9 +237,10 @@ proc setValue*[T](typ: typedesc[T]): proc(node: dom.Node, value: T) =
 proc bindValue*[T](typ: typedesc[T]): ProcRefresh[T] =
   return proc(re: RefreshEvent[T]) =
     if re.init:
+      assert(re.set != nil, "Cannot bind value where type selector does not allow changing the data")
       re.node.addEventListener("change") do(e: dom.Event):
         re.set(re.node.toJs["value"].to(T))
-    re.node.toJs.value = value
+    re.node.toJs.value = re.data.toJs
 
 #
 # Helper procedures to create iterator functions

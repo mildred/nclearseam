@@ -4,6 +4,9 @@ import system
 import ./nclearseam/dom
 
 type
+  BindError* = object of CatchableError ##\
+  ## Error raised when updating data is tried on read-only template
+
   CompileError* = object of CatchableError ##\
   ## Parent type for all errors
 
@@ -191,7 +194,7 @@ type
       case selectorKind: TypeSelectorKind
       of SerialTypeSelector:
         serial: int
-      of CompareTypeSelector:
+      of CompareTypeSelector, ObjectTypeSelector:
         value: D2
       else: discard
       convert: MultiTypeSelector[D,D2]
@@ -413,6 +416,24 @@ proc refresh*[X,D](c: MatchConfig[X,D], refresh: ProcRefresh[D]) =
   ## Add a `ProcRefresh` callback procedure to a match. The callback is called
   ## whenever the data associated with the match changes. It can be used to
   ## update the DOM node text contents, event handlers, ...
+  if c.iter:
+    case c.iterate.kind
+    of SimpleIterator:
+      raise newException(BindError, &"refresh with RefreshEvent is forbidden when iterator (simple) does not allow updates")
+    of SerialIterator:
+      raise newException(BindError, &"refresh with RefreshEvent is forbidden when iterator (serial) does not allow updates")
+    of TypeSelectorIterator:
+      discard
+  else:
+    case c.convert.kind
+    of SimpleTypeSelector:
+      raise newException(BindError, &"refresh with RefreshEvent is forbidden when type selector (simple) does not allow updates")
+    of SerialTypeSelector:
+      raise newException(BindError, &"refresh with RefreshEvent is forbidden when type selector (serial) does not allow updates")
+    of CompareTypeSelector:
+      raise newException(BindError, &"refresh with RefreshEvent is forbidden when type selector (compare) does not allow updates")
+    of ObjectTypeSelector:
+      discard
   c.refresh.add(refresh)
 
 proc init*[X,D](c: MatchConfig[X,D], init: ProcInit) =
@@ -599,7 +620,7 @@ proc update[D,D2](match: CompMatch[D,D2], initVal: D, setVal: ProcSet[D], refres
       var serial: int = if i < len(match.items): match.items[i].serial else: 0
       var changed = refresh
       var item: D2
-      var set: proc(newValue: D2) = nil
+      var set: proc(newValue: D2) = nil #proc(newValue: D2) = raise newException(BindError, &"Cannot change data, type-selector is read-only")
       case match.iterate.kind
       of SimpleIterator:
         var it = it_simple()
@@ -663,7 +684,7 @@ proc update[D,D2](match: CompMatch[D,D2], initVal: D, setVal: ProcSet[D], refres
     var changed = refresh
     var node = match.node
     var convertedVal: D2
-    var set: proc(val: D2) = nil
+    var set: proc(val: D2) = nil #proc(newValue: D2) = raise newException(BindError, &"Cannot change data, type-selector is read-only")
 
     case match.convert.kind
     of SimpleTypeSelector:
