@@ -1,4 +1,5 @@
 import macros
+#import jsconsole
 import jsffi
 
 import ../nclearseam
@@ -236,6 +237,7 @@ proc setValue*[T](typ: typedesc[T]): proc(node: dom.Node, value: T) =
 
 proc bindValue*[T](typ: typedesc[T]): ProcRefresh[T] =
   return proc(re: RefreshEvent[T]) =
+    #console.log("bindValue(%o)", re)
     if re.init:
       assert(re.set != nil, "Cannot bind value where type selector does not allow changing the data")
       re.node.addEventListener("change") do(e: dom.Event):

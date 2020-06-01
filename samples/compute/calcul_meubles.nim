@@ -6,6 +6,7 @@ import nclearseam/dom
 import nclearseam/registry
 
 import ./app
+import ./settings
 
 proc main() {.async discardable.} =
   await components.init()

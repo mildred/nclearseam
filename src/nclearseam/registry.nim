@@ -15,12 +15,21 @@ type
 
 var components*: Registry
 
-proc initComp[T](component: var Component[T], node: Future[dom.Node], creator: ProcCreator[T]): Future[void] {.async.} =
+proc initComp[T](set_component: proc(c: Component[T]), node: Future[dom.Node], creator: ProcCreator[T]): Future[void] {.async.} =
+  #component = Component[T]()
   let n = await node
-  component = creator(n)
+  #component[] = creator(n)[]
+  set_component(creator(n))
 
 proc declare*[T](registry: var Registry, component: var Component[T], node: Future[dom.Node], creator: ProcCreator[T]) =
-  registry.initProcs.add(proc(): Future[void] = initComp[T](component, node, creator))
+  let set_component = proc(c: Component[T]) = component = c
+  registry.initProcs.add(proc(): Future[void] = initComp[T](set_component, node, creator))
+
+proc declare*[T](registry: var Registry, component: var ComponentInterface[T], node: Future[dom.Node], creator: ProcCreator[T]) =
+  var comp: Component[T] = nil
+  let set_component = proc(c: Component[T]) = comp = c
+  component = late(proc(): Component[T] = comp)
+  registry.initProcs.add(proc(): Future[void] = initComp[T](set_component, node, creator))
 
 proc init*(registry: Registry): Future[void] {.async.} =
   await Promise.all(registry.initProcs.map(proc(p: ProcInit): Future[void] = p())).to(Future[void])

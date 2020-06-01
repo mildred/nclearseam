@@ -1,6 +1,8 @@
 import sequtils
 import strformat
 import system
+#import jsconsole
+import strutils
 import ./nclearseam/dom
 
 type
@@ -30,8 +32,14 @@ type
   ## Procedure callback that is called whenever a part of a template needs to \
   ## be refreshed on data change.
 
-  ProcSet*[D] = proc(newValue: D) ## \
-  ## procedure used to update a value of a given type
+  DataPath* = seq[string] ##\
+  ## Represents a path to a part of a dataset, used for partial updates
+
+  ProcSet[D] = proc(newValue: D, path: DataPath = @[]) ## \
+  ## procedure used to update a value of a given type. provides a path
+  ## representing the subset of the data that actually changed and that needs
+  ## update. Other values will not update. Default path is an empty path to
+  ## signify that all the data changed
 
   RefreshEvent*[D] = ref object
     ## Represents a refresh event passed to the refresh procedure
@@ -43,7 +51,7 @@ type
     node*: dom.Node
     data*: D
     init*: bool
-    set*:  proc(newValue: D)
+    set*:  ProcSet[D]
 
   ProcRefresh*[D] = proc(e: RefreshEvent[D]) ## \
   ## Procedure callback that is called whenever a part of a template needs to \
@@ -77,7 +85,7 @@ type
     ## on the paths that were modified.
     get*: proc(data: D1): D2
     set*: proc(data: var D1, value: D2)
-    id*:  seq[string]
+    id*:  DataPath
 
   TypeSelectorKind = enum
     SimpleTypeSelector,
@@ -137,6 +145,10 @@ type
     next:        proc(): IterItem[D]
   ProcIterInternal[D] = proc(data: D): IterItem[D]
 
+  UpdateSet* = ref object
+    ## Represents a list of data paths which are modified
+    paths: seq[DataPath]
+
   #
   # Config: Global component configuration
   #
@@ -180,7 +192,7 @@ type
   ComponentInterface*[D] = ref object
     ## Wrapper around a `Component`, allowing the generic type to be converted.
     node*:   proc(): dom.Node
-    update*: proc(data: D, set: ProcSet[D], refresh: bool)
+    update*: proc(data: D, set: ProcSet[D], refreshList: UpdateSet)
     clone*:  proc(): ComponentInterface[D]
 
   # CompMatch: handle association between DOM and a selector match
@@ -210,7 +222,7 @@ type
       anchor: dom.Node
 
   CompMatchInterface[D] = ref object
-    update: proc(data: D, set: ProcSet[D], refresh: bool)
+    update: proc(data: D, set: ProcSet[D], refreshList: UpdateSet)
 
   # CompMatchItem: handle iterations
 
@@ -241,6 +253,52 @@ proc clone*[D](comp: Component[D]): Component[D]
 #
 
 proc id[D](data: D): D = data
+
+proc is_changed*(set: UpdateSet): bool =
+  ## Returns true if the update set is telling that the current node needs to
+  ## update
+  result = (set == nil or set.paths.len > 0)
+
+proc walk*(set: UpdateSet, path: DataPath): UpdateSet =
+  ## Walk `path` and remove `path` prefix from all paths in ``set``. If a path
+  ## in ``set`` does not start with the given path, it is discarded
+  if set == nil: return nil
+  result = UpdateSet(paths: @[])
+  for oldPath in set.paths:
+    block createNewPath:
+      var newPath: DataPath = @[]
+      if oldPath.len < path.len:
+        break createNewPath
+      for i in 0 .. (path.len - 1):
+        if i >= oldPath.len:
+          break
+        if path[i] != oldPath[i]:
+          break createNewPath
+      if oldPath.len > path.len:
+        newPath = oldPath[(path.len + 1)..^1]
+      result.paths.add(newPath)
+
+let refreshAll*: UpdateSet = UpdateSet(
+  paths: @[]
+)
+
+proc sub[D1,D2](ts: TypeSelector[D1,D2], val: var D1, setVal: ProcSet[D1], update: proc(refreshList: UpdateSet)): ProcSet[D2] =
+  if setVal == nil and update == nil:
+    return nil
+  result = proc(newValue: D2, changedPath: DataPath) =
+    ts.set(val, newValue)
+    let newPath = ts.id & changedPath
+    if setVal != nil:
+      setVal(val, newPath)
+    elif update != nil:
+      #console.log("Update %s", $newPath)
+      update(UpdateSet(paths: @[newPath]))
+
+proc `$`*(path: DataPath): string =
+  path.join("->")
+
+proc `$`*(refreshList: UpdateSet): string =
+  refreshList.paths.join(", ")
 
 #
 # Configuration DSL
@@ -447,14 +505,14 @@ proc mount*[X,D](c: MatchConfig[X,D], conf: Config[D], node: dom.Node) =
   ## and DOM Node
   assert(conf != nil, "mounted configuration cannot be nil")
   assert(node != nil, "mounted node cannot be nil")
-  c.mount = asInterface(compile(conf, node))
+  c.mount = asInterface(compile(node, conf))
 
 proc mount*[X,D](c: MatchConfig[X,D], comp: Component[D]) =
   ## Mounts a sub-component specified as an already compiled `Component`. The
   ## given component is cloned to ensure that the mounted component does not
   ## modify the passed instance.
-  assert(comp != nil, "mounted component cannot be nil")
-  c.mount = asInterface(clone(comp))
+  assert(comp != nil, "mounted component cannot be nil (use late() to perform late component binding)")
+  c.mount = asInterface(comp)
 
 proc mount*[X,D](c: MatchConfig[X,D], comp: ComponentInterface[D]) =
   ## Mounts a sub-component specified as a `ComponentInterface` allowing to
@@ -462,14 +520,21 @@ proc mount*[X,D](c: MatchConfig[X,D], comp: ComponentInterface[D]) =
   ## same type as the parent component. The component is cloed to ensure the
   ## passed instance is not modified.
   assert(comp != nil, "mounted component cannot be nil")
-  c.mount = comp.clone()
+  c.mount = comp
 
 proc mount*[X,D,D2](c: MatchConfig[X,D], comp: Component[D2], convert: TypeSelector[D,D2]) =
   ## Mounts a component and performs a type conversion between the mounted
   ## location and the mounted component. The passed component is cloned to
   ## ensure it is not modified.
+  assert(comp != nil, "mounted component cannot be nil (use late() to perform late component binding)")
+  c.mount = asInterface[D](comp, convert)
+
+proc mount*[X,D,D2](c: MatchConfig[X,D], comp: ComponentInterface[D2], convert: TypeSelector[D,D2]) =
+  ## Mounts a component and performs a type conversion between the mounted
+  ## location and the mounted component. The passed component is cloned to
+  ## ensure it is not modified.
   assert(comp != nil, "mounted component cannot be nil")
-  c.mount = asInterface[D](clone[D2](comp), convert)
+  c.mount = asInterface[D](comp, convert)
 
 proc iter[X,D,D2](c: MatchConfig[X,D], selector: string, iter: Iterator[D,D2], actions: proc(x: MatchConfig[D,D2]) = nil): MatchConfig[D,D2] {.discardable.} =
   result = MatchConfig[D,D2](
@@ -599,12 +664,14 @@ proc detach[D2](iter_item: CompMatchItem[D2], parentNode: dom.Node) =
   ## detach is a helper procedure to detach a node from an iter item
   parentNode.removeChild(iter_item.node)
 
-proc update[D,D2](match: CompMatch[D,D2], initVal: D, setVal: ProcSet[D], refresh: bool) =
+proc update[D,D2](match: CompMatch[D,D2], initVal: D, setVal: ProcSet[D], refreshList: UpdateSet) =
+  assert(setVal != nil)
   var val = initVal
 
   if match.iter:
     var i = 0
     let parentNode = match.anchor.parentNode
+    var subList: UpdateSet
     var it_simple: ProcIter[D2]
     var it_serial: ProcIterSerial[D2]
     var it_select: ProcIterTypeSelector[D,D2]
@@ -618,25 +685,29 @@ proc update[D,D2](match: CompMatch[D,D2], initVal: D, setVal: ProcSet[D], refres
 
     while true:
       var serial: int = if i < len(match.items): match.items[i].serial else: 0
-      var changed = refresh
+      var changed = refreshList.is_changed()
       var item: D2
-      var set: proc(newValue: D2) = nil #proc(newValue: D2) = raise newException(BindError, &"Cannot change data, type-selector is read-only")
+      var set: ProcSet[D2] = nil #proc(newValue: D2) = raise newException(BindError, &"Cannot change data, type-selector is read-only")
       case match.iterate.kind
       of SimpleIterator:
         var it = it_simple()
         if it[0] == false: break
         item = it[1]
+        #console.log("nclearseam.update(iter, changed=%o) using %o", changed, item)
       of SerialIterator:
         var it = it_serial(serial)
         if it[0] == false: break
         item = it[1]
+        #console.log("nclearseam.update(iter, changed=%o) using %o", changed, item)
       of TypeSelectorIterator:
         var it = it_select()
         if it == nil: break
         item = it.get(val)
-        set = proc(newValue: D2) =
-          it.set(val, newValue)
-          if setVal != nil: setVal(val)
+        set = it.sub(val, setVal) do(refreshList: UpdateSet):
+          update(match, val, setVal, refreshList)
+        subList = refreshList.walk(it.id)
+        changed = subList.is_changed()
+        #console.log("nclearseam.update(iter, changed=%o, id=%o) using %o", changed, $it.id, item)
 
       var iter_item: CompMatchItem[D2]
       var inited: bool
@@ -660,11 +731,11 @@ proc update[D,D2](match: CompMatch[D,D2], initVal: D, setVal: ProcSet[D], refres
 
       # Refresh mounts
       if iter_item.mount != nil:
-        iter_item.mount.update(item, set, refresh)
+        iter_item.mount.update(item, set, subList)
 
       # Refresh the submatches
       for submatch in iter_item.matches:
-        submatch.update(item, set, refresh)
+        submatch.update(item, set, subList)
 
       # Refresh the node
       let e = RefreshEvent[D2](
@@ -681,36 +752,40 @@ proc update[D,D2](match: CompMatch[D,D2], initVal: D, setVal: ProcSet[D], refres
     while i < len(match.items):
       detach(pop(match.items), parentNode)
   else:
-    var changed = refresh
+    var changed = refreshList.is_changed()
+    var subList: UpdateSet
     var node = match.node
     var convertedVal: D2
-    var set: proc(val: D2) = nil #proc(newValue: D2) = raise newException(BindError, &"Cannot change data, type-selector is read-only")
+    var set: ProcSet[D2] = nil #proc(newValue: D2) = raise newException(BindError, &"Cannot change data, type-selector is read-only")
 
     case match.convert.kind
     of SimpleTypeSelector:
       convertedVal = match.convert.simple(val)
       changed = true
+      #console.log("nclearseam.update(match, changed=%o) with %o", changed, convertedVal)
     of SerialTypeSelector:
       var serial = match.serial
       convertedVal = match.convert.serial(val, serial)
       if serial != match.serial:
         changed = true
+      #console.log("nclearseam.update(match, changed=%o) with %o", changed, convertedVal)
     of CompareTypeSelector:
       let res = match.convert.compare(val, match.value)
       convertedVal = res.data
       match.value = res.data
       if res.changed:
         changed = true
+      #console.log("nclearseam.update(match, changed=%o) with %o", changed, convertedVal)
     of ObjectTypeSelector:
       let obj = match.convert.obj
       convertedVal = obj.get(val)
-      changed = true
-      if match.convert.eql != nil:
+      subList = refreshList.walk(obj.id)
+      changed = subList.is_changed()
+      if changed and match.convert.eql != nil:
         changed = not match.convert.eql(convertedVal, match.value)
-      set = proc(val2: D2) =
-        obj.set(val, val2)
-        if setVal != nil: setVal(val)
-
+      set = obj.sub(val, setVal) do(refreshList: UpdateSet):
+        update(match, val, setVal, refreshList)
+      #console.log("nclearseam.update(match, changed=%o, id=%o) with %o", changed, $obj.id, convertedVal)
 
     # Mount the child
     if match.mount == nil and match.mount_source != nil:
@@ -728,12 +803,12 @@ proc update[D,D2](match: CompMatch[D,D2], initVal: D, setVal: ProcSet[D], refres
     # Update mounts
     if changed and match.mount != nil:
       node = match.mount.node()
-      match.mount.update(convertedVal, set, refresh)
+      match.mount.update(convertedVal, set, subList)
 
     # Update the submatches
     if changed:
       for submatch in match.matches:
-        submatch.update(convertedVal, set, refresh)
+        submatch.update(convertedVal, set, subList)
 
     if changed:
       let e = RefreshEvent[D2](
@@ -769,23 +844,30 @@ proc clone*[D](comp: Component[D]): Component[D] =
   ## Clones a component, allows to operate them separately
   return compile(Config[D](config: comp.config), comp.original_node)
 
-# TODO: accept a list or a tree of value ids that wewe modified. First id would
-# be the subtree modified relative to root data object, second idea, the
-# modified subtree compared to the first id subset, and so on.
-#
-# tree could refresh multiple part of the tree instead of a single part
-proc update*[D](t: Component[D], data: D, set: ProcSet[D] = nil, refresh: bool = false) =
+proc update*[D](t: Component[D], initVal: D, setVal: ProcSet[D] = nil, refreshList: UpdateSet = nil) =
   ## Feeds data to a compiled component, calling the refresh callbacks when
   ## needed.
-  t.data = data
-  for match in t.matches:
-    match.update(data, set, refresh)
+  t.data = initVal
+
+  proc upd(refreshList: UpdateSet)
+  proc set(newVal: D, changedPath: DataPath) =
+    t.data = newVal
+    if setVal != nil:
+      setVal(newVal, changedPath)
+    else:
+      upd(UpdateSet(paths: @[changedPath]))
+
+  proc upd(refreshList: UpdateSet) =
+    for match in t.matches:
+      match.update(t.data, set, refreshList)
+
+  upd(refreshList)
 
 proc attach*[D](t: Component[D], target, anchor: dom.Node, data: D, set: ProcSet[D] = nil) =
   ## Attach a component to a parent DOM node. Insert the component as a child
   ## element of `target` and before `anchor` in the same way the `insertBefore`
   ## procedure works on DOM.
-  t.update(data, set, refresh = true)
+  t.update(data, set, refreshAll)
   target.insertBefore(t.node, anchor)
 
 proc detach*(t: Component) =
@@ -801,7 +883,7 @@ proc detach*(t: Component) =
 
 func asInterface[D,D2](match: CompMatch[D,D2]): CompMatchInterface[D] =
   result = CompMatchInterface[D](
-    update: proc(data: D, set: ProcSet[D], refresh: bool) = update[D,D2](match, data, set, refresh)
+    update: proc(data: D, set: ProcSet[D], refreshList: UpdateSet) = update[D,D2](match, data, set, refreshList)
   )
 
 func asInterface[D,D2](config: MatchConfig[D,D2]): MatchConfigInterface[D] =
@@ -817,8 +899,8 @@ func asInterface*[D](comp: Component[D]): ComponentInterface[D] =
   result = ComponentInterface[D](
     node: proc(): dom.Node =
       comp.node,
-    update: proc(data: D, set: ProcSet[D], refresh: bool) =
-      comp.update(data, set, refresh),
+    update: proc(data: D, set: ProcSet[D], refreshList: UpdateSet) =
+      comp.update(data, set, refreshList),
     clone: (proc(): ComponentInterface[D] =
       asInterface(clone(comp))))
 
@@ -827,14 +909,22 @@ func asInterface*[D,D2](comp: Component[D2], convert: TypeSelector[D,D2]): Compo
   result = ComponentInterface[D](
     node: proc(): dom.Node =
       comp.node,
-    update: proc(initVal: D, setVal: ProcSet[D], refresh: bool) =
+    update: proc(initVal: D, setVal: ProcSet[D], refreshList: UpdateSet) =
       var val = initVal
-      let set = proc(newValue: D2) =
-        convert.set(val, newValue)
-        if setVal != nil: setVal(val)
-      comp.update(convert.get(val), set, refresh),
+      comp.update(convert.get(val), convert.sub(val, setVal, nil), refreshList.walk(convert.id)),
     clone: (proc(): ComponentInterface[D] =
       asInterface(clone(comp), convert)))
+
+func asInterface*[D,D2](comp: ComponentInterface[D2], convert: TypeSelector[D,D2]): ComponentInterface[D] =
+  ## Converts a component to a component interface and convert its type
+  result = ComponentInterface[D](
+    node: proc(): dom.Node =
+      comp.node(),
+    update: proc(initVal: D, setVal: ProcSet[D], refreshList: UpdateSet) =
+      var val = initVal
+      comp.update(convert.get(val), convert.sub(val, setVal, nil), refreshList.walk(convert.id)),
+    clone: (proc(): ComponentInterface[D] =
+      asInterface(comp.clone(), convert)))
 
 proc late*[D](lateComp: proc(): Component[D]): ComponentInterface[D] =
   ## Returns a component interface from a component where the component is not
@@ -849,17 +939,19 @@ proc late*[D](lateComp: proc(): Component[D]): ComponentInterface[D] =
   proc resolveComp() :Component[D] =
     if comp == nil:
       var late = lateComp()
-      if late != nil:
+      if late == nil:
         raise newException(CompileLateError, &"Late component not resolved in time")
       comp = late
     return comp
 
-  result = ComponentInterface[D](
-    node: proc(): dom.Node =
-      resolveComp().node,
-    update: proc(data: D, set: ProcSet[D], refresh: bool) =
-      resolveComp().update(data, set, refresh),
-    clone: proc(): ComponentInterface[D] =
-      late(proc(): Component[D] = clone(resolveComp()))
-  )
+  proc create(): ComponentInterface[D] =
+    result = ComponentInterface[D](
+      node: proc(): dom.Node =
+        resolveComp().node,
+      update: proc(data: D, set: ProcSet[D], refreshList: UpdateSet) =
+        resolveComp().update(data, set, refreshList),
+      clone: proc(): ComponentInterface[D] =
+        asInterface(resolveComp().clone())
+    )
 
+  result = create()

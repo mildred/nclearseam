@@ -39,22 +39,26 @@ You can also [view live examples](samples/):
 
 ### Hello World
 
+Simple example with two-way binding.
+
 ```html
 <template>
   <h1>hello <span class="name"></span>!</h1>
+  <p>Please enter your name: <input type="text" name="name" /></p>
 </template>
 ```
 
-```json
-{
-  "name": "John"
-}
+```nim
+type Data = ref object
+  name: string
+
+let data = Data(name: "John")
 ```
 
 ```nim
-var t = create(JsonNode) do(t: auto):
-  t.match("h1 .name", get("name")).refresh do(node: dom.Node, data: JsonNode):
-    node.textContent = data.getStr()
+var t = create(Data) do(t: auto):
+  t.match("h1 .name", t.access->name).refresh(setText)
+  t.match("[name=name]", t.access->name).refresh(bindValue(string))
 ```
 
 ### Iterations

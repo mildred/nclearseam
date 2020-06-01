@@ -11,12 +11,12 @@ type
   Settings* = ref object
     cubeprice: int
 
-var SettingsComponent*: Component[Settings]
+var SettingsComponent*: ComponentInterface[Settings]
 
 components.declare(SettingsComponent, fetchTemplate("settings.html", "template", css = true)) do(node: dom.Node) -> Component[Settings]:
   return compile(Settings, node) do(c: auto):
-    c.match("[name=cubeprice]", Settings->cubeprice, eql).refresh(bindValue(int))
-    c.match(".cubeprice", Settings->cubeprice, eql).refresh(setText(int))
+    c.match("[name=cubeprice]", c.access->cubeprice, eql).refresh(bindValue(int))
+    c.match(".cubeprice", c.access->cubeprice, eql).refresh(setText(int))
 
 # TODO:
 #

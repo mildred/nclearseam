@@ -35,7 +35,7 @@ proc open(c: Component[AppData]) =
     reader.onload = (proc() =
       let json = reader.result.to(cstring)
       c.data.doc = parseJSON($json).to(DocData)
-      c.update(c.data)
+      c.update(c.data, nil, refreshAll)
     )
 
     reader.readAsText(file)
