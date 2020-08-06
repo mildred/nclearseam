@@ -258,6 +258,12 @@ proc clone*[D](comp: Component[D]): Component[D]
 
 proc id[D](data: D): D = data
 
+proc idTypeSelector[D](): TypeSelector[D,D] =
+  return TypeSelector[D,D](
+    get: proc(data: D): D = data,
+    set: proc(data: var D, value: D) = data = value,
+    id:  @[])
+
 proc is_changed*(set: UpdateSet): bool =
   ## Returns true if the update set is telling that the current node needs to
   ## update
@@ -462,11 +468,11 @@ proc match*[D,D2](c: Config[D], selector: string, convert: ProcTypeSelectorCompa
 
 proc match*[X,D](c: MatchConfig[X,D], selector: string, actions: proc(x: MatchConfig[D,D]) = nil): MatchConfig[D,D] {.discardable.} =
   ## Match variant with no data refinement
-  match[X,D,D](c, selector, id[D], actions)
+  match[X,D,D](c, selector, idTypeSelector[D](), actions)
 
 proc match*[D](c: Config[D], selector: string, actions: proc(x: MatchConfig[D,D]) = nil): MatchConfig[D,D] {.discardable.} =
   ## Match variant for `Config` with no data refinement
-  match[D,D](c, selector, id[D], actions)
+  match[D,D](c, selector, idTypeSelector[D](), actions)
 
 proc refresh*[X,D](c: MatchConfig[X,D], refresh: ProcRefreshSimple[D]) =
   ## Add a `ProcRefresh` callback procedure to a match. The callback is called
