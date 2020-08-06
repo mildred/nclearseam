@@ -24,9 +24,9 @@ type
   ## Represents an error where a callback tries to update a dataset that is not
   ## modifyable
 
-  ProcConfig*[D] = proc(c: Component[D]) ## \
-  ## procedure callback that is called upon compilation to configure the
-  ## component
+  ProcMatchConfig*[D1,D2] = proc(c: MatchConfig[D1,D2]) ## \
+  ## procedure callback that is called upon compilation to configure a
+  ## component match
 
   ProcInit* = proc(node: dom.Node) ## \
   ## Procedure callback that is called whenever a part of a template needs to \
@@ -174,31 +174,16 @@ type
   MatchConfigInterface[D] = ref object
     compile: proc(node: dom.Node): seq[CompMatchInterface[D]]
 
-  Config*[D] = ref object of MatchConfig[void,D]
+  Config*[D] = ref object of MatchConfig[D,D]
     ## Represents a template configuration, not yet associated with a DOM Node
-    config: ProcConfig[D]
+    config: ProcMatchConfig[D,D]
 
   #
   # Component: Global component object
   #
 
-  Component*[D] = ref object of Config[D]
-    ## Represents an instanciated template, a `Config` that has been compiled \
-    ## with a DOM node.
-    matches: seq[CompMatchInterface[D]]
-    node: dom.Node
-    original_node: dom.Node
-    data*: D
-
-  ComponentInterface*[D] = ref object
-    ## Wrapper around a `Component`, allowing the generic type to be converted.
-    node*:   proc(): dom.Node
-    update*: proc(data: D, set: ProcSet[D], refreshList: UpdateSet)
-    clone*:  proc(): ComponentInterface[D]
-
-  # CompMatch: handle association between DOM and a selector match
-
   CompMatch[D,D2] = ref object
+    # CompMatch: handle association between DOM and a selector match
     refresh: seq[ProcRefresh[D2]]
     init: seq[ProcInit]
     node: dom.Node
@@ -225,13 +210,29 @@ type
   CompMatchInterface[D] = ref object
     update: proc(data: D, set: ProcSet[D], refreshList: UpdateSet)
 
-  # CompMatchItem: handle iterations
 
   CompMatchItem[D2] = ref object
+    # CompMatchItem: handle iterations
     serial: int
     node: dom.Node
     matches: seq[CompMatchInterface[D2]]
     mount: ComponentInterface[D2]
+
+  Component*[D] = ref object
+    ## Represents an instanciated template, a `Config` that has been compiled \
+    ## with a DOM node.
+    cmatches: seq[CompMatch[D,D]]
+    config: ProcMatchConfig[D,D]
+    convert: MultiTypeSelector[D,D]
+    original_node: dom.Node
+    node: dom.Node
+    data*: D
+
+  ComponentInterface*[D] = ref object
+    ## Wrapper around a `Component`, allowing the generic type to be converted.
+    node*:   proc(): dom.Node
+    update*: proc(data: D, set: ProcSet[D], refreshList: UpdateSet)
+    clone*:  proc(): ComponentInterface[D]
 
 #
 # Forward declaration interface conversion
@@ -246,7 +247,7 @@ func asInterface*[D,D2](comp: Component[D2], convert: TypeSelector[D,D2]): Compo
 # Forward declaration of the public API
 #
 
-proc compile*[D](node: dom.Node, tf: Config[D]): Component[D]
+proc compile*[D](d: typedesc[D], node: dom.Node, configurator: ProcMatchConfig[D,D], equal: proc(v1, v2: D): bool = nil): Component[D]
 proc clone*[D](comp: Component[D]): Component[D]
 
 #
@@ -260,6 +261,12 @@ proc idTypeSelector[D](): TypeSelector[D,D] =
     get: proc(data: D): D = data,
     set: proc(data: var D, value: D) = data = value,
     id:  @[])
+
+proc idMultiTypeSelector[D](equal: proc(a, b: D): bool): MultiTypeSelector[D,D] =
+  return MultiTypeSelector[D,D](
+    kind: ObjectTypeSelector,
+    eql:  equal,
+    obj:  idTypeSelector[D]())
 
 proc is_changed*(set: UpdateSet): bool =
   ## Returns true if the update set is telling that the current node needs to
@@ -285,8 +292,10 @@ proc walk*(set: UpdateSet, path: DataPath): UpdateSet =
         newPath = oldPath[(path.len)..^1]
       result.paths.add(newPath)
 
+let emptyDataPath*: DataPath = @[]
+
 let refreshAll*: UpdateSet = UpdateSet(
-  paths: @[]
+  paths: @[ emptyDataPath ]
 )
 
 proc sub[D1,D2](ts: TypeSelector[D1,D2], val: var D1, setVal: ProcSet[D1], update: proc(refreshList: UpdateSet)): ProcSet[D2] =
@@ -317,11 +326,13 @@ proc `$`*(refreshList: UpdateSet): string =
 # iter:    duplicate the element using a collection iterator
 #
 
-proc create*[D](): Config[D] =
+proc create*[D](equal: proc(v1,v2: D): bool = nil): Config[D] =
   ## Create a new empty configuration. Takes a dataset type as first argument
-  return new(Config[D])
+  return Config[D](
+    iter: false,
+    convert: idMultiTypeSelector[D](equal))
 
-proc create*[D](d: typedesc[D], config: ProcConfig[D]): Config[D] =
+proc create*[D](d: typedesc[D], config: ProcMatchConfig[D,D], equal: proc(v1,v2: D): bool = nil): Config[D] =
   ## Create a new empty configuration but allows to pass a procedure to modify
   ## the configuration
 
@@ -334,8 +345,10 @@ proc create*[D](d: typedesc[D], config: ProcConfig[D]): Config[D] =
   #    c.match(".name").refresh do(node: dom.Node, data: HelloName):
   #      node.textContents = data.name
 
-  result = new(Config[D])
-  result.config = config
+  return Config[D](
+    iter: false,
+    convert: idMultiTypeSelector[D](equal),
+    config: config)
 
 proc match[X,D,D2](c: MatchConfig[X,D], selector: string, convert: MultiTypeSelector[D,D2], actions: proc(x: MatchConfig[D,D2]) = nil): MatchConfig[D,D2] {.discardable.} =
   ## Declares a sub-match. The selector is run to find the DOM node that the
@@ -443,7 +456,7 @@ proc init*[X,D](c: MatchConfig[X,D], init: ProcInit) =
   ## whenever the DOM nodes is initialized.
   c.init.add(init)
 
-proc mount*[X,D](c: MatchConfig[X,D], conf: Config[D], node: dom.Node) =
+proc mount*[X,D](c: MatchConfig[X,D], conf: Config[D] | Component[D], node: dom.Node) =
   ## mounts a sub-component at the specified match location of a parent
   ## component. The sub-component is specified as an uncompiled configuration
   ## and DOM Node
@@ -551,17 +564,20 @@ proc compile[D](cfgs: seq[MatchConfigInterface[D]], node: dom.Node): seq[CompMat
   for cfg in cfgs:
     result.add(cfg.compile(node))
 
-proc compile*[D](cfg: Config[D], node: dom.Node): Component[D] =
-  ## Compiles a configuration by associating it with a DOM Node. Can raise
-  ## `CompileError` in case the selectors in the configuration do not match.
+proc compile*[D](d: typedesc[D], node: dom.Node, configurator: ProcMatchConfig[D,D], equal: proc(v1,v2: D): bool = nil): Component[D] =
+  ## Alternative compile procedure that creates the configuration and compiles
+  ## it in one shot.
   assert node != nil
+  let cfg = create(D, configurator, equal)
+  cfg.config(cfg)
+
   result = new(Component[D])
-  result.config        = cfg.config
+  result.config        = configurator
+  result.convert       = idMultiTypeSelector(equal)
   result.original_node = node
   result.node          = node.cloneNode(true)
+  result.cmatches      = compile(cfg, result.node)
 
-  result.config(result)
-  result.matches = compile(result.cmatches, result.node)
 
 #
 # Update a component match
@@ -761,15 +777,14 @@ proc compile*[D](node: dom.Node, tf: Config[D]): Component[D] =
   assert node != nil
   compile(tf, node)
 
-proc compile*[D](d: typedesc[D], node: dom.Node, configurator: proc(c: Component[D])): Component[D] =
-  ## Alternative compile procedure that creates the configuration and compiles
-  ## it in one shot.
-  assert node != nil
-  compile(create[D](d, configurator), node)
+proc compile*[D](cfg: Config[D] | Component[D], node: dom.Node): Component[D] =
+  ## Compiles a configuration by associating it with a DOM Node. Can raise
+  ## `CompileError` in case the selectors in the configuration do not match.
+  compile(D, node, cfg.config, cfg.convert.eql)
 
 proc clone*[D](comp: Component[D]): Component[D] =
   ## Clones a component, allows to operate them separately
-  return compile(Config[D](config: comp.config), comp.original_node)
+  return compile(D, comp.original_node, comp.config, comp.convert.eql)
 
 proc update*[D](t: Component[D], initVal: D, setVal: ProcSet[D] = nil, refreshList: UpdateSet = nil) =
   ## Feeds data to a compiled component, calling the refresh callbacks when
@@ -785,7 +800,7 @@ proc update*[D](t: Component[D], initVal: D, setVal: ProcSet[D] = nil, refreshLi
       upd(UpdateSet(paths: @[changedPath]))
 
   proc upd(refreshList: UpdateSet) =
-    for match in t.matches:
+    for match in t.cmatches:
       match.update(t.data, set, refreshList)
 
   upd(refreshList)
