@@ -596,7 +596,7 @@ proc iter*[D,D2](c: Config[D], selector: string, it: ProcIteratorSerial[D,D2], a
 
 proc compile[D,D2](cfg: MatchConfig[D,D2], node: dom.Node): seq[CompMatch[D,D2]] =
   result = @[]
-  let matched_nodes = node.querySelectorAll(cfg.selector)
+  let matched_nodes = if cfg.selector == "": @[cast[Element](node)] else: node.querySelectorAll(cfg.selector)
   if matched_nodes.len == 0:
     let selector = cfg.selector
     raise newException(CompileSelectorError, &"Cannot match selector '{selector}'")
