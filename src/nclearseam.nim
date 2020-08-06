@@ -20,6 +20,10 @@ type
   CompileLateError* = object of CompileError ## \
   ## Represents an error wen a late binding fails.
 
+  CannotSetError* = object of CatchableError ## \
+  ## Represents an error where a callback tries to update a dataset that is not
+  ## modifyable
+
   ProcConfig*[D] = proc(c: Component[D]) ## \
   ## procedure callback that is called upon compilation to configure the
   ## component
@@ -693,11 +697,15 @@ proc update[D,D2](match: CompMatch[D,D2], initVal: D, setVal: ProcSet[D], refres
         var it = it_simple()
         if it[0] == false: break
         item = it[1]
+        set = proc(newValue: D2, path: DataPath = @[]) =
+          raise newException(CannotSetError, &"Cannot update data with SimpleIterator")
         #console.log("nclearseam.update(iter, changed=%o) using %o", changed, item)
       of SerialIterator:
         var it = it_serial(serial)
         if it[0] == false: break
         item = it[1]
+        set = proc(newValue: D2, path: DataPath = @[]) =
+          raise newException(CannotSetError, &"Cannot update data with SerialIterator")
         #console.log("nclearseam.update(iter, changed=%o) using %o", changed, item)
       of TypeSelectorIterator:
         var it = it_select()
