@@ -393,6 +393,23 @@ proc match*[X,D,D2](c: MatchConfig[X,D], selector: string, convert: TypeSelector
     eql: equal)
   result = match(c, selector, typeSelector, actions)
 
+proc match*[X,D,D2](c: MatchConfig[X,D], convert: TypeSelector[D,D2], actions: proc(x: MatchConfig[D,D2]) = nil): MatchConfig[D,D2] {.discardable.} =
+  ## Match variant with convert procedure as simple `ProcTypeConverter` and
+  ## without selector
+  let typeSelector = MultiTypeSelector[D,D2](
+    kind: ObjectTypeSelector,
+    obj: convert)
+  result = match(c, "", typeSelector, actions)
+
+proc match*[X,D,D2](c: MatchConfig[X,D], convert: TypeSelector[D,D2], equal: proc(d1, d2: D2): bool, actions: proc(x: MatchConfig[D,D2]) = nil): MatchConfig[D,D2] {.discardable.} =
+  ## Match variant with convert procedure as simple `ProcTypeConverter` and
+  ## without selector
+  let typeSelector = MultiTypeSelector[D,D2](
+    kind: ObjectTypeSelector,
+    obj: convert,
+    eql: equal)
+  result = match(c, "", typeSelector, actions)
+
 proc match*[X,D,D2](c: MatchConfig[X,D], selector: string, convert: ProcTypeConverter[D,D2], equal: proc(d1, d2: D2): bool, actions: proc(x: MatchConfig[D,D2]) = nil): MatchConfig[D,D2] {.discardable.} =
   ## Match variant with convert procedure as simple `ProcTypeConverter` with
   ## equal procedure
