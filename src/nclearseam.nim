@@ -282,7 +282,7 @@ proc walk*(set: UpdateSet, path: DataPath): UpdateSet =
         if path[i] != oldPath[i]:
           break createNewPath
       if oldPath.len > path.len:
-        newPath = oldPath[(path.len + 1)..^1]
+        newPath = oldPath[(path.len)..^1]
       result.paths.add(newPath)
 
 let refreshAll*: UpdateSet = UpdateSet(
