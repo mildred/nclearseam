@@ -157,14 +157,7 @@ type
   # Config: Global component configuration
   #
 
-  Config*[D] = ref object of RootObj
-    ## Represents a template configuration, not yet associated with a DOM Node
-    cmatches: seq[MatchConfigInterface[D]]
-    config: ProcConfig[D]
-
-  # MatchConfig: configuration for a selector match
-
-  MatchConfig*[D,D2] = ref object
+  MatchConfig*[D,D2] = ref object of RootObj
     ## Part of a template configuration, related to particular sub-section \
     ## represented by a CSS selector.
     selector: string
@@ -180,6 +173,10 @@ type
 
   MatchConfigInterface[D] = ref object
     compile: proc(node: dom.Node): seq[CompMatchInterface[D]]
+
+  Config*[D] = ref object of MatchConfig[void,D]
+    ## Represents a template configuration, not yet associated with a DOM Node
+    config: ProcConfig[D]
 
   #
   # Component: Global component object
@@ -356,32 +353,12 @@ proc match[X,D,D2](c: MatchConfig[X,D], selector: string, convert: MultiTypeSele
   if actions != nil:
     actions(result)
 
-proc match[D,D2](c: Config[D], selector: string, convert: MultiTypeSelector[D,D2], actions: proc(x: MatchConfig[D,D2]) = nil): MatchConfig[D,D2] {.discardable.} =
-  ## Match variant for `Config`
-  result = MatchConfig[D,D2](
-    selector: selector,
-    refresh: @[],
-    init: @[],
-    mount: nil,
-    iter: false,
-    convert: convert)
-  c.cmatches.add(result.asInterface())
-  if actions != nil:
-    actions(result)
-
 proc match*[X,D,D2](c: MatchConfig[X,D], selector: string, convert: ProcTypeConverter[D,D2], actions: proc(x: MatchConfig[D,D2]) = nil): MatchConfig[D,D2] {.discardable.} =
   ## Declares a sub-match. The selector is run to find the DOM node that the
   ## sub-match will modify, and the convert procedure allows to refine the
   ## dataset when the sub-match only needs a portion of this dataset. The
   ## optional actions procedure can be used to further configure the sub-match.
   ##
-  ## Match variant with convert procedure as simple `ProcTypeConverter`.
-  let typeSelector = MultiTypeSelector[D,D2](
-    kind: SimpleTypeSelector,
-    simple: convert)
-  result = match(c, selector, typeSelector, actions)
-
-proc match*[D,D2](c: Config[D], selector: string, convert: ProcTypeConverter[D,D2], actions: proc(x: MatchConfig[D,D2]) = nil): MatchConfig[D,D2] {.discardable.} =
   ## Match variant with convert procedure as simple `ProcTypeConverter`.
   let typeSelector = MultiTypeSelector[D,D2](
     kind: SimpleTypeSelector,
@@ -395,22 +372,7 @@ proc match*[X,D,D2](c: MatchConfig[X,D], selector: string, convert: TypeSelector
     obj: convert)
   result = match(c, selector, typeSelector, actions)
 
-proc match*[D,D2](c: Config[D], selector: string, convert: TypeSelector[D,D2], actions: proc(x: MatchConfig[D,D2]) = nil): MatchConfig[D,D2] {.discardable.} =
-  ## Match variant with convert procedure as simple `ProcTypeConverter`.
-  let typeSelector = MultiTypeSelector[D,D2](
-    kind: ObjectTypeSelector,
-    obj: convert)
-  result = match(c, selector, typeSelector, actions)
-
 proc match*[X,D,D2](c: MatchConfig[X,D], selector: string, convert: TypeSelector[D,D2], equal: proc(d1, d2: D2): bool, actions: proc(x: MatchConfig[D,D2]) = nil): MatchConfig[D,D2] {.discardable.} =
-  ## Match variant with convert procedure as simple `ProcTypeConverter`.
-  let typeSelector = MultiTypeSelector[D,D2](
-    kind: ObjectTypeSelector,
-    obj: convert,
-    eql: equal)
-  result = match(c, selector, typeSelector, actions)
-
-proc match*[D,D2](c: Config[D], selector: string, convert: TypeSelector[D,D2], equal: proc(d1, d2: D2): bool, actions: proc(x: MatchConfig[D,D2]) = nil): MatchConfig[D,D2] {.discardable.} =
   ## Match variant with convert procedure as simple `ProcTypeConverter`.
   let typeSelector = MultiTypeSelector[D,D2](
     kind: ObjectTypeSelector,
@@ -428,24 +390,7 @@ proc match*[X,D,D2](c: MatchConfig[X,D], selector: string, convert: ProcTypeConv
       result = (data2, not equal(data2, oldData)))
   result = match(c, selector, typeSelector, actions)
 
-proc match*[D,D2](c: Config[D], selector: string, convert: ProcTypeConverter[D,D2], equal: proc(d1, d2: D2): bool, actions: proc(x: MatchConfig[D,D2]) = nil): MatchConfig[D,D2] {.discardable.} =
-  ## Match variant with convert procedure as simple `ProcTypeConverter` with
-  ## equal procedure
-  let typeSelector = MultiTypeSelector[D,D2](
-    kind: CompareTypeSelector,
-    compare: proc(data: D, oldData: D2): tuple[data: D2, changed: bool] =
-      let data2 = convert(data)
-      result = (data2, not equal(data2, oldData)))
-  result = match(c, selector, typeSelector, actions)
-
 proc match*[X,D,D2](c: MatchConfig[X,D], selector: string, convert: ProcTypeSelectorSerial[D,D2], actions: proc(x: MatchConfig[D,D2]) = nil): MatchConfig[D,D2] {.discardable.} =
-  ## Match variant with convert procedure as simple `ProcTypeSelectorSerial`.
-  let typeSelector = MultiTypeSelector[D,D2](
-    kind: SerialTypeSelector,
-    serial: convert)
-  result = match(c, selector, typeSelector, actions)
-
-proc match*[D,D2](c: Config[D], selector: string, convert: ProcTypeSelectorSerial[D,D2], actions: proc(x: MatchConfig[D,D2]) = nil): MatchConfig[D,D2] {.discardable.} =
   ## Match variant with convert procedure as simple `ProcTypeSelectorSerial`.
   let typeSelector = MultiTypeSelector[D,D2](
     kind: SerialTypeSelector,
@@ -459,20 +404,9 @@ proc match*[X,D,D2](c: MatchConfig[X,D], selector: string, convert: ProcTypeSele
     serial: convert)
   result = match(c, selector, typeSelector, actions)
 
-proc match*[D,D2](c: Config[D], selector: string, convert: ProcTypeSelectorCompare[D,D2], actions: proc(x: MatchConfig[D,D2]) = nil): MatchConfig[D,D2] {.discardable.} =
-  ## Match variant with convert procedure as simple `ProcTypeSelectorSerial`.
-  let typeSelector = MultiTypeSelector[D,D2](
-    kind: CompareTypeSelector,
-    serial: convert)
-  result = match(c, selector, typeSelector, actions)
-
 proc match*[X,D](c: MatchConfig[X,D], selector: string, actions: proc(x: MatchConfig[D,D]) = nil): MatchConfig[D,D] {.discardable.} =
   ## Match variant with no data refinement
   match[X,D,D](c, selector, idTypeSelector[D](), actions)
-
-proc match*[D](c: Config[D], selector: string, actions: proc(x: MatchConfig[D,D]) = nil): MatchConfig[D,D] {.discardable.} =
-  ## Match variant for `Config` with no data refinement
-  match[D,D](c, selector, idTypeSelector[D](), actions)
 
 proc refresh*[X,D](c: MatchConfig[X,D], refresh: ProcRefreshSimple[D]) =
   ## Add a `ProcRefresh` callback procedure to a match. The callback is called
@@ -559,34 +493,13 @@ proc iter[X,D,D2](c: MatchConfig[X,D], selector: string, iter: Iterator[D,D2], a
   if actions != nil:
     actions(result)
 
-proc iter[D,D2](c: Config[D], selector: string, iter: Iterator[D,D2], actions: proc(x: MatchConfig[D,D2]) = nil): MatchConfig[D,D2] {.discardable.} =
-  result = MatchConfig[D,D2](
-    selector: selector,
-    refresh: @[],
-    init: @[],
-    mount: nil,
-    iter: true,
-    iterate: iter,
-    cmatches: @[])
-  c.cmatches.add(result.asInterface())
-  if actions != nil:
-    actions(result)
-
 proc iter*[X,D,D2](c: MatchConfig[X,D], selector: string, it: ProcIterator[D,D2], actions: proc(x: MatchConfig[D,D2]) = nil): MatchConfig[D,D2] {.discardable.} =
   ## iterates over a specified DOM node. Works just like `match` but the
   ## selected DOM node is cloned as many times as necessary to fit the number of
   ## data items provided by the given iterator.
   result = iter(c, selector, Iterator[D,D2](kind: SimpleIterator, simple: it), actions)
 
-proc iter*[D,D2](c: Config[D], selector: string, it: ProcIterator[D,D2], actions: proc(x: MatchConfig[D,D2]) = nil): MatchConfig[D,D2] {.discardable.} =
-  ## iter variant for `Config`
-  result = iter(c, selector, Iterator[D,D2](kind: SimpleIterator, simple: it), actions)
-
 proc iter*[X,D,D2](c: MatchConfig[X,D], selector: string, it: ProcIteratorSerial[D,D2], actions: proc(x: MatchConfig[D,D2]) = nil): MatchConfig[D,D2] {.discardable.} =
-  ## iter variant for ProcIteratorSerial
-  result = iter(c, selector, Iterator[D,D2](kind: SerialIterator, serial: it), actions)
-
-proc iter*[D,D2](c: Config[D], selector: string, it: ProcIteratorSerial[D,D2], actions: proc(x: MatchConfig[D,D2]) = nil): MatchConfig[D,D2] {.discardable.} =
   ## iter variant for ProcIteratorSerial
   result = iter(c, selector, Iterator[D,D2](kind: SerialIterator, serial: it), actions)
 
