@@ -37,6 +37,8 @@ You can also [view live examples](samples/):
 - [Sample 3](samples/sample3.html): using something else than JSON for data
 - [Sample 4](samples/sample4/index.html): Event handlers
 
+See a real world example: [newswebjs](https://github.com/mildred/newswebjs)
+
 ### Hello World
 
 Simple example with two-way binding.
