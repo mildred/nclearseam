@@ -56,6 +56,8 @@ type
     data*: D
     init*: bool
     set*:  ProcSet[D]
+    before*: bool
+    skip*: bool
 
   ProcRefresh*[D] = proc(e: RefreshEvent[D]) ## \
   ## Procedure callback that is called whenever a part of a template needs to \
@@ -162,6 +164,7 @@ type
     ## represented by a CSS selector.
     selector: string
     refresh: seq[ProcRefresh[D2]]
+    refresh_before: seq[ProcRefresh[D2]]
     init: seq[ProcInit]
     cmatches: seq[MatchConfigInterface[D2]]
     mount: ComponentInterface[D2]
@@ -185,6 +188,7 @@ type
   CompMatch[D,D2] = ref object
     # CompMatch: handle association between DOM and a selector match
     refresh: seq[ProcRefresh[D2]]
+    refresh_before: seq[ProcRefresh[D2]]
     init: seq[ProcInit]
     node: dom.Node
     case iter: bool
@@ -200,6 +204,7 @@ type
       mount: ComponentInterface[D2]
       matches: seq[CompMatchInterface[D2]]
       inited: bool
+      skip: bool
     of true:
       iterate: Iterator[D,D2]
       mount_template: ComponentInterface[D2]
@@ -217,6 +222,7 @@ type
     node: dom.Node
     matches: seq[CompMatchInterface[D2]]
     mount: ComponentInterface[D2]
+    skip: bool
 
   Component*[D] = ref object
     ## Represents an instanciated template, a `Config` that has been compiled \
@@ -358,6 +364,7 @@ proc match[X,D,D2](c: MatchConfig[X,D], selector: string, convert: MultiTypeSele
   result = MatchConfig[D,D2](
     selector: selector,
     refresh: @[],
+    refresh_before: @[],
     init: @[],
     mount: nil,
     iter: false,
@@ -438,13 +445,18 @@ proc match*[X,D](c: MatchConfig[X,D], selector: string, actions: proc(x: MatchCo
   ## Match variant with no data refinement
   match[X,D,D](c, selector, idTypeSelector[D](), actions)
 
-proc refresh*[X,D](c: MatchConfig[X,D], refresh: ProcRefreshSimple[D]) =
+proc refresh*[X,D](c: MatchConfig[X,D], refresh: ProcRefreshSimple[D], before, after: bool = false) =
   ## Add a `ProcRefresh` callback procedure to a match. The callback is called
   ## whenever the data associated with the match changes. It can be used to
   ## update the DOM node text contents, event handlers, ...
-  c.refresh.add(proc(re: RefreshEvent[D]) = refresh(re.node, re.data))
+  ## If before is true, then the callback is called before sub-matches are
+  ## refreshed and can be used to skip refreshing them
+  if before:
+    c.refresh_before.add(proc(re: RefreshEvent[D]) = refresh(re.node, re.data))
+  if after or not before:
+    c.refresh.add(proc(re: RefreshEvent[D]) = refresh(re.node, re.data))
 
-proc refresh*[X,D](c: MatchConfig[X,D], refresh: ProcRefresh[D]) =
+proc refresh*[X,D](c: MatchConfig[X,D], refresh: ProcRefresh[D], before, after: bool = false) =
   ## Add a `ProcRefresh` callback procedure to a match. The callback is called
   ## whenever the data associated with the match changes. It can be used to
   ## update the DOM node text contents, event handlers, ...
@@ -466,7 +478,10 @@ proc refresh*[X,D](c: MatchConfig[X,D], refresh: ProcRefresh[D]) =
       raise newException(BindError, &"refresh with RefreshEvent is forbidden when type selector (compare) does not allow updates")
     of ObjectTypeSelector:
       discard
-  c.refresh.add(refresh)
+  if before:
+    c.refresh_before.add(refresh)
+  if after or not before:
+    c.refresh.add(refresh)
 
 proc init*[X,D](c: MatchConfig[X,D], init: ProcInit) =
   ## Add a `ProcInit` callback procedure to a match. The callback is called
@@ -514,6 +529,7 @@ proc iter[X,D,D2](c: MatchConfig[X,D], selector: string, iter: Iterator[D,D2], a
   result = MatchConfig[D,D2](
     selector: selector,
     refresh: @[],
+    refresh_before: @[],
     init: @[],
     mount: nil,
     iter: true,
@@ -547,6 +563,7 @@ proc compile[D,D2](cfg: MatchConfig[D,D2], node: dom.Node): seq[CompMatch[D,D2]]
   for matched_node in matched_nodes:
     var match = CompMatch[D,D2](
       refresh: cfg.refresh,
+      refresh_before: cfg.refresh_before,
       init: cfg.init,
       iter: cfg.iter,
       node: matched_node)
@@ -689,22 +706,38 @@ proc update[D,D2](match: CompMatch[D,D2], initVal: D, setVal: ProcSet[D], refres
         for initProc in match.init:
           initProc(iter_item.node)
 
+      # Refresh the node
+      var e = RefreshEvent[D2](
+        node:   iter_item.node,
+        data:   item,
+        init:   not inited,
+        set:    set,
+        before: true,
+        skip:   iter_item.skip)
+      for refreshProc in match.refresh_before:
+        refreshProc(e)
+        iter_item.skip = e.skip
+
       # Refresh mounts
-      if iter_item.mount != nil:
+      if iter_item.mount != nil and not iter_item.skip:
         iter_item.mount.update(item, set, subList)
 
       # Refresh the submatches
-      for submatch in iter_item.matches:
-        submatch.update(item, set, subList)
+      if not iter_item.skip:
+        for submatch in iter_item.matches:
+          submatch.update(item, set, subList)
 
       # Refresh the node
-      let e = RefreshEvent[D2](
-        node: iter_item.node,
-        data: item,
-        init: not inited,
-        set:  set)
+      e = RefreshEvent[D2](
+        node:   iter_item.node,
+        data:   item,
+        init:   not inited,
+        set:    set,
+        before: false,
+        skip:   iter_item.skip)
       for refreshProc in match.refresh:
         refreshProc(e)
+        iter_item.skip = e.skip
 
       i = i + 1
 
@@ -760,24 +793,39 @@ proc update[D,D2](match: CompMatch[D,D2], initVal: D, setVal: ProcSet[D], refres
       match.inited = true
       changed = true
 
+    if changed:
+      let e = RefreshEvent[D2](
+        node:   node,
+        data:   convertedVal,
+        init:   not inited,
+        set:    set,
+        before: true,
+        skip:   match.skip)
+      for refreshProc in match.refresh_before:
+        refreshProc(e)
+        match.skip = e.skip
+
     # Update mounts
-    if changed and match.mount != nil:
+    if changed and match.mount != nil and not match.skip:
       node = match.mount.node()
       match.mount.update(convertedVal, set, subList)
 
     # Update the submatches
-    if changed:
+    if changed and not match.skip:
       for submatch in match.matches:
         submatch.update(convertedVal, set, subList)
 
     if changed:
       let e = RefreshEvent[D2](
-        node: node,
-        data: convertedVal,
-        init: not inited,
-        set:  set)
+        node:   node,
+        data:   convertedVal,
+        init:   not inited,
+        set:    set,
+        before: false,
+        skip:   match.skip)
       for refreshProc in match.refresh:
         refreshProc(e)
+        match.skip = e.skip
 
 #
 # API
