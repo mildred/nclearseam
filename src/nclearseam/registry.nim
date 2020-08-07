@@ -1,7 +1,7 @@
 import sequtils
 import asyncjs
 import jsffi
-import ./dom
+import dom
 
 import ../nclearseam
 
@@ -30,6 +30,10 @@ proc declare*[T](registry: var Registry, component: var ComponentInterface[T], n
   let set_component = proc(c: Component[T]) = comp = c
   component = late(proc(): Component[T] = comp)
   registry.initProcs.add(proc(): Future[void] = initComp[T](set_component, node, creator))
+
+proc compile*[T](registry: var Registry, component: var ComponentInterface[T], node: Future[dom.Node], configurator: ProcMatchConfig[T,T], equal: proc(v1, v2: T): bool = nil) =
+  registry.declare(component, node) do(node: dom.Node) -> Component[T]:
+    return compile(T, node, configurator, equal)
 
 proc init*(registry: Registry): Future[void] {.async.} =
   await Promise.all(registry.initProcs.map(proc(p: ProcInit): Future[void] = p())).to(Future[void])

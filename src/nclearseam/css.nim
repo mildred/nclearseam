@@ -3,13 +3,14 @@ import strformat
 import strutils
 import asyncjs
 import jsffi
-import ./dom
+import dom
+import ./extradom
 
 var rand = initRand(1)
 
 proc scope*(node: dom.Node) =
   let comp = toHex(next(rand))
-  for element in node.querySelectorAll("*"):
+  for element in node.toJs.querySelectorAll("*"):
     element.classList.add(&"component-{comp}")
   for style in node.querySelectorAll("style[scope]"):
     let scope = toHex(next(rand))

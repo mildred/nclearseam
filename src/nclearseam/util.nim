@@ -3,7 +3,7 @@ import macros
 import jsffi
 
 import ../nclearseam
-import ./dom
+import dom
 #import typeinfo
 
 proc eql*[T](s1, s2: T): bool =
@@ -13,6 +13,10 @@ proc eql*[T](s1, s2: T): bool =
 proc `|`*[T1,T2,T3] (p1: proc(x: T1): T2, p2: proc(x: T2): T3): proc(x: T1): T3 =
   ## Return a proc that is the equivalent of piping the two input proc together
   result = proc(x: T1): T3 = x.p1().p2()
+
+proc `|`*[T1,T2] (p1: proc(): T1, p2: proc(x: T1): T2): proc(): T2 =
+  ## Return a proc that is the equivalent of piping the two input proc together
+  result = proc(): T2 = p1().p2()
 
 #func get*[K,D](typ: typedesc[D], keys: varargs[K]): ProcTypeConverter[D,D] =
 #  mixin `[]`
@@ -180,6 +184,19 @@ template `->`*[T1,T2](left: TypeSelector[T1,T2], ident: untyped): auto =
       set2(val2, val3)
       left.set(data, val2),
     id:  left.id & @[astToStr(ident)]
+  ))
+
+template `->`*[T](left: TypeAccessor[T], ident: untyped): auto =
+  paren(TypeAccessor[get_fields_type_macro(T, ident)](
+    get: left.get | get_fields_macro(T, ident),
+    set: proc(val3: get_fields_type_macro(T, ident), paths: seq[DataPath] = @[ cast[DataPath](@[]) ]) =
+      let val2 = left.get()
+      let set2 = set_fields_macro(T, ident)
+      set2(val2, val3)
+      var paths2: seq[DataPath]
+      for p in paths:
+        paths2.add(cast[DataPath](@[astToStr(ident)]) & p)
+      left.set(val2, paths2)
   ))
 
 proc access*[D](c: Config[D]): TypeSelector[D,D] =

@@ -1,9 +1,14 @@
 import sequtils
+import deques
 import strformat
 import system
 #import jsconsole
 import strutils
-import ./nclearseam/dom
+import dom
+import jsffi
+import jsconsole
+import ./nclearseam/extradom
+
 
 type
   BindError* = object of CatchableError ##\
@@ -39,13 +44,18 @@ type
   DataPath* = seq[string] ##\
   ## Represents a path to a part of a dataset, used for partial updates
 
-  ProcSet[D] = proc(newValue: D, path: DataPath = @[]) ## \
+  ProcSet[D] = proc(newValue: D, paths: seq[DataPath] = @[ DataPath(@[]) ]) ## \
   ## procedure used to update a value of a given type. provides a path
   ## representing the subset of the data that actually changed and that needs
   ## update. Other values will not update. Default path is an empty path to
   ## signify that all the data changed
 
-  RefreshEvent*[D] = ref object
+  TypeAccessor*[D] = ref object of RootObj
+    ## TypeAccessor is like a TypeSelector but with implicit data source.
+    get*: proc(): D
+    set*: ProcSet[D]
+
+  RefreshEvent*[D] = ref object of TypeAccessor[D]
     ## Represents a refresh event passed to the refresh procedure
     ##
     ## ``node`` is the DOM node to refresh
@@ -55,7 +65,6 @@ type
     node*: dom.Node
     data*: D
     init*: bool
-    set*:  ProcSet[D]
     before*: bool
     skip*: bool
 
@@ -155,17 +164,28 @@ type
     ## Represents a list of data paths which are modified
     paths: seq[DataPath]
 
+  CompRunner = ref object
+    ## The CompRunner is responsible for running updates. If new updates are
+    ## desired while update is in progress, it will be stacked in CompRunner for
+    ## later execution.
+    fifo: Deque[proc()]
+
   #
   # Config: Global component configuration
   #
+
+  RefreshConfig[D] = ref object
+    refresh: ProcRefresh[D]
+    before:  bool
+    after:   bool
+    init:    bool
+    reads:   UpdateSet
 
   MatchConfig*[D,D2] = ref object of RootObj
     ## Part of a template configuration, related to particular sub-section \
     ## represented by a CSS selector.
     selector: string
-    refresh: seq[ProcRefresh[D2]]
-    refresh_before: seq[ProcRefresh[D2]]
-    init: seq[ProcInit]
+    refresh: seq[RefreshConfig[D2]]
     cmatches: seq[MatchConfigInterface[D2]]
     mount: ComponentInterface[D2]
     case iter: bool
@@ -187,9 +207,8 @@ type
 
   CompMatch[D,D2] = ref object
     # CompMatch: handle association between DOM and a selector match
-    refresh: seq[ProcRefresh[D2]]
-    refresh_before: seq[ProcRefresh[D2]]
-    init: seq[ProcInit]
+    runner: CompRunner
+    refresh: seq[RefreshConfig[D2]]
     node: dom.Node
     case iter: bool
     of false:
@@ -260,6 +279,23 @@ proc clone*[D](comp: Component[D]): Component[D]
 # Utils
 #
 
+proc `$`*(path: DataPath): string =
+  "->" & path.join("->")
+
+proc `$`*(refreshList: UpdateSet): string =
+  if refreshList == nil:
+    "UpdateSet<nil>"
+  else:
+    let list = refreshList.paths.mapIt($it).join(", ")
+    &"UpdateSet({list})"
+
+proc updateSet*(paths: varargs[DataPath]): UpdateSet =
+  UpdateSet(paths: @paths)
+
+proc dataPath*(members: varargs[string]): DataPath =
+  let path: seq[string] = @members
+  return path
+
 proc id[D](data: D): D = data
 
 proc idTypeSelector[D](): TypeSelector[D,D] =
@@ -287,8 +323,6 @@ proc walk*(set: UpdateSet, path: DataPath): UpdateSet =
   for oldPath in set.paths:
     block createNewPath:
       var newPath: DataPath = @[]
-      if oldPath.len < path.len:
-        break createNewPath
       for i in 0 .. (path.len - 1):
         if i >= oldPath.len:
           break
@@ -297,6 +331,20 @@ proc walk*(set: UpdateSet, path: DataPath): UpdateSet =
       if oldPath.len > path.len:
         newPath = oldPath[(path.len)..^1]
       result.paths.add(newPath)
+
+proc is_changed*(set: UpdateSet, criteria: UpdateSet): bool =
+  ## Returns true if the update set is telling that any criteria has changed
+
+  if set == nil:
+    return criteria.is_changed()
+  if criteria == nil:
+    return set.is_changed()
+
+  for crit_path in criteria.paths:
+    if set.walk(crit_path).is_changed():
+      return true
+
+  return false
 
 let emptyDataPath*: DataPath = @[]
 
@@ -307,20 +355,16 @@ let refreshAll*: UpdateSet = UpdateSet(
 proc sub[D1,D2](ts: TypeSelector[D1,D2], val: var D1, setVal: ProcSet[D1], update: proc(refreshList: UpdateSet)): ProcSet[D2] =
   if setVal == nil and update == nil:
     return nil
-  result = proc(newValue: D2, changedPath: DataPath) =
+  result = proc(newValue: D2, changedPath: seq[DataPath]) =
     ts.set(val, newValue)
-    let newPath = ts.id & changedPath
+    var newPaths: seq[DataPath]
+    for p in changedPath:
+      newPaths.add(ts.id & p)
     if setVal != nil:
-      setVal(val, newPath)
+      setVal(val, newPaths)
     elif update != nil:
-      #console.log("Update %s", $newPath)
-      update(UpdateSet(paths: @[newPath]))
-
-proc `$`*(path: DataPath): string =
-  path.join("->")
-
-proc `$`*(refreshList: UpdateSet): string =
-  refreshList.paths.join(", ")
+      #console.log("Update %s", $newPaths)
+      update(UpdateSet(paths: newPaths))
 
 #
 # Configuration DSL
@@ -364,8 +408,6 @@ proc match[X,D,D2](c: MatchConfig[X,D], selector: string, convert: MultiTypeSele
   result = MatchConfig[D,D2](
     selector: selector,
     refresh: @[],
-    refresh_before: @[],
-    init: @[],
     mount: nil,
     iter: false,
     convert: convert)
@@ -445,18 +487,23 @@ proc match*[X,D](c: MatchConfig[X,D], selector: string, actions: proc(x: MatchCo
   ## Match variant with no data refinement
   match[X,D,D](c, selector, idTypeSelector[D](), actions)
 
-proc refresh*[X,D](c: MatchConfig[X,D], refresh: ProcRefreshSimple[D], before, after: bool = false) =
+proc refresh[X,D](c: MatchConfig[X,D], refreshConfig: RefreshConfig[D]) =
+    c.refresh.add(refreshConfig)
+
+proc refresh*[X,D](c: MatchConfig[X,D], refresh: ProcRefreshSimple[D], before = false, after: bool = false) =
   ## Add a `ProcRefresh` callback procedure to a match. The callback is called
   ## whenever the data associated with the match changes. It can be used to
   ## update the DOM node text contents, event handlers, ...
   ## If before is true, then the callback is called before sub-matches are
   ## refreshed and can be used to skip refreshing them
-  if before:
-    c.refresh_before.add(proc(re: RefreshEvent[D]) = refresh(re.node, re.data))
-  if after or not before:
-    c.refresh.add(proc(re: RefreshEvent[D]) = refresh(re.node, re.data))
+  c.refresh.add(RefreshConfig[D](
+    refresh: proc(re: RefreshEvent[D]) = refresh(re.node, re.data),
+    before:  before,
+    after:   after or not before,
+    init:    false,
+    reads:   refreshAll))
 
-proc refresh*[X,D](c: MatchConfig[X,D], refresh: ProcRefresh[D], before, after: bool = false) =
+proc refresh*[X,D](c: MatchConfig[X,D], refresh: ProcRefresh[D], before = false, after: bool = false, reads: UpdateSet = refreshAll) =
   ## Add a `ProcRefresh` callback procedure to a match. The callback is called
   ## whenever the data associated with the match changes. It can be used to
   ## update the DOM node text contents, event handlers, ...
@@ -478,15 +525,32 @@ proc refresh*[X,D](c: MatchConfig[X,D], refresh: ProcRefresh[D], before, after: 
       raise newException(BindError, &"refresh with RefreshEvent is forbidden when type selector (compare) does not allow updates")
     of ObjectTypeSelector:
       discard
-  if before:
-    c.refresh_before.add(refresh)
-  if after or not before:
-    c.refresh.add(refresh)
+  c.refresh.add(RefreshConfig[D](
+    refresh: refresh,
+    before:  before,
+    after:   after or not before,
+    init:    false,
+    reads:   reads))
+
+proc refresh*[X,D](c: MatchConfig[X,D], reads: UpdateSet, refresh_proc: ProcRefresh[D]) =
+  ## Add a refresh procedure but only call it if the changes are in `reads`.
+  refresh(c, refresh_proc, before=true, after=false, reads=reads)
+
+proc refresh_before*[X,D](c: MatchConfig[X,D], refresh_proc: ProcRefresh[D]) =
+  refresh(c, refresh_proc, before=true, after=false)
+
+proc refresh_before*[X,D](c: MatchConfig[X,D], reads: UpdateSet, refresh_proc: ProcRefresh[D]) =
+  refresh(c, refresh_proc, before=true, after=false, reads=reads)
 
 proc init*[X,D](c: MatchConfig[X,D], init: ProcInit) =
   ## Add a `ProcInit` callback procedure to a match. The callback is called
   ## whenever the DOM nodes is initialized.
-  c.init.add(init)
+  c.refresh.add(RefreshConfig[D](
+    refresh: proc(re: RefreshEvent[D]) = init(re.node),
+    before:  false,
+    after:   false,
+    init:    true,
+    reads:   refreshAll))
 
 proc mount*[X,D](c: MatchConfig[X,D], conf: Config[D] | Component[D], node: dom.Node) =
   ## mounts a sub-component at the specified match location of a parent
@@ -529,8 +593,6 @@ proc iter[X,D,D2](c: MatchConfig[X,D], selector: string, iter: Iterator[D,D2], a
   result = MatchConfig[D,D2](
     selector: selector,
     refresh: @[],
-    refresh_before: @[],
-    init: @[],
     mount: nil,
     iter: true,
     iterate: iter,
@@ -563,14 +625,12 @@ proc compile[D,D2](cfg: MatchConfig[D,D2], node: dom.Node): seq[CompMatch[D,D2]]
   for matched_node in matched_nodes:
     var match = CompMatch[D,D2](
       refresh: cfg.refresh,
-      refresh_before: cfg.refresh_before,
-      init: cfg.init,
       iter: cfg.iter,
       node: matched_node)
     match.node = matched_node
     if match.iter:
       match.iterate = cfg.iterate
-      match.anchor = matched_node.ownerDocument.createComment(matched_node.outerHTML)
+      match.anchor = matched_node.ownerDocument.createComment($matched_node.toJs.outerHTML.to(cstring))
       match.mount_template = cfg.mount
       match.match_templates = cfg.cmatches
       match.items = @[]
@@ -637,7 +697,22 @@ proc detach[D2](iter_item: CompMatchItem[D2], parentNode: dom.Node) =
   ## detach is a helper procedure to detach a node from an iter item
   parentNode.removeChild(iter_item.node)
 
+proc update_do[D,D2](match: CompMatch[D,D2], initVal: D, setVal: ProcSet[D], refreshList: UpdateSet)
 proc update[D,D2](match: CompMatch[D,D2], initVal: D, setVal: ProcSet[D], refreshList: UpdateSet) =
+  let run = proc() =
+    update_do(match, initVal, setVal, refreshList)
+
+  if match.runner != nil:
+    match.runner.fifo.addLast(run)
+  else:
+    match.runner = CompRunner(fifo: initDeque[proc()]())
+    defer: match.runner = nil
+    match.runner.fifo.addLast(run)
+    while match.runner.fifo.len > 0:
+      let run_item: proc() = match.runner.fifo.popFirst()
+      run_item()
+
+proc update_do[D,D2](match: CompMatch[D,D2], initVal: D, setVal: ProcSet[D], refreshList: UpdateSet) =
   assert(setVal != nil)
   var val = initVal
 
@@ -660,27 +735,29 @@ proc update[D,D2](match: CompMatch[D,D2], initVal: D, setVal: ProcSet[D], refres
       var serial: int = if i < len(match.items): match.items[i].serial else: 0
       var changed = refreshList.is_changed()
       var item: D2
-      var set: ProcSet[D2] = nil #proc(newValue: D2) = raise newException(BindError, &"Cannot change data, type-selector is read-only")
+      var accessor: TypeAccessor[D2] = TypeAccessor[D2](
+        get: proc(): D2 = item,
+        set: nil)
       case match.iterate.kind
       of SimpleIterator:
         var it = it_simple()
         if it[0] == false: break
         item = it[1]
-        set = proc(newValue: D2, path: DataPath = @[]) =
+        accessor.set =  proc(newValue: D2, path: seq[DataPath] = @[]) =
           raise newException(CannotSetError, &"Cannot update data with SimpleIterator")
         #console.log("nclearseam.update(iter, changed=%o) using %o", changed, item)
       of SerialIterator:
         var it = it_serial(serial)
         if it[0] == false: break
         item = it[1]
-        set = proc(newValue: D2, path: DataPath = @[]) =
+        accessor.set = proc(newValue: D2, path: seq[DataPath] = @[]) =
           raise newException(CannotSetError, &"Cannot update data with SerialIterator")
         #console.log("nclearseam.update(iter, changed=%o) using %o", changed, item)
       of TypeSelectorIterator:
         var it = it_select()
         if it == nil: break
         item = it.get(val)
-        set = it.sub(val, setVal) do(refreshList: UpdateSet):
+        accessor.set = it.sub(val, setVal) do(refreshList: UpdateSet):
           update(match, val, setVal, refreshList)
         subList = refreshList.walk(it.id)
         changed = subList.is_changed()
@@ -701,43 +778,50 @@ proc update[D,D2](match: CompMatch[D,D2], initVal: D, setVal: ProcSet[D], refres
         if serial != iter_item.serial:
           changed = true
 
-      # Initialize DOM Node
-      if not inited:
-        for initProc in match.init:
-          initProc(iter_item.node)
-
-      # Refresh the node
+      # Initialize/refresh DOM Node
       var e = RefreshEvent[D2](
+        get:    accessor.get,
+        set:    accessor.set,
         node:   iter_item.node,
         data:   item,
         init:   not inited,
-        set:    set,
         before: true,
         skip:   iter_item.skip)
-      for refreshProc in match.refresh_before:
-        refreshProc(e)
-        iter_item.skip = e.skip
+      for refresh in match.refresh:
+        var exec = refresh.before
+        if exec and match.iterate.kind == TypeSelectorIterator:
+          exec = subList.is_changed(refresh.reads)
+        if exec or (not inited and refresh.init):
+          e.data = item
+          refresh.refresh(e)
+          iter_item.skip = e.skip
 
       # Refresh mounts
       if iter_item.mount != nil and not iter_item.skip:
-        iter_item.mount.update(item, set, subList)
+        iter_item.mount.update(item, accessor.set, subList)
 
       # Refresh the submatches
       if not iter_item.skip:
         for submatch in iter_item.matches:
-          submatch.update(item, set, subList)
+          submatch.update(item, accessor.set, subList)
 
       # Refresh the node
       e = RefreshEvent[D2](
+        get:    accessor.get,
+        set:    accessor.set,
         node:   iter_item.node,
         data:   item,
         init:   not inited,
-        set:    set,
         before: false,
         skip:   iter_item.skip)
-      for refreshProc in match.refresh:
-        refreshProc(e)
-        iter_item.skip = e.skip
+      for refresh in match.refresh:
+        var exec = refresh.after
+        if exec and match.iterate.kind == TypeSelectorIterator:
+          exec = subList.is_changed(refresh.reads)
+        if exec:
+          e.data = item
+          refresh.refresh(e)
+          iter_item.skip = e.skip
 
       i = i + 1
 
@@ -749,7 +833,9 @@ proc update[D,D2](match: CompMatch[D,D2], initVal: D, setVal: ProcSet[D], refres
     var subList: UpdateSet
     var node = match.node
     var convertedVal: D2
-    var set: ProcSet[D2] = nil #proc(newValue: D2) = raise newException(BindError, &"Cannot change data, type-selector is read-only")
+    var accessor: TypeAccessor[D2] = TypeAccessor[D2](
+      get: proc(): D2 = convertedVal,
+      set: nil)
 
     case match.convert.kind
     of SimpleTypeSelector:
@@ -776,7 +862,7 @@ proc update[D,D2](match: CompMatch[D,D2], initVal: D, setVal: ProcSet[D], refres
       changed = subList.is_changed()
       if changed and match.convert.eql != nil:
         changed = not match.convert.eql(convertedVal, match.value)
-      set = obj.sub(val, setVal) do(refreshList: UpdateSet):
+      accessor.set = obj.sub(val, setVal) do(refreshList: UpdateSet):
         update(match, val, setVal, refreshList)
       #console.log("nclearseam.update(match, changed=%o, id=%o) with %o", changed, $obj.id, convertedVal)
 
@@ -787,45 +873,56 @@ proc update[D,D2](match: CompMatch[D,D2], initVal: D, setVal: ProcSet[D], refres
 
     # Initialize DOM Node
     let inited = match.inited
-    if not inited:
-      for initProc in match.init:
-        initProc(node)
-      match.inited = true
-      changed = true
-
-    if changed:
-      let e = RefreshEvent[D2](
-        node:   node,
-        data:   convertedVal,
-        init:   not inited,
-        set:    set,
-        before: true,
-        skip:   match.skip)
-      for refreshProc in match.refresh_before:
-        refreshProc(e)
+    if not inited: changed = true
+    let e = RefreshEvent[D2](
+      get:    accessor.get,
+      set:    accessor.set,
+      node:   node,
+      data:   convertedVal,
+      init:   not inited,
+      before: changed,
+      skip:   match.skip)
+    for refresh in match.refresh:
+      var exec = changed
+      if exec and match.convert.kind == ObjectTypeSelector:
+        exec = subList.is_changed(refresh.reads)
+        #console.log("update subList=%s, refresh.reads=%s, match=", $sublist, $refresh.reads, match)
+        #console.log(&"({refresh.before} and ({exec} or not {inited})) or ({refresh.init} and not {inited})")
+      exec = (refresh.before and (exec or not inited)) or (refresh.init and not inited)
+      if exec:
+        e.data = convertedVal
+        refresh.refresh(e)
         match.skip = e.skip
+    if not inited:
+      match.inited = true
 
     # Update mounts
     if changed and match.mount != nil and not match.skip:
       node = match.mount.node()
-      match.mount.update(convertedVal, set, subList)
+      match.mount.update(convertedVal, accessor.set, subList)
 
     # Update the submatches
     if changed and not match.skip:
       for submatch in match.matches:
-        submatch.update(convertedVal, set, subList)
+        submatch.update(convertedVal, accessor.set, subList)
 
     if changed:
       let e = RefreshEvent[D2](
+        get:    accessor.get,
+        set:    accessor.set,
         node:   node,
         data:   convertedVal,
         init:   not inited,
-        set:    set,
         before: false,
         skip:   match.skip)
-      for refreshProc in match.refresh:
-        refreshProc(e)
-        match.skip = e.skip
+      for refresh in match.refresh:
+        var exec = refresh.after
+        if exec and match.convert.kind == ObjectTypeSelector:
+          exec = subList.is_changed(refresh.reads)
+        if exec:
+          e.data = convertedVal
+          refresh.refresh(e)
+          match.skip = e.skip
 
 #
 # API
@@ -857,12 +954,12 @@ proc update*[D](t: Component[D], initVal: D, setVal: ProcSet[D] = nil, refreshLi
   t.data = initVal
 
   proc upd(refreshList: UpdateSet)
-  proc set(newVal: D, changedPath: DataPath) =
+  proc set(newVal: D, changedPath: seq[DataPath]) =
     t.data = newVal
     if setVal != nil:
       setVal(newVal, changedPath)
     else:
-      upd(UpdateSet(paths: @[changedPath]))
+      upd(UpdateSet(paths: changedPath))
 
   proc upd(refreshList: UpdateSet) =
     for match in t.cmatches:

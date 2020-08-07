@@ -1,6 +1,6 @@
 import ./util
 import ../nclearseam
-import ./dom
+import dom
 import json
 import sugar
 
