@@ -239,6 +239,7 @@ type
     # CompMatchItem: handle iterations
     serial: int
     node: dom.Node
+    live_nodes: seq[dom.Node]
     matches: seq[CompMatchInterface[D2]]
     mount: ComponentInterface[D2]
     skip: bool
@@ -251,6 +252,7 @@ type
     convert: MultiTypeSelector[D,D]
     original_node: dom.Node
     node: dom.Node
+    live_nodes: seq[dom.Node]
     data*: D
 
   ComponentInterface*[D] = ref object
@@ -365,6 +367,22 @@ proc sub[D1,D2](ts: TypeSelector[D1,D2], val: var D1, setVal: ProcSet[D1], updat
     elif update != nil:
       #console.log("Update %s", $newPaths)
       update(UpdateSet(paths: newPaths))
+
+proc insertDom(node, parent, anchor: dom.Node): seq[dom.Node] =
+  if node.nodeType == DocumentFragmentNode:
+    result = @[]
+    for n in node.children: result.add(n)
+  else:
+    result = @[node]
+  parent.insertBefore(node, anchor)
+
+proc removeDom(nodes: seq[dom.Node]) =
+  for n in nodes:
+    n.parentNode.removeChild(n)
+
+proc removeDom(nodes: seq[dom.Node], parent: dom.Node) =
+  for n in nodes:
+    parent.removeChild(n)
 
 #
 # Configuration DSL
@@ -684,18 +702,20 @@ proc createIterItem[D,D2](match: CompMatch[D,D2], parentNode: dom.Node): CompMat
   if match.mount_template != nil:
     comp = match.mount_template.clone()
     node = comp.node()
+    console.log("createIterItem-mount", node)
   else:
     node = match.node.cloneNode(true)
+    console.log("createIterItem", node)
   result = CompMatchItem[D2](
     serial: 0,
     mount: comp,
     node: node,
+    live_nodes: node.insertDom(parentNode, match.anchor),
     matches: compile(match.match_templates, node))
-  parentNode.insertBefore(node, match.anchor)
 
 proc detach[D2](iter_item: CompMatchItem[D2], parentNode: dom.Node) =
   ## detach is a helper procedure to detach a node from an iter item
-  parentNode.removeChild(iter_item.node)
+  iter_item.live_nodes.removeDom(parentNode)
 
 proc update_do[D,D2](match: CompMatch[D,D2], initVal: D, setVal: ProcSet[D], refreshList: UpdateSet)
 proc update[D,D2](match: CompMatch[D,D2], initVal: D, setVal: ProcSet[D], refreshList: UpdateSet) =
@@ -972,11 +992,11 @@ proc attach*[D](t: Component[D], target, anchor: dom.Node, data: D, set: ProcSet
   ## element of `target` and before `anchor` in the same way the `insertBefore`
   ## procedure works on DOM.
   t.update(data, set, refreshAll)
-  target.insertBefore(t.node, anchor)
+  t.live_nodes = t.node.insertDom(target, anchor)
 
 proc detach*(t: Component) =
   ## Detach a component from its parent DOM Node
-  t.node.parentNode.removeChild(t.node)
+  t.live_nodes.removeDom()
 
 #
 # Interfaces
