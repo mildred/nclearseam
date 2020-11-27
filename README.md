@@ -27,6 +27,8 @@ Warning: this is a very young project, use at your own risks
 Example
 -------
 
+**Note:** Samples might be out of date, check external projects too.
+
 Templating is always the combinaison of three factors: the HTML markup, the data
 (generally JSON, but it's generic) and the mapping.
 
@@ -37,7 +39,9 @@ You can also [view live examples](samples/):
 - [Sample 3](samples/sample3.html): using something else than JSON for data
 - [Sample 4](samples/sample4/index.html): Event handlers
 
-See a real world example: [newswebjs](https://github.com/mildred/newswebjs)
+See real world examples:
+
+- [newswebjs](https://github.com/mildred/newswebjs)
 
 ### Hello World
 
