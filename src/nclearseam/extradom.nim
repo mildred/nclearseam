@@ -6,9 +6,10 @@ proc ownerDocument*(n: Node): Document =
 
 {.push importcpp.}
 
-proc querySelector*(d: Node, selectors: cstring): seq[Element]
-proc querySelectorAll*(d: Node, selectors: cstring): seq[Element]
+when (NimMajor, NimMinor) < (1,4):
+  proc querySelector*(d: Node, selectors: cstring): seq[Element]
+  proc querySelectorAll*(d: Node, selectors: cstring): seq[Element]
 
-proc createComment*(d: Document, data: cstring): Node {.importcpp.}
+  proc createComment*(d: Document, data: cstring): Node {.importcpp.}
 
 {.pop.}

@@ -671,6 +671,10 @@ proc compile[D,D2](cfg: MatchConfig[D,D2], node: dom.Node): seq[CompMatch[D,D2]]
           match.matches.add(submatch.compile(matched_node))
     result.add(match)
 
+proc compile[D](cfg: Config[D], node: dom.Node): seq[CompMatch[D,D]] =
+  let cfg2: MatchConfig[D,D] = cfg
+  result = compile(cfg2, node)
+
 proc compile[D](cfgs: seq[MatchConfigInterface[D]], node: dom.Node): seq[CompMatchInterface[D]] =
   result = @[]
   for cfg in cfgs:
@@ -680,7 +684,7 @@ proc compile*[D](d: typedesc[D], node: dom.Node, configurator: ProcMatchConfig[D
   ## Alternative compile procedure that creates the configuration and compiles
   ## it in one shot.
   assert node != nil
-  let cfg = create(D, configurator, equal)
+  let cfg: Config[D] = create(D, configurator, equal)
   cfg.config(cfg)
 
   result = new(Component[D])
