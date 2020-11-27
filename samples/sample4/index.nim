@@ -1,7 +1,8 @@
 import asyncjs
+import dom
 
 import ../../src/nclearseam
-import ../../src/nclearseam/dom
+import ../../src/nclearseam/extradom
 import ../../src/nclearseam/registry
 
 import ./button

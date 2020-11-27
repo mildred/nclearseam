@@ -1,7 +1,8 @@
 import ../src/nclearseam
 import ../src/nclearseam/jsonutil
-import ../src/nclearseam/dom
+import ../src/nclearseam/extradom
 import json
+import dom
 import jsconsole
 
 var config1* = create(JsonNode) do(t: auto):

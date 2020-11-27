@@ -1,9 +1,10 @@
 import jsconsole
+import dom
 
 import ../../src/nclearseam
 import ../../src/nclearseam/util
 import ../../src/nclearseam/fetchutil
-import ../../src/nclearseam/dom
+import ../../src/nclearseam/extradom
 import ../../src/nclearseam/registry
 
 type

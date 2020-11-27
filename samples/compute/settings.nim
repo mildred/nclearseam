@@ -1,11 +1,12 @@
 import nclearseam
 import nclearseam/util
 import nclearseam/fetchutil
-import nclearseam/dom
+import nclearseam/extradom
 import nclearseam/registry
 import jsconsole
 import jsffi
 import json
+import dom
 
 type
   Settings* = ref object

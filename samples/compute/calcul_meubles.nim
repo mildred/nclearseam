@@ -1,8 +1,9 @@
 import jsconsole
 import asyncjs
+import dom
 
 import nclearseam
-import nclearseam/dom
+import nclearseam/extradom
 import nclearseam/registry
 
 import ./app

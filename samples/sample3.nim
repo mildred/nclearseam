@@ -1,7 +1,8 @@
 import ../src/nclearseam
 import ../src/nclearseam/util
-import ../src/nclearseam/dom
+import ../src/nclearseam/extradom
 import json
+import dom
 
 type
   Comp2Item = ref object
